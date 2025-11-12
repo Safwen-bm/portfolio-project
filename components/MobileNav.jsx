@@ -1,58 +1,56 @@
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
 
 const links = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "Resume", href: "/resume" },
-    { name: "Work", href: "/work" },
-    { name: "Contact", href: "/contact" },
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Resume", href: "/resume" },
+  { name: "Work", href: "/work" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const MobileNav = () => {
-    const pathname = usePathname();
-    return (
-        <Sheet>
-            <SheetTrigger className="flex justify-center items-center">
-                <CiMenuFries className="text-[32px] text-accent" />
-            </SheetTrigger>
-            <SheetContent className="flex flex-col">
-                {/* Add hidden DialogTitle */}
-                <VisuallyHidden>
-                    <SheetTitle>Mobile Navigation</SheetTitle>
-                </VisuallyHidden>
+  const pathname = usePathname();
+  return (
+    <Sheet>
+      <SheetTrigger className="flex items-center justify-center">
+        <CiMenuFries className="text-2xl text-white/90" />
+      </SheetTrigger>
 
-                {/* Logo */}
-                <div className="mt-32 mb-40 text-center text-2xl">
-                    <Link href="/">
-                        <h1 className="text-4xl font-semibold">
-                            SafOne<span className="text-accent">&lt;/&gt;</span>
-                        </h1>
-                    </Link>
-                </div>
+      <SheetContent className="flex flex-col p-6">
+        <VisuallyHidden>
+          <h2>Mobile navigation</h2>
+        </VisuallyHidden>
 
-                {/* Links */}
-                <nav className="flex flex-col justify-center items-center gap-8">
-                    {links.map((link, index) => (
-                        <Link
-                            href={link.href}
-                            key={index}
-                            className={`${link.href === pathname &&
-                                "text-accent border-b-2 border-accent"
-                                } text-xl capitalize hover:text-accent transition-all`}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                </nav>
-            </SheetContent>
-        </Sheet>
-    );
+        <div className="mt-10 mb-8 text-center">
+          <Link href="/" className="inline-block">
+            <h1 className="text-3xl font-semibold">
+              SafOne <span className="text-[#7fbfff]">&lt;/&gt;</span>
+            </h1>
+          </Link>
+        </div>
+
+        <nav className="flex flex-col items-center gap-6 mt-6">
+          {links.map((link, idx) => (
+            <Link
+              href={link.href}
+              key={idx}
+              className={`text-xl capitalize ${
+                link.href === pathname ? "text-[#7fbfff]" : "text-white/80"
+              }`}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+      </SheetContent>
+    </Sheet>
+  );
 };
 
 export default MobileNav;

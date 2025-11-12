@@ -1,162 +1,97 @@
+// app/work/page.jsx
 "use client";
 
-import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { BsArrowUpRight, BsGithub } from "react-icons/bs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
-} from "@radix-ui/react-tooltip";
-
 import Link from "next/link";
 import Image from "next/image";
 import WorkSliderBtns from "@/components/WorkSliderBtns";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const projects = [
   {
     num: "01",
-    category: "Frontend",
-    title: "E-commerce Website",
-    description: "A simple e-commerce website built with React and Redux",
-    stack: [{ name: "Html 5" }, { name: "Css 3" }, { name: "JavaScript" }],
+    title: "Plateforme de Téléconsultation Médicale",
+    description: "Application complète avec vidéos en direct, gestion de dossiers médicaux, prise de rendez-vous, notifications automatiques et tableau de bord médecin. Intégration WebRTC et synchronisation temps réel.",
+    stack: ["React", "Node.js", "Express", "MongoDB", "PeerJS", "SendGrid"],
     image: "/project1.png",
-    live: "",
-    github: "",
+    github: "https://github.com/Safwen-bm/medical-platform"
   },
   {
     num: "02",
-    category: "FullStack",
-    title: "E-Learning",
-    description: "A simple e-learning website built with React and Node.js",
-    stack: [{ name: "Next.js" }, { name: "tailwind.css" }, { name: "Node.js" }],
+    title: "Système Bancaire",
+    description: "Plateforme web sécurisée pour la gestion des taux, transactions et rôles utilisateurs. Priorité à la sécurité, performance et intégrité des données.",
+    stack: ["Next.js", "NestJS", "PostgreSQL", "Prisma"],
     image: "/project2.png",
-    live: "",
-    github: "",
+    github: "https://github.com/Safwen-bm/creditwin"
   },
   {
     num: "03",
-    category: "FullStack",
-    title: "Chat-app",
-    description: "A simple chat app built with React and Node.js",
-    stack: [{ name: "React" }, { name: "tailwind.css" }, { name: "Node.js" }],
+    title: "Plateforme LMS (E-Learning)",
+    description: "Système complet de gestion de cours : inscription, suivi de progression, messagerie en temps réel et espace administrateur.",
+    stack: ["Next.js", "Node.js", "Tailwind", "Prisma", "PostgreSQL"],
     image: "/project3.png",
-    live: "",
-    github: "",
+    github: "https://github.com/Safwen-bm/E_learning_app"
   },
+  {
+    num: "04",
+    title: "Application de Chat Temps Réel",
+    description: "Messagerie instantanée avec indicateurs de saisie, statut en ligne et interface responsive.",
+    stack: ["MERN", "Socket.IO"],
+    image: "/project4.png",
+    github: "https://github.com/Safwen-bm/chat-app"
+  }
 ];
 
 const Work = () => {
   const [project, setProject] = useState(projects[0]);
 
-  const handlesSlideChange = (swiper) => {
-    const currentIndex = swiper.activeIndex;
-
-    setProject(projects[currentIndex]);
+  const handleSlideChange = (swiper) => {
+    setProject(projects[swiper.activeIndex]);
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ 
-        opacity: 1,
-      transition: { delay: 2.4, duration: 0.4, ease: "easeIn" },
-      }}
-      className="min-h-[80vh] flex flex-col justify-center py-12 xl:px-0"
-    >
-      <div className="container mx-auto">
-        <div className="flex flex-col xl:flex-row xl:gap-[30px]">
-          <div className="w-full xl:w-[50%] xl:h-[460px] flex flex-col
-          xl:justify-between order-2 xl:order-none">
-            <div className="flex flex-col gap-[30px] h-[50%]">
-              <div className="text-8xl leading-none font-extrabold 
-              text-transparent text-outline">
-                {project.num}
-              </div>
-              <h2 className="text-[42px] font-bold leading-none text-white
-              group-hover:text-accent transition-all duration-500 capitalize">
-                {project.category} project
-              </h2>
-              <p className="text-white/60">{project.description}</p>
-              <ul>
-                {project.stack.map((item, index) => {
-                  return (
-                    <li key={index} className="text-xl text-accent">
-                      {item.name}
-                      {index !== project.stack.length - 1 && ","}
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="border border-white/20"></div>
-              <div className="flex items-center gap-4">
-                <Link href={project.live}>
-                  <TooltipProvider delayDuration={100}>
-                    <Tooltip>
-                      <TooltipTrigger className="w-[70px] h-[70px] rounded-full
-                    bg-white/5 flex justify-center items-center group">
-                        <BsArrowUpRight className="text-white text-3xl
-                      group-hover:text-accent" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Live project</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </Link>
-
-                <Link href={project.github}>
-                  <TooltipProvider delayDuration={100}>
-                    <Tooltip>
-                      <TooltipTrigger className="w-[70px] h-[70px] rounded-full
-                    bg-white/5 flex justify-center items-center group">
-                        <BsGithub className="text-white text-3xl
-                      group-hover:text-accent" />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Github repository</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </Link>
-              </div>
+    <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen py-16 bg-gradient-to-b from-[#0a0e17] to-[#0b1426]">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
+            <div className="text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+              {project.num}
             </div>
-          </div>
-          <div className="w-full xl:w-[50%]">
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={1}
-              className="xl:h-[520px] mb-12"
-              onSlideChange={handlesSlideChange}
-            >
-              {projects.map((project, index) => {
-                return (
-                  <SwiperSlide key={index} className="w-full">
-                    <div className="h-[460px] relative group flex justify-center
-                  items-center bg-pink-50/20">
-                      <div className="absolute top-0 bottom-0 w-full h-full bg-black/10
-                      z-10 "></div>
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={project.image}
-                          alt=""
-                          className="object-cover"
-                          fill
-                        />
-                      </div>
+            <h2 className="text-5xl font-bold text-white">{project.title}</h2>
+            <p className="text-gray-300 text-lg">{project.description}</p>
+            <div className="flex flex-wrap gap-3">
+              {project.stack.map((tech, i) => (
+                <span key={i} className="px-4 py-2 bg-cyan-500/10 text-cyan-300 rounded-full text-sm border border-cyan-500/30">
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <div className="flex gap-6">
+              <Link href={project.github} target="_blank">
+                <Button variant="outline" className="border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/10 rounded-full px-6 py-3">
+                  <BsGithub className="mr-2" /> GitHub
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+
+          <div className="relative">
+            <Swiper spaceBetween={30} slidesPerView={1} onSlideChange={handleSlideChange} className="h-[520px]">
+              {projects.map((p, i) => (
+                <SwiperSlide key={i}>
+                  <div className="h-full rounded-3xl overflow-hidden bg-gradient-to-br from-cyan-500/20 to-blue-600/20 p-2">
+                    <div className="relative w-full h-full bg-black/50 rounded-2xl overflow-hidden">
+                      <Image src={p.image} alt={p.title} fill className="object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                     </div>
-                  </SwiperSlide>
-                );
-              })}
-              <WorkSliderBtns 
-              containerStyles="flex gap-2 absolute right-0 
-              bottom-[calc(50%_-_22px)] xl:bottom-0 z-20 w-full justify-between 
-              xl:w-max xl:justify-none" 
-              btnStyles="bg-accent hover:bg-accent-hover text-primary text-[22px] 
-              w-[44px] h-[44px] flex justify-center items-center transition-all" />
+                  </div>
+                </SwiperSlide>
+              ))}
+              <WorkSliderBtns containerStyles="absolute right-6 bottom-6 z-10 flex gap-3" btnStyles="bg-cyan-500 hover:bg-cyan-600 text-black w-12 h-12 rounded-full flex items-center justify-center shadow-lg" />
             </Swiper>
           </div>
         </div>

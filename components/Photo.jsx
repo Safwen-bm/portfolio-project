@@ -1,67 +1,38 @@
+// components/Photo.jsx
 "use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 const Photo = () => {
-    return (
-        <div className="w-full h-full relative">
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{
-                    opacity: 1,
-                    transition: { delay: 2, duration: 0.4, ease: "easeIn" },
-                }}
-            >
-                {/* image */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{
-                        opacity: 1,
-                        transition: { delay: 2.4, duration: 0.4, ease: "easeInOut" },
-                    }}
-                    className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px]
-                        mix-blend-lighten absolute">
-                    <Image
-                        src="/image.png"
-                        priority
-                        quality={100}
-                        fill
-                        alt="Safwen"
-                        className="object-contain"
-                    />
-                </motion.div>
+  return (
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="relative w-72 h-72 md:w-80 md:h-80"
+      style={{ perspective: 1000 }}
+    >
+      <motion.div
+        className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-cyan-500/40 shadow-2xl"
+        whileHover={{ rotateX: 10, rotateY: -10 }}
+        transition={{ duration: 0.4 }}
+      >
+        <Image
+          src="/image.png"
+          alt="Safwen Ben Mabrouk"
+          fill
+          priority
+          className="object-contain"
+        />
+      </motion.div>
 
-                {/* circle */}
-                <motion.svg
-                    className="w-[300px] h-[300px] xl:w-[506px] xl:h-[506px]"
-                    fill="transparent"
-                    viewBox="0 0 506 506"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <motion.circle
-                        cx="253"
-                        cy="253"
-                        r="250"
-                        stroke="#00ff99"
-                        strokeWidth="4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        initial={{ strokeDasharray: "24 10 0 0" }}
-                        animate={{
-                            strokeDasharray: ["15 120 25 25", "16 25 92 72", "4 255 22 22"],
-                            rotate: [120, 360],
-                        }}
-                        transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                            repeatType: "reverse",
-                        }}
-                    />
-                </motion.svg>
-            </motion.div>
-        </div>
-    );
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 -m-6 rounded-3xl border-4 border-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 opacity-70"
+        style={{ filter: "blur(2px)" }}
+      />
+    </motion.div>
+  );
 };
 
 export default Photo;
