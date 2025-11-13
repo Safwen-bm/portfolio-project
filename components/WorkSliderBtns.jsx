@@ -1,21 +1,29 @@
+// components/WorkSliderBtns.jsx
 "use client";
 
-import { useSwiper } from "swiper/react";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 
-const WorkSliderBtns = ({ containerStyles, btnStyles, iconsStyles }) => {
-    const swiper = useSwiper();
+const WorkSliderBtns = ({ containerStyles, btnStyles, swiper }) => {
+  if (!swiper) return null;
 
-    return (
-        <div className={containerStyles}>
-            <button className={btnStyles} onClick={() => swiper.slidePrev()}>
-                <PiCaretLeftBold className={iconsStyles} />
-            </button>
-            <button className={btnStyles} onClick={() => swiper.slideNext()}>
-                <PiCaretRightBold className={iconsStyles} />
-            </button>
-        </div>
-    );
+  return (
+    <div className={containerStyles}>
+      <button
+        className={btnStyles}
+        onClick={() => swiper.slidePrev()}
+        aria-label="Previous slide"
+      >
+        <PiCaretLeftBold className="text-2xl" />
+      </button>
+      <button
+        className={btnStyles}
+        onClick={() => swiper.slideNext()}
+        aria-label="Next slide"
+      >
+        <PiCaretRightBold className="text-2xl" />
+      </button>
+    </div>
+  );
 };
 
 export default WorkSliderBtns;
