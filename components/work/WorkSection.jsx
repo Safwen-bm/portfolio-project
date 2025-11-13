@@ -1,3 +1,4 @@
+// components/work/WorkSection.jsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -17,9 +18,9 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     num: "01",
-    title: "Plateforme de Téléconsultation Médicale",
+    title: "Medical Teleconsultation Platform",
     description:
-      "Application complète avec vidéos en direct, gestion de dossiers médicaux, prise de rendez-vous, notifications automatiques et tableau de bord médecin. Intégration WebRTC et synchronisation temps réel.",
+      "Full-featured app with live video calls, medical record management, appointment scheduling, automated notifications, and doctor dashboard. WebRTC integration with real-time sync.",
     stack: ["React", "Node.js", "Express", "MongoDB", "PeerJS", "SendGrid"],
     image: "/telemed.png",
     github: "https://github.com/Safwen-bm/medical-platform",
@@ -27,9 +28,9 @@ const projects = [
   },
   {
     num: "02",
-    title: "Système Bancaire",
+    title: "Secure Banking System",
     description:
-      "Plateforme web sécurisée pour la gestion des taux, transactions et rôles utilisateurs.",
+      "Secure web platform for managing rates, transactions, and user roles.",
     stack: ["Next.js", "NestJS", "PostgreSQL", "Prisma"],
     image: "/project2.png",
     github: "https://github.com/Safwen-bm/creditwin",
@@ -39,7 +40,7 @@ const projects = [
     num: "03",
     title: "LMS E-Learning Platform",
     description:
-      "Système complet de gestion de cours : inscription, suivi de progression, messagerie en temps réel et espace administrateur.",
+      "Complete course management system: enrollment, progress tracking, real-time messaging, and admin panel.",
     stack: ["Next.js", "Node.js", "Tailwind", "Prisma", "PostgreSQL"],
     image: "/elearning.png",
     github: "https://github.com/Safwen-bm/E_learning_app",
@@ -49,7 +50,7 @@ const projects = [
     num: "04",
     title: "MERN Chat Application",
     description:
-      "Messagerie instantanée avec indicateurs de saisie, statut en ligne et interface responsive.",
+      "Real-time messaging with typing indicators, online status, and responsive UI.",
     stack: ["MERN", "Socket.IO"],
     image: "/chatapp.png",
     github: "https://github.com/Safwen-bm/fullstack-chat-app",
@@ -59,7 +60,7 @@ const projects = [
     num: "05",
     title: "Coffee Shop Website",
     description:
-      "Site responsive pour un café avec menu interactif, formulaire de contact et design fluide.",
+      "Responsive website for a café with interactive menu, contact form, and smooth design.",
     stack: ["HTML", "CSS", "JavaScript"],
     image: "/coffee-shop.png",
     github: "https://github.com/Safwen-bm/coffee-shop",
@@ -69,7 +70,7 @@ const projects = [
     num: "06",
     title: "Flower Shop Website",
     description:
-      "Site responsive pour une boutique de fleurs avec catalogue produit et formulaire de contact.",
+      "Responsive flower shop site with product catalog and contact form.",
     stack: ["HTML", "CSS"],
     image: "/flower-shop.png",
     github: "https://github.com/Safwen-bm/flower-shop",
@@ -79,7 +80,7 @@ const projects = [
     num: "07",
     title: "Movie Explorer",
     description:
-      "Application moderne pour explorer, chercher et découvrir des films avec une interface fluide.",
+      "Modern app to explore, search, and discover movies with a fluid interface.",
     stack: ["React", "Vite", "TMDB API"],
     image: "/movie-explorer.png",
     github: "https://github.com/Safwen-bm/movie-explorer",
@@ -89,7 +90,7 @@ const projects = [
     num: "08",
     title: "Task Management Tool",
     description:
-      "Outil de gestion de tâches avec Kanban, drag & drop et authentification Firebase.",
+      "Task manager with Kanban board, drag & drop, and Firebase authentication.",
     stack: ["React", "Firebase"],
     image: "/task-manager.png",
     github: "https://github.com/Safwen-bm/task-manager",
@@ -110,9 +111,6 @@ const WorkSection = () => {
 
     const totalScrollWidth = (panels.length - 1) * window.innerWidth;
 
-    // ------------------------------------
-    // FIX: No extra scroll after the last panel
-    // ------------------------------------
     const horizontalTween = gsap.to(panels, {
       xPercent: -100 * (panels.length - 1),
       ease: "none",
