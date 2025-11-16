@@ -25,7 +25,7 @@ const Home = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-700" />
       </div>
 
-      <div className="container mx-auto px-4 py-16 md:py-20 relative z-10">
+      <div className="container mx-auto px-4 pt-24 md:pt-32 relative z-10">
         {/* ==================== 1. HERO ==================== */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -117,8 +117,12 @@ const Home = () => {
             {[
               { name: "React", icon: "R", color: "from-cyan-400 to-blue-500" },
               { name: "Next.js", icon: "N", color: "from-purple-400 to-pink-500" },
+              { name: "Node.js", icon: "N", color: "from-green-400 to-emerald-500" },
               { name: "NestJS", icon: "N", color: "from-emerald-400 to-teal-500" },
+              { name: "TypeScript", icon: "TS", color: "from-blue-500 to-cyan-400" },
               { name: "PostgreSQL", icon: "P", color: "from-blue-400 to-indigo-500" },
+              { name: "MongoDB", icon: "M", color: "from-lime-400 to-green-600" },
+              { name: "Prisma", icon: "P", color: "from-indigo-400 to-purple-500" },
               { name: "Python", icon: "Py", color: "from-amber-400 to-orange-500" },
               { name: "Docker", icon: "D", color: "from-sky-400 to-cyan-500" },
               { name: "Git", icon: "G", color: "from-rose-400 to-pink-500" },

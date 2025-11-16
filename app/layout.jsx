@@ -1,3 +1,4 @@
+// app/layout.jsx
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -21,20 +22,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
+      <head />
       <body className={`${jetbrainsMono.variable} bg-[#03060a] text-white antialiased`}>
         <Toaster position="top-center" richColors />
 
-        {/* Lenis + ScrollTrigger wrapper */}
         <ClientWrapper>
-
           <Header />
           <StairTransition />
 
-          {/* 🔥 DO NOT wrap the whole DOM inside PageTransition */}
-          {/* 🔥 ONLY wrap the main content */}
           <div id="page-container">
             <PageTransition>
-              <main className="pt-16 min-h-screen">
+              <main className="min-h-screen">
                 {children}
               </main>
             </PageTransition>

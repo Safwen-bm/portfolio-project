@@ -58,7 +58,7 @@ const ServicesSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-24"
         >
-          <h1 className="text-7xl md:text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 leading-tight">
+          <h1 className="text-7xl md:text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-600 leading-tight">
             Services
           </h1>
           <p className="mt-6 text-xl text-gray-400 max-w-2xl mx-auto">

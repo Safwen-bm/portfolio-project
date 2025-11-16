@@ -1,7 +1,7 @@
 // components/work/WorkSection.jsx
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,15 +12,12 @@ import { Button } from "@/components/ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ------------------------------------
-// PROJECTS
-// ------------------------------------
 const projects = [
   {
     num: "01",
     title: "Medical Teleconsultation Platform",
     description:
-      "Full-featured app with live video calls, medical record management, appointment scheduling, automated notifications, and doctor dashboard. WebRTC integration with real-time sync.",
+      "Full-featured app with live video calls, medical record management, appointment scheduling, automated notifications, and doctor dashboard.",
     stack: ["React", "Node.js", "Express", "MongoDB", "PeerJS", "SendGrid"],
     image: "/telemed.png",
     github: "https://github.com/Safwen-bm/medical-platform",
@@ -28,16 +25,6 @@ const projects = [
   },
   {
     num: "02",
-    title: "Secure Banking System",
-    description:
-      "Secure web platform for managing rates, transactions, and user roles.",
-    stack: ["Next.js", "NestJS", "PostgreSQL", "Prisma"],
-    image: "/project2.png",
-    github: "https://github.com/Safwen-bm/creditwin",
-    live: "https://creditwin.safone.tn",
-  },
-  {
-    num: "03",
     title: "LMS E-Learning Platform",
     description:
       "Complete course management system: enrollment, progress tracking, real-time messaging, and admin panel.",
@@ -47,7 +34,7 @@ const projects = [
     live: "https://elearning.safone.tn",
   },
   {
-    num: "04",
+    num: "03",
     title: "MERN Chat Application",
     description:
       "Real-time messaging with typing indicators, online status, and responsive UI.",
@@ -57,40 +44,36 @@ const projects = [
     live: "https://chat.safone.tn",
   },
   {
-    num: "05",
+    num: "04",
     title: "Coffee Shop Website",
-    description:
-      "Responsive website for a café with interactive menu, contact form, and smooth design.",
+    description: "Responsive website for a café with interactive menu and contact form.",
     stack: ["HTML", "CSS", "JavaScript"],
     image: "/coffee-shop.png",
     github: "https://github.com/Safwen-bm/coffee-shop",
     live: "https://safwen-bm.github.io/coffee-shop",
   },
   {
-    num: "06",
+    num: "05",
     title: "Flower Shop Website",
-    description:
-      "Responsive flower shop site with product catalog and contact form.",
+    description: "Responsive flower shop site with product catalog and contact form.",
     stack: ["HTML", "CSS"],
     image: "/flower-shop.png",
     github: "https://github.com/Safwen-bm/flower-shop",
     live: "https://safwen-bm.github.io/flower-shop",
   },
   {
-    num: "07",
+    num: "06",
     title: "Movie Explorer",
-    description:
-      "Modern app to explore, search, and discover movies with a fluid interface.",
+    description: "Modern app to explore, search, and discover films with a fluid interface.",
     stack: ["React", "Vite", "TMDB API"],
     image: "/movie-explorer.png",
     github: "https://github.com/Safwen-bm/movie-explorer",
     live: "https://movie-explorer.safone.tn",
   },
   {
-    num: "08",
+    num: "07",
     title: "Task Management Tool",
-    description:
-      "Task manager with Kanban board, drag & drop, and Firebase authentication.",
+    description: "Task manager with Kanban board, drag & drop, and Firebase authentication.",
     stack: ["React", "Firebase"],
     image: "/task-manager.png",
     github: "https://github.com/Safwen-bm/task-manager",
@@ -102,167 +85,275 @@ const WorkSection = () => {
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showDots, setShowDots] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
+  useLayoutEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 1024);
+    onResize();
+    window.addEventListener("resize", onResize);
 
-    const panels = gsap.utils.toArray(".project-panel");
-    if (panels.length === 0) return;
+    // desktop behavior only
+    if (!isMobile && containerRef.current) {
+      const ctx = gsap.context(() => {
+        const panels = gsap.utils.toArray(".project-panel", containerRef.current);
+        if (!panels || panels.length === 0) return;
 
-    const totalScrollWidth = (panels.length - 1) * window.innerWidth;
+        // compute a start offset so horizontal scrolling doesn't start too early.
+        // Uses a fraction of the container height but clamps to a reasonable value.
+        const containerHeight = containerRef.current.offsetHeight || window.innerHeight;
+        const rawOffset = Math.round(containerHeight * 0.18);
+        const offset = Math.min(Math.max(rawOffset, 80), 260); // clamp between 80 and 260px
 
-    const horizontalTween = gsap.to(panels, {
-      xPercent: -100 * (panels.length - 1),
-      ease: "none",
-    });
+        const totalScrollWidth = (panels.length - 1) * window.innerWidth;
 
-    const trigger = ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: "top top",
-      end: `+=${totalScrollWidth}`,
-      pin: true,
-      scrub: 1,
-      invalidateOnRefresh: true,
-      animation: horizontalTween,
-      snap: {
-        snapTo: 1 / (panels.length - 1),
-        duration: 0.5,
-        ease: "power1.out",
-      },
-      onUpdate: (self) => {
-        const index = Math.round(self.progress * (panels.length - 1));
-        setActiveIndex(index);
-      },
-      onEnter: () => setShowDots(true),
-      onLeave: () => setShowDots(false),
-      onEnterBack: () => setShowDots(true),
-      onLeaveBack: () => setShowDots(false),
-    });
+        const horizontalTween = gsap.to(panels, {
+          xPercent: -100 * (panels.length - 1),
+          ease: "none",
+          force3D: true,
+        });
 
-    ScrollTrigger.refresh();
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: `top+=${offset} top`,
+          end: `+=${totalScrollWidth}`,
+          pin: true,
+          scrub: 1.2,
+          animation: horizontalTween,
+          anticipatePin: 1,
+          snap: {
+            snapTo: 1 / (panels.length - 1),
+            duration: 0.5,
+            ease: "power2.out",
+          },
+          onUpdate: (self) => {
+            const idx = Math.round(self.progress * (panels.length - 1));
+            setActiveIndex(idx);
+          },
+          onEnter: () => setShowDots(true),
+          onLeave: () => setShowDots(false),
+          onEnterBack: () => setShowDots(true),
+          onLeaveBack: () => setShowDots(false),
+        });
+
+        ScrollTrigger.refresh();
+      }, containerRef);
+
+      return () => {
+        // revert everything created in this context (safe cleanup)
+        try {
+          ctx.revert();
+        } catch (e) {
+          // defensive: if revert throws, kill all triggers
+          ScrollTrigger.getAll().forEach((t) => t.kill());
+        }
+      };
+    }
 
     return () => {
-      trigger.kill();
-      horizontalTween.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
       <section
         ref={containerRef}
-        className="relative bg-gradient-to-b from-[#0a0e17] via-[#0b1426] to-[#0a0e17] overflow-hidden"
+        className="relative bg-gradient-to-b from-[#05070c] via-[#0a0f21] to-[#05070c] overflow-hidden"
       >
-        {/* FLOATING ORBS */}
-        <div className="fixed inset-0 pointer-events-none">
-          <div className="absolute top-32 left-32 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-32 right-32 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl animate-pulse delay-700" />
+        {/* Cinematic orbs */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <div className="absolute top-32 left-32 w-[500px] h-[500px] bg-cyan-500/18 rounded-full blur-[160px]" />
+          <div className="absolute bottom-32 right-32 w-[460px] h-[460px] bg-purple-500/16 rounded-full blur-[160px]" />
         </div>
 
-        {/* HORIZONTAL SCROLL */}
-        <div className="flex h-screen">
-          {projects.map((project, i) => (
-            <div
-              key={i}
-              className="project-panel min-w-full h-screen flex items-center justify-center px-6"
-            >
-              <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
-                {/* LEFT TEXT */}
-                <motion.div
-                  initial={{ opacity: 0, x: -60 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 0.7 }}
-                  className="space-y-8"
-                >
-                  <div className="text-8xl md:text-9xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-                    {project.num}
-                  </div>
+        {/* Header */}
+        <div className="pt-32 md:pt-39 pb-16 md:pb-20 text-center relative z-10">
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.9, ease: "easeOut" }}
+    className="max-w-5xl mx-auto px-6"
+  >
+    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-violet-500 to-rose-600 leading-tight">
+      Featured Projects
+    </h1>
+    <p className="mt-5 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+      Selected works — full stack & realtime.
+    </p>
+  </motion.div>
+</div>
 
-                  <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-                    {project.title}
-                  </h2>
-
-                  <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-3">
-                    {project.stack.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-4 py-2 bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 rounded-full text-sm backdrop-blur-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-5">
-                    <Link href={project.github} target="_blank">
-                      <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:brightness-110 text-white font-bold px-8 py-6 rounded-full">
-                        <BsGithub className="mr-3 text-xl" /> GitHub
-                      </Button>
-                    </Link>
-
-                    <Link href={project.live} target="_blank">
-                      <Button
-                        variant="outline"
-                        className="border-2 border-cyan-400 text-cyan-300 hover:bg-cyan-500/10 px-8 py-6 rounded-full"
-                      >
-                        <BsBoxArrowUpRight className="mr-3 text-xl" /> Live Demo
-                      </Button>
-                    </Link>
-                  </div>
-                </motion.div>
-
-                {/* RIGHT IMAGE */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false }}
-                  transition={{ duration: 0.7 }}
-                  className="relative h-[520px] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-cyan-500/20 to-purple-600/20 p-3"
-                >
-                  <div className="relative w-full h-full bg-black/60 rounded-2xl overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-contain transition-transform duration-700 hover:scale-110"
-                    />
-                    <div className="absolute bottom-6 left-6 text-white">
-                      <p className="text-sm opacity-70">Project {project.num}</p>
-                      <p className="text-lg font-bold">{project.title}</p>
-                    </div>
-                  </div>
-                </motion.div>
+        {/* Desktop: horizontal pinned panels */}
+        {!isMobile && (
+          <div className="flex h-[calc(100vh-200px)]">
+            {projects.map((project, i) => (
+              <div
+                key={i}
+                className="project-panel min-w-full h-full flex items-center justify-center px-10"
+              >
+                <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
+                  <ProjectContent project={project} />
+                  <ProjectImage project={project} />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+
+        {/* Mobile: stacked cards */}
+        {isMobile && (
+          <div className="px-5 pb-20 space-y-12">
+            {projects.map((project, i) => (
+              <MobileCard key={i} project={project} index={i} />
+            ))}
+          </div>
+        )}
       </section>
 
-      {/* PROGRESS DOTS */}
-      <div
-        className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex gap-2 transition-all duration-500 ${
-          showDots ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        {projects.map((_, i) => (
-          <div
-            key={i}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              i === activeIndex
-                ? "w-12 bg-cyan-400 shadow-lg shadow-cyan-400/50"
-                : "w-2 bg-gray-600"
-            }`}
-          />
-        ))}
-      </div>
+      {/* Progress dots (desktop only) */}
+      {!isMobile && (
+        <div
+          className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-50 flex gap-3 transition-all duration-300 ${
+            showDots ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
+          {projects.map((_, i) => (
+            <div
+              key={i}
+              className={`rounded-full transition-all duration-300 ${
+                activeIndex === i ? "w-14 h-2 bg-cyan-400 shadow-lg shadow-cyan-400/30" : "w-3 h-2 bg-gray-600"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };
+
+/* ----- helper subcomponents ----- */
+
+const ProjectContent = ({ project }) => (
+  <motion.div
+    initial={{ opacity: 0, x: -60 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.7 }}
+    className="space-y-6"
+  >
+    <div className="text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+      {project.num}
+    </div>
+
+    <h3 className="text-4xl md:text-5xl font-extrabold text-white">{project.title}</h3>
+
+    <p className="text-gray-300 text-lg max-w-xl leading-relaxed">{project.description}</p>
+
+    <div className="flex flex-wrap gap-3">
+      {project.stack.map((tech, idx) => (
+        <span
+          key={idx}
+          className="px-3 py-1.5 bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 rounded-full text-sm"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+
+    <div className="flex gap-4">
+      <Link href={project.github} target="_blank">
+        <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-3 rounded-full flex items-center gap-2">
+          <BsGithub /> GitHub
+        </Button>
+      </Link>
+      <Link href={project.live} target="_blank">
+        <Button variant="outline" className="border-cyan-400 text-cyan-300 px-5 py-3 rounded-full flex items-center gap-2">
+          <BsBoxArrowUpRight /> Live
+        </Button>
+      </Link>
+    </div>
+  </motion.div>
+);
+
+const ProjectImage = ({ project }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.98 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+    className="relative h-[520px] rounded-3xl overflow-hidden bg-gradient-to-br from-cyan-500/10 to-purple-600/10 p-4 shadow-xl"
+  >
+    <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black/60">
+      <Image src={project.image} alt={project.title} fill className="object-contain transition-transform duration-1000 hover:scale-105" />
+      <div className="absolute bottom-6 left-6">
+        <p className="text-white/70 text-sm">Project {project.num}</p>
+        <p className="text-white text-lg font-bold">{project.title}</p>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const MobileCard = ({ project, index }) => (
+  <motion.article
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay: index * 0.05 }}
+    className="bg-[#0d1220] border border-white/5 rounded-3xl p-5 shadow-2xl space-y-5"
+  >
+    {/* Number + Buttons */}
+    <div className="flex justify-between items-center">
+      <div className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+        {project.num}
+      </div>
+
+      <div className="flex gap-2">
+        <Link href={project.github} target="_blank">
+          <Button size="sm" className="bg-gradient-to-r from-cyan-500 to-blue-600 px-3 py-2">
+            <BsGithub className="text-base" />
+          </Button>
+        </Link>
+        <Link href={project.live} target="_blank">
+          <Button size="sm" variant="outline" className="border-cyan-400 text-cyan-300 px-3 py-2">
+            <BsBoxArrowUpRight className="text-base" />
+          </Button>
+        </Link>
+      </div>
+    </div>
+
+    {/* Title */}
+    <h4 className="text-xl font-bold text-white leading-tight">
+      {project.title}
+    </h4>
+
+    {/* Description */}
+    <p className="text-gray-300 text-sm leading-relaxed">
+      {project.description}
+    </p>
+
+    {/* Technologies */}
+    <div className="flex flex-wrap gap-2">
+      {project.stack.map((tech, i) => (
+        <span
+          key={i}
+          className="px-2 py-1 bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 rounded-full text-[10px]"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+
+    {/* Image */}
+    <div className="relative h-52 rounded-2xl overflow-hidden bg-black/40 shadow-lg">
+      <Image
+        src={project.image}
+        alt={project.title}
+        fill
+        className="object-contain transition-transform duration-700 hover:scale-105"
+      />
+    </div>
+  </motion.article>
+);
 
 export default WorkSection;

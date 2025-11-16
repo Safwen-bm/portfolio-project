@@ -14,18 +14,11 @@ import {
 } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 
-/**
- * NOTE:
- * We apply active tab gradients using inline styles (linear-gradient)
- * because Tailwind's JIT purge can remove dynamic class names.
- * Inline gradients are static strings defined in `tabGradients`.
- */
-
 const ResumeSection = () => {
   const [activeTab, setActiveTab] = useState("experience");
   const [skillPercents, setSkillPercents] = useState({});
 
-  // Trigger skill bars animation when tab is active
+  // Animate skill bars when tab opens
   useEffect(() => {
     if (activeTab === "skills") {
       const percents = {
@@ -97,13 +90,12 @@ const ResumeSection = () => {
     { name: "French", level: "Intermediate" },
   ];
 
-  // Map tab value -> CSS linear-gradient string (static so it always works)
   const tabGradients = {
-    experience: "linear-gradient(90deg,#10B981,#14B8A6)", // emerald -> teal
-    education: "linear-gradient(90deg,#F59E0B,#F97316)", // amber -> orange
-    skills: "linear-gradient(90deg,#8B5CF6,#7C3AED)", // violet -> purple
-    soft: "linear-gradient(90deg,#FB7185,#DB2777)", // rose -> pink
-    lang: "linear-gradient(90deg,#0EA5E9,#0891B2)", // sky -> cyan
+    experience: "linear-gradient(135deg, #10B981, #14B8A6)",
+    education: "linear-gradient(135deg, #F59E0B, #F97316)",
+    skills: "linear-gradient(135deg, #8B5CF6, #7C3AED)",
+    soft: "linear-gradient(135deg, #FB7185, #DB2777)",
+    lang: "linear-gradient(135deg, #0EA5E9, #0891B2)",
   };
 
   const tabs = [
@@ -115,46 +107,47 @@ const ResumeSection = () => {
   ];
 
   return (
-    <section className="py-32 bg-gradient-to-b from-[#0a0e17] via-[#0b1426] to-[#0a0e17] overflow-hidden relative">
-      {/* Animated Orbs */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-32 left-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-32 right-20 w-80 h-80 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-700" />
+    <section className="py-24 md:py-32 bg-gradient-to-b from-[#0a0e17] via-[#0b1426] to-[#0a0e17] overflow-hidden relative">
+      {/* CINEMATIC ORBS */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-32 left-10 md:left-20 w-80 h-80 md:w-96 md:h-96 bg-emerald-500/12 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-32 right-10 md:right-20 w-72 h-72 md:w-80 md:h-80 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-700" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        {/* EPIC HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.9 }}
+          className="text-center mb-16 md:mb-20"
         >
-          <h1 className="text-7xl md:text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-violet-500 to-rose-600 leading-tight">
+          <h1 className="text-7xl md:text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-600 leading-tight">
             Resume
           </h1>
-          <p className="mt-6 text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="mt-4 md:mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
             Full-Stack Engineer | Real-Time Systems | Secure Architecture
           </p>
         </motion.div>
 
-        {/* Download CV Button */}
+        {/* DOWNLOAD CV — BIG & TAPPABLE */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-12 md:mb-16"
         >
-          <Button className="bg-gradient-to-r from-violet-500 to-rose-600 hover:from-violet-600 hover:to-rose-700 text-white font-bold px-10 py-7 rounded-full shadow-2xl hover:shadow-violet-500/50 transform hover:scale-105 transition-all flex items-center gap-3 mx-auto">
-            <FiDownload className="text-xl" />
+          <Button className="bg-gradient-to-r from-violet-600 to-rose-600 hover:from-violet-700 hover:to-rose-700 text-white font-bold text-base md:text-lg px-8 md:px-12 py-6 md:py-7 rounded-full shadow-2xl hover:shadow-violet-600/40 transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
+            <FiDownload className="text-lg md:text-xl" />
             Download CV (PDF)
           </Button>
         </motion.div>
 
-        {/* Tabs */}
+        {/* TABS */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-6xl mx-auto">
-          <TabsList className="grid w-full grid-cols-5 mb-16 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-2">
+          <TabsList className="grid grid-cols-2 sm:grid-cols-5 w-full mb-12 md:mb-16 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-2 gap-2">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.value;
@@ -162,21 +155,24 @@ const ResumeSection = () => {
                 <TabsTrigger
                   key={tab.value}
                   value={tab.value}
-                  // style applies the gradient when active
                   style={isActive ? { background: tabGradients[tab.value] } : {}}
-                  className={`rounded-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2
-                    ${isActive ? "text-white shadow-lg shadow-white/20" : "text-gray-200 bg-transparent"}
-                    px-4 py-2
+                  className={`
+                    rounded-xl transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2
+                    ${isActive 
+                      ? "text-white shadow-lg shadow-white/30 scale-105" 
+                      : "text-gray-300 bg-transparent hover:bg-white/10"
+                    }
+                    px-3 py-3 text-xs sm:text-sm md:text-base
                   `}
                 >
-                  <Icon className="mr-2 text-lg" />
+                  <Icon className="text-lg sm:text-xl" />
                   <span className="whitespace-nowrap">{tab.label}</span>
                 </TabsTrigger>
               );
             })}
           </TabsList>
 
-          {/* Experience */}
+          {/* EXPERIENCE */}
           <TabsContent value="experience" className="space-y-8">
             {experiences.map((exp, i) => (
               <motion.div
@@ -185,29 +181,29 @@ const ResumeSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:border-emerald-500/50 transition-all duration-500"
+                className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 hover:border-emerald-500/50 transition-all duration-500 shadow-xl"
               >
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-emerald-400 group-hover:text-emerald-300 transition">
+                    <h3 className="text-xl md:text-2xl font-bold text-emerald-400 group-hover:text-emerald-300 transition">
                       {exp.role}
                     </h3>
-                    <p className="text-lg text-gray-300">{exp.company}</p>
+                    <p className="text-base md:text-lg text-gray-300">{exp.company}</p>
                   </div>
                   <div className="text-right text-sm text-gray-400">
                     <p>{exp.duration}</p>
-                    <p className="flex items-center gap-1 justify-end">
+                    <p className="flex items-center gap-1 justify-end mt-1">
                       <span className="text-emerald-400">Location</span> {exp.location}
                     </p>
                   </div>
                 </div>
-                <p className="text-gray-300 leading-relaxed">{exp.desc}</p>
+                <p className="text-gray-300 leading-relaxed text-sm md:text-base">{exp.desc}</p>
               </motion.div>
             ))}
           </TabsContent>
 
-          {/* Education */}
-          <TabsContent value="education" className="space-y-8">
+          {/* EDUCATION */}
+          <TabsContent value="education" className="space-y-6">
             {education.map((edu, i) => (
               <motion.div
                 key={i}
@@ -215,16 +211,16 @@ const ResumeSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:border-amber-500/50 transition-all"
+                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 hover:border-amber-500/50 transition-all shadow-lg"
               >
-                <h3 className="text-xl font-bold text-amber-400">{edu.degree}</h3>
-                <p className="text-gray-300">{edu.school}</p>
-                <p className="text-sm text-gray-400 mt-1">{edu.duration}</p>
+                <h3 className="text-lg md:text-xl font-bold text-amber-400">{edu.degree}</h3>
+                <p className="text-gray-300 mt-1">{edu.school}</p>
+                <p className="text-sm text-gray-400 mt-2">{edu.duration}</p>
               </motion.div>
             ))}
           </TabsContent>
 
-          {/* Skills with Progress Bars */}
+          {/* SKILLS */}
           <TabsContent value="skills">
             <div className="space-y-10">
               {Object.entries(skills).map(([category, items], i) => (
@@ -235,19 +231,19 @@ const ResumeSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                 >
-                  <h3 className="text-xl font-bold text-violet-400 mb-6 capitalize">{category}</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-violet-400 mb-6 capitalize">{category}</h3>
                   <div className="space-y-5">
                     {items.map((skill, j) => (
                       <div key={j} className="space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-300">{skill}</span>
-                          <span className="text-violet-400 font-medium">{skillPercents[skill] || 0}%</span>
+                        <div className="flex justify-between text-sm md:text-base">
+                          <span className="text-gray-300 font-medium">{skill}</span>
+                          <span className="text-violet-400 font-bold">{skillPercents[skill] || 0}%</span>
                         </div>
                         <div className="h-3 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
                           <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${skillPercents[skill] || 0}%` }}
-                            transition={{ duration: 1.2, delay: j * 0.1, ease: "easeOut" }}
+                            transition={{ duration: 1.3, delay: j * 0.08, ease: "easeOut" }}
                             className="h-full bg-gradient-to-r from-violet-500 to-purple-600 rounded-full shadow-lg shadow-violet-500/50"
                           />
                         </div>
@@ -259,9 +255,9 @@ const ResumeSection = () => {
             </div>
           </TabsContent>
 
-          {/* Soft Skills */}
+          {/* SOFT SKILLS */}
           <TabsContent value="soft">
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto">
               {softSkills.map((skill, i) => (
                 <motion.div
                   key={i}
@@ -269,17 +265,17 @@ const ResumeSection = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center hover:border-rose-500/50 transition-all"
+                  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-6 text-center hover:border-rose-500/50 transition-all shadow-lg"
                 >
-                  <p className="text-lg text-gray-300">{skill}</p>
+                  <p className="text-base md:text-lg text-gray-300 font-medium">{skill}</p>
                 </motion.div>
               ))}
             </div>
           </TabsContent>
 
-          {/* Languages */}
+          {/* LANGUAGES */}
           <TabsContent value="lang">
-            <div className="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto">
               {languages.map((lang, i) => (
                 <motion.div
                   key={i}
@@ -287,13 +283,13 @@ const ResumeSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.15 }}
-                  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 text-center"
+                  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 text-center shadow-lg"
                 >
-                  <h4 className="text-2xl font-bold text-sky-400">{lang.name}</h4>
-                  <p className="text-gray-300 mt-3">{lang.level}</p>
+                  <h4 className="text-xl md:text-2xl font-bold text-sky-400">{lang.name}</h4>
+                  <p className="text-gray-300 mt-2 text-sm md:text-base">{lang.level}</p>
                   <div className="mt-4 h-2 bg-white/10 rounded-full overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-1000 ${
+                      className={`h-full rounded-full transition-all duration-1000 ease-out ${
                         lang.level === "Native"
                           ? "w-full bg-gradient-to-r from-emerald-500 to-teal-500"
                           : lang.level === "Fluent"
@@ -308,18 +304,18 @@ const ResumeSection = () => {
           </TabsContent>
         </Tabs>
 
-        {/* Final CTA */}
+        {/* FINAL CTA */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mt-32"
+          className="text-center mt-20 md:mt-32"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-8 leading-tight">
             Let’s Build Something Great Together
           </h2>
-          <Button className="bg-gradient-to-r from-rose-600 to-violet-600 hover:from-rose-700 hover:to-violet-700 text-white text-xl px-16 py-9 rounded-full shadow-2xl hover:shadow-rose-500/50 transform hover:scale-105 transition-all">
+          <Button className="bg-gradient-to-r from-rose-600 to-violet-600 hover:from-rose-700 hover:to-violet-700 text-white text-lg md:text-xl px-12 md:px-16 py-7 md:py-9 rounded-full shadow-2xl hover:shadow-rose-500/50 transform hover:scale-105 transition-all duration-300 font-bold">
             Get In Touch
           </Button>
         </motion.div>
