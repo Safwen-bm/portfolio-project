@@ -167,22 +167,22 @@ const WorkSection = () => {
         </div>
 
         {/* Header */}
-        <div className="pt-32 md:pt-39 pb-16 md:pb-20 text-center relative z-10">
-  <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.9, ease: "easeOut" }}
-    className="max-w-5xl mx-auto px-6"
-  >
-    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-violet-500 to-rose-600 leading-tight">
-      Featured Projects
-    </h1>
-    <p className="mt-5 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-      Selected works — full stack & realtime.
-    </p>
-  </motion.div>
-</div>
+         <div className="pt-32 md:pt-39 pb-16 md:pb-20 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="max-w-5xl mx-auto px-6"
+          >
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-violet-500 to-rose-600 leading-tight">
+              Featured Projects
+            </h1>
+            <p className="mt-5 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+              Selected works — full stack & realtime.
+            </p>
+          </motion.div>
+        </div>
 
         {/* Desktop: horizontal pinned panels */}
         {!isMobile && (

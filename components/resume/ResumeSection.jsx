@@ -120,10 +120,10 @@ const ResumeSection = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9 }}
-          className="text-center mb-16 md:mb-20"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20 pt-16 sm:pt-0"
         >
-          <h1 className="text-7xl md:text-8xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-600 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-600 leading-tight">
             Resume
           </h1>
           <p className="mt-4 md:mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">

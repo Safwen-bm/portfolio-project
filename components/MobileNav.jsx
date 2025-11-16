@@ -1,9 +1,10 @@
 // components/MobileNav.jsx
 "use client";
 
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { useState } from "react";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -17,9 +18,18 @@ const links = [
 
 const MobileNav = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  const handleLinkClick = (href) => {
+    setOpen(false);
+    if (href !== pathname) {
+      router.push(href);
+    }
+  };
 
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger className="p-3">
         <motion.div
           whileHover={{ rotate: 180, scale: 1.3 }}
@@ -76,7 +86,7 @@ const MobileNav = () => {
             </h1>
           </motion.div>
 
-          {/* LINKS */}
+          {/* LINKS — NOW CLOSE MENU ON CLICK */}
           <nav className="space-y-6">
             {links.map((link, i) => (
               <motion.div
@@ -85,16 +95,22 @@ const MobileNav = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 + 0.3 }}
               >
-                <Link
-                  href={link.href}
-                  className={`block text-4xl font-bold transition-all ${
-                    link.href === pathname
-                      ? "bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-                      : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  {link.name}
-                </Link>
+                <SheetClose asChild>
+                  <Link
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick(link.href);
+                    }}
+                    className={`block text-4xl font-bold transition-all ${
+                      link.href === pathname
+                        ? "bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+                        : "text-white/60 hover:text-white"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </SheetClose>
               </motion.div>
             ))}
           </nav>
@@ -105,15 +121,17 @@ const MobileNav = () => {
             animate={{ scale: 1 }}
             transition={{ delay: 0.8 }}
           >
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="px-12 py-6 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white font-bold text-xl shadow-2xl"
-              >
-                ENTER THE PORTAL
-              </motion.button>
-            </Link>
+            <SheetClose asChild>
+              <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="px-12 py-6 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white font-bold text-xl shadow-2xl"
+                >
+                  ENTER THE PORTAL
+                </motion.button>
+              </Link>
+            </SheetClose>
           </motion.div>
         </motion.div>
       </SheetContent>
