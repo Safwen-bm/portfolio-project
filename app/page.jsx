@@ -59,8 +59,8 @@ const Home = () => {
               <span className="text-emerald-400 font-medium"> ideas into fast, scalable, intuitive</span> digital products.
               <br className="hidden md:block" />
               Solving 
-              <span className="text-amber-400 font-medium">complex challenges</span> with 
-              <span className="text-rose-400 font-medium">clean code</span> and 
+              <span className="text-amber-400 font-medium"> complex challenges</span> with 
+              <span className="text-rose-400 font-medium"> clean code</span> and 
               <span className="text-sky-400 font-medium">thoughtful design</span>.
             </p>
 
