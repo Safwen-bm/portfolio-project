@@ -25,18 +25,20 @@ const Home = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-700" />
       </div>
 
-      <div className="container mx-auto px-4 pt-24 md:pt-32 relative z-10">
+      {/* REDUCED BASE PADDING + HERO GETS mt-24 ON MOBILE */}
+      <div className="container mx-auto px-4 pt-16 md:pt-24 lg:pt-32 relative z-10">
         {/* ==================== 1. HERO ==================== */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start mb-20 md:mb-32"
+          className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start mb-20 md:mb-32 mt-24 md:mt-0"
         >
           {/* LEFT */}
           <div className="space-y-6 md:space-y-8">
+            {/* BADGE — NOW 100% VISIBLE BELOW NAVBAR */}
             <div className="flex flex-wrap items-center gap-3">
-              <span className="px-4 py-1.5 text-xs font-bold bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full shadow-lg">
+              <span className="px-4 py-1.5 text-xs font-bold bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full shadow-lg whitespace-nowrap">
                 PFE 2026 — Available
               </span>
               <span className="text-sm text-cyan-300">Full-Stack + AI + DevOps</span>
@@ -86,7 +88,7 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex justify-center lg:justify-end mt-8 lg:mt-16"
+            className="flex justify-center lg:justify-end mt-8 lg:mt-0"
           >
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
               <Photo />
@@ -104,13 +106,13 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="my-24 md:my-32"
+          className="my-20 md:my-32"
         >
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
               Tech Stack
             </h2>
-            <p className="text-gray-400 text-base md:text-lg">Full-Stack, AI, DevOps — I do it all</p>
+            <p className="text-gray-400 text-sm md:text-base">Full-Stack, AI, DevOps — I do it all</p>
           </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 md:gap-6">
@@ -150,13 +152,13 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="my-24 md:my-32"
+          className="my-20 md:my-32"
         >
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+          <div className="text-center mb-10 md:mb-14">
+            <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
               8 Real Projects
             </h2>
-            <p className="text-gray-400 text-base md:text-lg">From idea to production — all by me</p>
+            <p className="text-gray-400 text-sm md:text-base">From idea to production — all by me</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
@@ -207,7 +209,7 @@ const Home = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="my-24 md:my-32 text-center"
+          className="my-20 md:my-32 text-center"
         >
           <div className="max-w-4xl mx-auto bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-md border border-cyan-500/20 rounded-3xl p-8 md:p-12">
             <p className="text-xl md:text-2xl lg:text-3xl font-medium text-cyan-300 italic">
@@ -238,7 +240,7 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="my-24 md:my-32 text-center"
+          className="my-20 md:my-32 text-center pb-10"
         >
           <h3 className="text-2xl md:text-3xl font-bold mb-8 md:mb-10 text-cyan-300">Explore More</h3>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">

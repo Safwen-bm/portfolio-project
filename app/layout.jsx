@@ -17,6 +17,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   title: "Safwen Ben Mabrouk — Full-Stack Engineer",
   description: "Ingénieur en Génie Logiciel | Monastir, Tunisie",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }) {

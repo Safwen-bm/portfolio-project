@@ -19,8 +19,17 @@
   .h3 {
     @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
   }
+
+  /* FIX: Smooth scroll + navbar offset */
   html {
-    scroll-padding-top: 100px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Matches mobile pt-20 */
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 100px;
+    }
   }
 }
 
@@ -37,4 +46,3 @@
 
 .delay-1000 { animation-delay: 1s; }
 .delay-700 { animation-delay: 0.7s; }
-.pt-24 { padding-top: 6rem; }
