@@ -67,9 +67,11 @@ const Home = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold text-base md:text-lg px-6 md:px-8 py-6 md:py-7 rounded-2xl shadow-2xl hover:shadow-cyan-500/40 transition-all transform hover:scale-105">
-                <FiDownload className="mr-2 text-lg md:text-xl" /> Download CV
-              </Button>
+              <a href="/Safwen-Ben-Mabrouk-CV.pdf" download className="inline-block">
+                <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold text-base md:text-lg px-6 md:px-8 py-6 md:py-7 rounded-2xl shadow-2xl hover:shadow-cyan-500/40 transition-all transform hover:scale-105">
+                  <FiDownload className="mr-2 text-lg md:text-xl" /> Download CV
+                </Button>
+              </a>
               <Link href="/contact">
                 <Button variant="outline" className="border-2 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/10 text-base md:text-lg px-6 md:px-8 py-6 md:py-7 rounded-2xl backdrop-blur-sm">
                   <FiMail className="mr-2 text-lg md:text-xl" /> Let’s Talk
@@ -88,7 +90,7 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex justify-center lg:justify-end mt-8 lg:mt-0"
+            className="flex justify-center lg:justify-end mt-8 lg:mt-24"
           >
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
               <Photo />
