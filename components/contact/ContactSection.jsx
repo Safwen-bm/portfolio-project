@@ -22,22 +22,52 @@ const ContactSection = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!formData.firstName || !formData.email || !formData.message) {
       toast.error("Please fill in all required fields.");
       return;
     }
+
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast.success("Message sent successfully! I'll get back to you soon.");
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ firstName: "", lastName: "", email: "", message: "" });
-    }, 3000);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.error || "Something went wrong.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+
+      toast.success("Message sent successfully!");
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          message: "",
+        });
+      }, 3000);
+
+    } catch (err) {
+      toast.error("Server error, try again later.");
+      setIsSubmitting(false);
+    }
   };
+
 
   return (
     <section className="py-24 md:py-32 bg-gradient-to-b from-[#0a0e17] via-[#0b1426] to-[#0a0e17] overflow-hidden relative">
