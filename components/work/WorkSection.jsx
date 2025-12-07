@@ -54,6 +54,15 @@ const projects = [
   },
   {
     num: "05",
+    title: "FluffyShop",
+    description: "High-end pet adoption platform. Full-stack luxury e-commerce with Next.js 15, Strapi CMS, Clerk auth, custom cart system, and production deployment.",
+    stack: ["Next.js 15", "Strapi v5", "Clerk", "Tailwind CSS", "Railway"],
+    image: "/fluffy-shop.png",
+    github: "https://github.com/Safwen-bm/fluffy-shop",
+    live: "https://fluffy-shop-frontend.onrender.com",
+  },
+  {
+    num: "06",
     title: "Coffee Shop Website",
     description: "Responsive website for a café with interactive menu and contact form.",
     stack: ["HTML", "CSS", "JavaScript"],
@@ -62,7 +71,7 @@ const projects = [
     live: "https://safwen-bm.github.io/coffee-shop/",
   },
   {
-    num: "06",
+    num: "07",
     title: "Flower Shop Website",
     description: "Responsive flower shop site with product catalog and contact form.",
     stack: ["HTML", "CSS"],
@@ -71,7 +80,7 @@ const projects = [
     live: "https://safwen-bm.github.io/flower-shop/",
   },
   {
-    num: "07",
+    num: "08",
     title: "Gym Website",
     description: "Developed a fully responsive, interactive gym website.",
     stack: ["React", "TailwindCSS", "Vercel deployment"],
@@ -80,7 +89,7 @@ const projects = [
     live: "https://gym-website-seven-xi.vercel.app/",
   },
   {
-    num: "08",
+    num: "09",
     title: "Task Management Tool",
     description: "Task manager with Kanban board, drag & drop, and Firebase authentication.",
     stack: ["React", "Firebase"],
