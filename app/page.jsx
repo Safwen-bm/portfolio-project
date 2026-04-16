@@ -39,9 +39,9 @@ const Home = () => {
             {/* BADGE — NOW 100% VISIBLE BELOW NAVBAR */}
             <div className="flex flex-wrap items-center gap-3">
               <span className="px-4 py-1.5 text-xs font-bold bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full shadow-lg whitespace-nowrap">
-                PFE 2026 — Available
+                Available
               </span>
-              <span className="text-sm text-cyan-300">Full-Stack + AI + DevOps</span>
+              <span className="text-sm text-cyan-300">Full-Stack + AI</span>
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight">
@@ -62,8 +62,10 @@ const Home = () => {
               <br className="hidden md:block" />
               Solving 
               <span className="text-amber-400 font-medium"> complex challenges</span> with 
-              <span className="text-rose-400 font-medium"> clean code</span> and 
-              <span className="text-sky-400 font-medium">thoughtful design</span>.
+              <span className="text-rose-400 font-medium"> clean code </span>
+              <br className="hidden md:block" />
+              and 
+              <span className="text-sky-400 font-medium"> thoughtful design</span>.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">

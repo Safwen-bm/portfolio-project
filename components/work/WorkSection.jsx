@@ -25,6 +25,16 @@ const projects = [
   },
   {
     num: "02",
+    title: "AutoValu — AI Car Price Analyzer",
+    description:
+      "AI-powered platform to estimate used car prices in Tunisia, detect deal quality, and generate smart counter-offers. Includes an admin dashboard for monitoring usage and system stats.",
+    stack: ["Next.js", "NestJS", "FastAPI", "Python", "XGBoost", "KNN"],
+    image: "/autovalu.png",
+    github: "https://github.com/Safwen-bm/autovalu",
+    live: "https://autovalu.vercel.app/",
+  },
+  {
+    num: "03",
     title: "LMS E-Learning Platform",
     description:
       "Complete course management system: enrollment, progress tracking, real-time messaging, and admin panel.",
@@ -34,7 +44,7 @@ const projects = [
     live: "https://elearning.safone.tn",
   },
   {
-    num: "03",
+    num: "04",
     title: "MERN Chat Application",
     description:
       "Real-time messaging with typing indicators, online status, and responsive UI.",
@@ -44,7 +54,7 @@ const projects = [
     live: "https://fullstack-chat-app-70i9.onrender.com",
   },
   {
-    num: "04",
+    num: "05",
     title: "Movie Explorer",
     description: "Modern app to explore, search, and discover films with a fluid interface.",
     stack: ["React", "Vite", "TMDB API"],
@@ -53,7 +63,7 @@ const projects = [
     live: "https://safwen-bm.github.io/movie-explorer/",
   },
   {
-    num: "05",
+    num: "06",
     title: "FluffyShop",
     description: "High-end pet adoption platform. Full-stack luxury e-commerce with Next.js 15, Strapi CMS, Clerk auth, custom cart system, and production deployment.",
     stack: ["Next.js 15", "Strapi v5", "Clerk", "Tailwind CSS", "Railway"],
@@ -62,7 +72,7 @@ const projects = [
     live: "https://fluffy-shop-frontend.onrender.com",
   },
   {
-    num: "06",
+    num: "07",
     title: "Coffee Shop Website",
     description: "Responsive website for a café with interactive menu and contact form.",
     stack: ["HTML", "CSS", "JavaScript"],
@@ -71,7 +81,7 @@ const projects = [
     live: "https://safwen-bm.github.io/coffee-shop/",
   },
   {
-    num: "07",
+    num: "08",
     title: "Flower Shop Website",
     description: "Responsive flower shop site with product catalog and contact form.",
     stack: ["HTML", "CSS"],
@@ -80,7 +90,7 @@ const projects = [
     live: "https://safwen-bm.github.io/flower-shop/",
   },
   {
-    num: "08",
+    num: "09",
     title: "Gym Website",
     description: "Developed a fully responsive, interactive gym website.",
     stack: ["React", "TailwindCSS", "Vercel deployment"],
@@ -89,7 +99,7 @@ const projects = [
     live: "https://gym-website-seven-xi.vercel.app/",
   },
   {
-    num: "09",
+    num: "10",
     title: "Task Management Tool",
     description: "Task manager with Kanban board, drag & drop, and Firebase authentication.",
     stack: ["React", "Firebase"],
