@@ -92,7 +92,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex justify-center lg:justify-end mt-8 lg:mt-24"
           >
-            <div className="relative h-64 sm:h-72 md:h-80 lg:h-[540px] aspect-[896/1755]">
+            <div className="relative h-64 sm:h-72 md:h-80 lg:h-[500px] aspect-[896/1755]">
               <Photo />
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 blur-3xl rounded-full scale-150" />
             </div>
