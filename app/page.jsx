@@ -25,7 +25,6 @@ const Home = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-700" />
       </div>
 
-      {/* REDUCED BASE PADDING + HERO GETS mt-24 ON MOBILE */}
       <div className="container mx-auto px-4 pt-16 md:pt-24 lg:pt-32 relative z-10">
         {/* ==================== 1. HERO ==================== */}
         <motion.div
@@ -36,10 +35,9 @@ const Home = () => {
         >
           {/* LEFT */}
           <div className="space-y-6 md:space-y-8">
-            {/* BADGE — NOW 100% VISIBLE BELOW NAVBAR */}
             <div className="flex flex-wrap items-center gap-3">
               <span className="px-4 py-1.5 text-xs font-bold bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full shadow-lg whitespace-nowrap">
-                Available
+                Open to Opportunities
               </span>
               <span className="text-sm text-cyan-300">Full-Stack + AI</span>
             </div>
@@ -53,18 +51,18 @@ const Home = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed">
-              <span className="text-cyan-400 font-semibold">Focused.</span> 
-              <span className="text-purple-400 font-semibold">Driven.</span> 
+              <span className="text-cyan-400 font-semibold">Focused.</span>
+              <span className="text-purple-400 font-semibold">Driven.</span>
               <span className="text-pink-400 font-semibold">Always learning.</span>
               <br className="hidden md:block" />
-              Turning 
+              Turning
               <span className="text-emerald-400 font-medium"> ideas into fast, scalable, intuitive</span> digital products.
               <br className="hidden md:block" />
-              Solving 
-              <span className="text-amber-400 font-medium"> complex challenges</span> with 
+              Solving
+              <span className="text-amber-400 font-medium"> complex challenges</span> with
               <span className="text-rose-400 font-medium"> clean code </span>
               <br className="hidden md:block" />
-              and 
+              and
               <span className="text-sky-400 font-medium"> thoughtful design</span>.
             </p>
 
@@ -76,7 +74,7 @@ const Home = () => {
               </a>
               <Link href="/contact">
                 <Button variant="outline" className="border-2 border-cyan-500/50 text-cyan-300 hover:bg-cyan-500/10 text-base md:text-lg px-6 md:px-8 py-6 md:py-7 rounded-2xl backdrop-blur-sm">
-                  <FiMail className="mr-2 text-lg md:text-xl" /> Let’s Talk
+                  <FiMail className="mr-2 text-lg md:text-xl" /> Let's Talk
                 </Button>
               </Link>
             </div>
@@ -94,7 +92,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex justify-center lg:justify-end mt-8 lg:mt-24"
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+            <div className="relative h-64 sm:h-72 md:h-80 lg:h-[540px] aspect-[896/1755]">
               <Photo />
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 blur-3xl rounded-full scale-150" />
             </div>
@@ -150,64 +148,7 @@ const Home = () => {
           </div>
         </motion.section>
 
-        {/* ==================== 4. 8 PROJECTS GRID ==================== */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="my-20 md:my-32"
-        >
-          <div className="text-center mb-10 md:mb-14">
-            <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
-              8 Real Projects
-            </h2>
-            <p className="text-gray-400 text-sm md:text-base">From idea to production — all by me</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-            {[
-              { title: "AI Medical Teleconsultation", desc: "Video calls, AI diagnosis, JWT, MongoDB", tags: ["React", "WebRTC", "Python ML"], link: "https://github.com/Safwen-bm/medical-platform", live: "https://medical.safone.tn" },
-              { title: "Secure Banking System", desc: "Audit logs, multi-currency, RBAC", tags: ["Next.js", "NestJS", "PostgreSQL"], link: "https://github.com/Safwen-bm/creditwin" },
-              { title: "E-Learning LMS", desc: "Live classes, real-time chat, admin panel", tags: ["Next.js", "Socket.IO", "Tailwind"], link: "https://github.com/Safwen-bm/E_learning_app" },
-              { title: "Real-Time Chat App", desc: "WebSockets, typing indicators, file sharing", tags: ["React", "Node.js", "Socket.IO"], link: "https://github.com/Safwen-bm/chat-app" },
-              { title: "Task Management Tool", desc: "Kanban, drag & drop, Firebase auth", tags: ["React", "Firebase", "Tailwind"], link: "https://github.com/Safwen-bm/task-manager" },
-              { title: "Portfolio CMS", desc: "Headless CMS with Sanity & Next.js", tags: ["Next.js", "Sanity", "Vercel"], link: "https://github.com/Safwen-bm/portfolio-cms" },
-              { title: "Weather Dashboard", desc: "API integration, charts, dark mode", tags: ["React", "Chart.js", "API"], link: "https://github.com/Safwen-bm/weather-dashboard" },
-              { title: "E-Commerce Store", desc: "Stripe, cart, admin dashboard", tags: ["Next.js", "Stripe", "Prisma"], link: "https://github.com/Safwen-bm/ecommerce" },
-            ].map((proj, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group bg-gradient-to-br from-white/5 to-white/2 backdrop-blur-lg border border-white/10 rounded-3xl p-6 md:p-8 hover:border-cyan-500/60 transition-all shadow-xl hover:shadow-2xl hover:shadow-cyan-500/20"
-              >
-                <h3 className="text-xl md:text-2xl font-bold group-hover:text-cyan-400 transition">{proj.title}</h3>
-                <p className="text-gray-300 text-sm md:text-base mb-4">{proj.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {proj.tags.map((tag, j) => (
-                    <span key={j} className="text-xs px-2 py-1 bg-cyan-500/10 text-cyan-300 rounded-full border border-cyan-500/30">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-3 text-sm">
-                  <Link href={proj.link} target="_blank" className="text-cyan-400 hover:underline font-medium">GitHub</Link>
-                  {proj.live && <Link href={proj.live} target="_blank" className="text-blue-400 hover:underline font-medium">Live</Link>}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/work">
-              <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-base md:text-lg px-8 py-6 rounded-full shadow-lg transform hover:scale-105 transition-all">
-                View All Projects
-              </Button>
-            </Link>
-          </div>
-        </motion.section>
-
-        {/* ==================== 5. QUOTE ==================== */}
+        {/* ==================== 4. QUOTE ==================== */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -217,28 +158,28 @@ const Home = () => {
         >
           <div className="max-w-4xl mx-auto bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-md border border-cyan-500/20 rounded-3xl p-8 md:p-12">
             <p className="text-xl md:text-2xl lg:text-3xl font-medium text-cyan-300 italic">
-              “I don’t just code — I build 
-              <span className="text-emerald-400 font-bold"> systems that scale</span>, 
-              <span className="text-rose-400 font-bold"> secure</span>, and 
-              <span className="text-amber-400 font-bold"> solve real problems</span>.”
+              "I don't just code — I build
+              <span className="text-emerald-400 font-bold"> systems that scale</span>,
+              <span className="text-rose-400 font-bold"> secure</span>, and
+              <span className="text-amber-400 font-bold"> solve real problems</span>."
             </p>
             <p className="mt-6 text-gray-400">— Safwen Ben Mabrouk</p>
           </div>
         </motion.section>
 
-        {/* ==================== 6. RESUME (FULL) ==================== */}
+        {/* ==================== 5. RESUME (FULL) ==================== */}
         <ResumeSection />
 
-        {/* ==================== 7. SERVICES (FULL) ==================== */}
+        {/* ==================== 6. SERVICES (FULL) ==================== */}
         <ServicesSection />
 
-        {/* ==================== 8. WORK (FULL) ==================== */}
+        {/* ==================== 7. WORK (FULL) ==================== */}
         <WorkSection />
 
-        {/* ==================== 9. CONTACT (AT THE VERY END) ==================== */}
+        {/* ==================== 8. CONTACT (AT THE VERY END) ==================== */}
         <ContactSection />
 
-        {/* ==================== 10. NAVIGATION LINKS ==================== */}
+        {/* ==================== 9. NAVIGATION LINKS ==================== */}
         <motion.section
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

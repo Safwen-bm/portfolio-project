@@ -9,105 +9,9 @@ import { BsGithub, BsBoxArrowUpRight } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { projects } from "./projectsData";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const projects = [
-  {
-    num: "01",
-    title: "Medical Teleconsultation Platform",
-    description:
-      "Full-featured app with live video calls, medical record management, appointment scheduling, automated notifications, and doctor dashboard.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "PeerJS", "SendGrid"],
-    image: "/telemed.png",
-    github: "https://github.com/Safwen-bm/medical-platform",
-    live: "https://medical.safone.tn",
-  },
-  {
-    num: "02",
-    title: "AutoValu — AI Car Price Analyzer",
-    description:
-      "AI-powered platform to estimate used car prices in Tunisia, detect deal quality, and generate smart counter-offers. Includes an admin dashboard for monitoring usage and system stats.",
-    stack: ["Next.js", "NestJS", "FastAPI", "Python", "XGBoost", "KNN"],
-    image: "/autovalu.png",
-    github: "https://github.com/Safwen-bm/autovalu",
-    live: "https://autovalu.vercel.app/",
-  },
-  {
-    num: "03",
-    title: "LMS E-Learning Platform",
-    description:
-      "Complete course management system: enrollment, progress tracking, real-time messaging, and admin panel.",
-    stack: ["Next.js", "Node.js", "Tailwind", "Prisma", "PostgreSQL"],
-    image: "/elearning.png",
-    github: "https://github.com/Safwen-bm/E_learning_app",
-    live: "https://elearning.safone.tn",
-  },
-  {
-    num: "04",
-    title: "MERN Chat Application",
-    description:
-      "Real-time messaging with typing indicators, online status, and responsive UI.",
-    stack: ["MERN", "Socket.IO"],
-    image: "/chatapp.png",
-    github: "https://github.com/Safwen-bm/fullstack-chat-app",
-    live: "https://fullstack-chat-app-70i9.onrender.com",
-  },
-  {
-    num: "05",
-    title: "Movie Explorer",
-    description: "Modern app to explore, search, and discover films with a fluid interface.",
-    stack: ["React", "Vite", "TMDB API"],
-    image: "/movie-explorer.png",
-    github: "https://github.com/Safwen-bm/movie-explorer",
-    live: "https://safwen-bm.github.io/movie-explorer/",
-  },
-  {
-    num: "06",
-    title: "FluffyShop",
-    description: "High-end pet adoption platform. Full-stack luxury e-commerce with Next.js 15, Strapi CMS, Clerk auth, custom cart system, and production deployment.",
-    stack: ["Next.js 15", "Strapi v5", "Clerk", "Tailwind CSS", "Railway"],
-    image: "/fluffy-shop.png",
-    github: "https://github.com/Safwen-bm/fluffy-shop",
-    live: "https://fluffy-shop-frontend.onrender.com",
-  },
-  {
-    num: "07",
-    title: "Coffee Shop Website",
-    description: "Responsive website for a café with interactive menu and contact form.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    image: "/coffee-shop.png",
-    github: "https://github.com/Safwen-bm/coffee-shop",
-    live: "https://safwen-bm.github.io/coffee-shop/",
-  },
-  {
-    num: "08",
-    title: "Flower Shop Website",
-    description: "Responsive flower shop site with product catalog and contact form.",
-    stack: ["HTML", "CSS"],
-    image: "/flower-shop.png",
-    github: "https://github.com/Safwen-bm/flower-shop",
-    live: "https://safwen-bm.github.io/flower-shop/",
-  },
-  {
-    num: "09",
-    title: "Gym Website",
-    description: "Developed a fully responsive, interactive gym website.",
-    stack: ["React", "TailwindCSS", "Vercel deployment"],
-    image: "/gym-web.png",
-    github: "https://github.com/Safwen-bm/gym-website",
-    live: "https://gym-website-seven-xi.vercel.app/",
-  },
-  {
-    num: "10",
-    title: "Task Management Tool",
-    description: "Task manager with Kanban board, drag & drop, and Firebase authentication.",
-    stack: ["React", "Firebase"],
-    image: "/task-manager.png",
-    github: "https://github.com/Safwen-bm/task-manager",
-    live: "https://task-manager.safone.tn",
-  },
-];
 
 const WorkSection = () => {
   const containerRef = useRef(null);
@@ -120,17 +24,14 @@ const WorkSection = () => {
     onResize();
     window.addEventListener("resize", onResize);
 
-    // desktop behavior only
     if (!isMobile && containerRef.current) {
       const ctx = gsap.context(() => {
         const panels = gsap.utils.toArray(".project-panel", containerRef.current);
         if (!panels || panels.length === 0) return;
 
-        // compute a start offset so horizontal scrolling doesn't start too early.
-        // Uses a fraction of the container height but clamps to a reasonable value.
         const containerHeight = containerRef.current.offsetHeight || window.innerHeight;
         const rawOffset = Math.round(containerHeight * 0.18);
-        const offset = Math.min(Math.max(rawOffset, 80), 260); // clamp between 80 and 260px
+        const offset = Math.min(Math.max(rawOffset, 80), 260);
 
         const totalScrollWidth = (panels.length - 1) * window.innerWidth;
 
@@ -167,11 +68,9 @@ const WorkSection = () => {
       }, containerRef);
 
       return () => {
-        // revert everything created in this context (safe cleanup)
         try {
           ctx.revert();
         } catch (e) {
-          // defensive: if revert throws, kill all triggers
           ScrollTrigger.getAll().forEach((t) => t.kill());
         }
       };
@@ -188,14 +87,12 @@ const WorkSection = () => {
         ref={containerRef}
         className="relative bg-gradient-to-b from-[#05070c] via-[#0a0f21] to-[#05070c] overflow-hidden"
       >
-        {/* Cinematic orbs */}
         <div className="fixed inset-0 pointer-events-none z-0">
           <div className="absolute top-32 left-32 w-[500px] h-[500px] bg-cyan-500/18 rounded-full blur-[160px]" />
           <div className="absolute bottom-32 right-32 w-[460px] h-[460px] bg-purple-500/16 rounded-full blur-[160px]" />
         </div>
 
-        {/* Header */}
-         <div className="pt-32 md:pt-39 pb-16 md:pb-20 text-center relative z-10">
+        <div className="pt-32 md:pt-39 pb-16 md:pb-20 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -212,7 +109,6 @@ const WorkSection = () => {
           </motion.div>
         </div>
 
-        {/* Desktop: horizontal pinned panels */}
         {!isMobile && (
           <div className="flex h-[calc(100vh-200px)]">
             {projects.map((project, i) => (
@@ -229,7 +125,6 @@ const WorkSection = () => {
           </div>
         )}
 
-        {/* Mobile: stacked cards */}
         {isMobile && (
           <div className="px-5 pb-20 space-y-12">
             {projects.map((project, i) => (
@@ -239,7 +134,6 @@ const WorkSection = () => {
         )}
       </section>
 
-      {/* Progress dots (desktop only) */}
       {!isMobile && (
         <div
           className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-50 flex gap-3 transition-all duration-300 ${
@@ -259,8 +153,6 @@ const WorkSection = () => {
     </>
   );
 };
-
-/* ----- helper subcomponents ----- */
 
 const ProjectContent = ({ project }) => (
   <motion.div
@@ -330,7 +222,6 @@ const MobileCard = ({ project, index }) => (
     transition={{ duration: 0.6, delay: index * 0.05 }}
     className="bg-[#0d1220] border border-white/5 rounded-3xl p-5 shadow-2xl space-y-5"
   >
-    {/* Number + Buttons */}
     <div className="flex justify-between items-center">
       <div className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
         {project.num}
@@ -350,17 +241,14 @@ const MobileCard = ({ project, index }) => (
       </div>
     </div>
 
-    {/* Title */}
     <h4 className="text-xl font-bold text-white leading-tight">
       {project.title}
     </h4>
 
-    {/* Description */}
     <p className="text-gray-300 text-sm leading-relaxed">
       {project.description}
     </p>
 
-    {/* Technologies */}
     <div className="flex flex-wrap gap-2">
       {project.stack.map((tech, i) => (
         <span
@@ -372,7 +260,6 @@ const MobileCard = ({ project, index }) => (
       ))}
     </div>
 
-    {/* Image */}
     <div className="relative h-52 rounded-2xl overflow-hidden bg-black/40 shadow-lg">
       <Image
         src={project.image}

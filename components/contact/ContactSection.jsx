@@ -90,7 +90,7 @@ const ContactSection = () => {
             Get In Touch
           </h1>
           <p className="mt-4 text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
-            Available for PFE internship or collaboration. Let’s build something amazing.
+            Open to full-time roles and freelance projects. Let's build something amazing.
           </p>
         </motion.div>
 
@@ -269,8 +269,8 @@ const ContactSection = () => {
             >
               <h4 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Open to Opportunities</h4>
               <p className="text-gray-300 leading-relaxed">
-                Actively seeking <span className="text-cyan-400 font-semibold">PFE internship</span> or 
-                <span className="text-purple-400 font-semibold"> freelance collaboration</span>.
+                Open to <span className="text-cyan-400 font-semibold">full-time roles</span> and
+                <span className="text-purple-400 font-semibold"> freelance collaborations</span>.
               </p>
               <div className="mt-4 md:mt-6 flex justify-center gap-1.5 md:gap-2">
                 {[...Array(5)].map((_, i) => (
@@ -296,7 +296,7 @@ const ContactSection = () => {
           className="text-center mt-20 md:mt-32"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 md:mb-8">
-            Let’s Build the Future Together
+            Let's Build the Future Together
           </h2>
           <div className="flex justify-center">
             <Button className="

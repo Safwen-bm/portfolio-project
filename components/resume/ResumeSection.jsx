@@ -1,7 +1,7 @@
 // components/resume/ResumeSection.jsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -16,64 +16,50 @@ import { Button } from "@/components/ui/button";
 
 const ResumeSection = () => {
   const [activeTab, setActiveTab] = useState("experience");
-  const [skillPercents, setSkillPercents] = useState({});
-
-  // Animate skill bars when tab opens
-  useEffect(() => {
-    if (activeTab === "skills") {
-      const percents = {
-        "React.js": 92,
-        "Next.js": 90,
-        "TypeScript": 88,
-        "Node.js": 87,
-        "NestJS": 85,
-        "PostgreSQL": 83,
-        "Docker": 78,
-        "Git": 95,
-        "Tailwind CSS": 90,
-        "WebRTC": 80,
-        "MongoDB": 82,
-        "Prisma ORM": 84,
-      };
-      setSkillPercents(percents);
-    }
-  }, [activeTab]);
 
   const experiences = [
+    {
+      role: "Full-Stack Developer Intern",
+      company: "Trinovatech",
+      duration: "February 2026 – May 2026",
+      location: "Tunisia",
+      desc:
+        "Designed and built a full-stack platform end-to-end, from database schema to CI/CD deployment, as a final-year engineering project. Implemented AI-powered semantic search and a real-time collaborative editing system, along with role-based access control. Integrated Stripe subscription billing and delivered a full automated test suite.",
+    },
     {
       role: "Full-Stack Developer Intern",
       company: "SWConsulting",
       duration: "June 2025 – July 2025",
       location: "Monastir, Tunisia",
       desc:
-        "Built a production-ready web app using Next.js, NestJS, PostgreSQL, and Prisma ORM. Implemented JWT authentication, role-based access control (RBAC), and optimized SQL queries. Worked in Agile (Git, Scrum). Delivered a robust, secure, and scalable system deployed in production.",
+        "Analyzed an existing production system and its business logic to identify improvement points. Contributed to the dynamic evolution of financial calculation and estimation rules, enabling business teams to modify financial rules without code changes. Delivered full-stack features using Next.js, NestJS, PostgreSQL, and Prisma in an Agile environment.",
     },
   ];
 
   const education = [
     {
       degree: "Software Engineering Degree",
-      school: "EPI – International Multidisciplinary School",
-      duration: "Expected June 2026",
+      school: "EPI – International Multidisciplinary School, Sousse",
+      duration: "2023 – 2026",
     },
     {
-      degree: "Preparatory Cycle in Technology & Computer Science",
-      school: "EPI Educational Group – Sousse",
+      degree: "Preparatory Cycle in Technology & Computer Science (TIC)",
+      school: "EPI – International Multidisciplinary School, Sousse",
       duration: "2021 – 2023",
     },
     {
-      degree: "Technical Baccalaureate",
-      school: "Lycée Bourguiba – Monastir",
+      degree: "Baccalaureate in Technical Sciences",
+      school: "Lycée Bourguiba, Monastir",
       duration: "2019",
     },
   ];
 
   const skills = {
     Frontend: ["React.js", "Next.js", "TypeScript", "Tailwind CSS"],
-    Backend: ["Node.js", "NestJS", "REST API", "Prisma ORM"],
-    Database: ["PostgreSQL", "MongoDB"],
-    DevOps: ["Docker", "Git", "Linux", "CI/CD"],
-    "Real-Time": ["WebRTC", "Socket.IO", "Push Notifications"],
+    Backend: ["Node.js", "NestJS", "Express.js", "REST API"],
+    "Databases & ORM": ["PostgreSQL", "MongoDB", "Prisma ORM", "Firebase"],
+    "Cloud & DevOps": ["AWS (Cloud Foundations)", "Docker", "GitHub Actions (CI/CD)", "Vercel", "Render", "Linux"],
+    "Real-Time & AI": ["WebRTC", "Socket.IO", "AI (RAG)"],
   };
 
   const softSkills = [
@@ -86,8 +72,8 @@ const ResumeSection = () => {
 
   const languages = [
     { name: "Arabic", level: "Native" },
-    { name: "English", level: "Fluent" },
-    { name: "French", level: "Intermediate" },
+    { name: "English", level: "Advanced" },
+    { name: "French", level: "Advanced" },
   ];
 
   const tabGradients = {
@@ -139,10 +125,12 @@ const ResumeSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-12 md:mb-16"
         >
-          <Button className="bg-gradient-to-r from-violet-600 to-rose-600 hover:from-violet-700 hover:to-rose-700 text-white font-bold text-base md:text-lg px-8 md:px-12 py-6 md:py-7 rounded-full shadow-2xl hover:shadow-violet-600/40 transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
-            <FiDownload className="text-lg md:text-xl" />
-            Download CV (PDF)
-          </Button>
+          <a href="/Safwen-Ben-Mabrouk-CV.pdf" download>
+            <Button className="bg-gradient-to-r from-violet-600 to-rose-600 hover:from-violet-700 hover:to-rose-700 text-white font-bold text-base md:text-lg px-8 md:px-12 py-6 md:py-7 rounded-full shadow-2xl hover:shadow-violet-600/40 transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
+              <FiDownload className="text-lg md:text-xl" />
+              Download CV (PDF)
+            </Button>
+          </a>
         </motion.div>
 
         {/* TABS */}
@@ -220,7 +208,7 @@ const ResumeSection = () => {
             ))}
           </TabsContent>
 
-          {/* SKILLS */}
+          {/* SKILLS — tag-based, no invented mastery percentages */}
           <TabsContent value="skills">
             <div className="space-y-10">
               {Object.entries(skills).map(([category, items], i) => (
@@ -231,23 +219,19 @@ const ResumeSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-violet-400 mb-6 capitalize">{category}</h3>
-                  <div className="space-y-5">
+                  <h3 className="text-lg md:text-xl font-bold text-violet-400 mb-5 capitalize">{category}</h3>
+                  <div className="flex flex-wrap gap-3">
                     {items.map((skill, j) => (
-                      <div key={j} className="space-y-2">
-                        <div className="flex justify-between text-sm md:text-base">
-                          <span className="text-gray-300 font-medium">{skill}</span>
-                          <span className="text-violet-400 font-bold">{skillPercents[skill] || 0}%</span>
-                        </div>
-                        <div className="h-3 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${skillPercents[skill] || 0}%` }}
-                            transition={{ duration: 1.3, delay: j * 0.08, ease: "easeOut" }}
-                            className="h-full bg-gradient-to-r from-violet-500 to-purple-600 rounded-full shadow-lg shadow-violet-500/50"
-                          />
-                        </div>
-                      </div>
+                      <motion.span
+                        key={j}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: j * 0.05 }}
+                        className="px-4 py-2 bg-white/5 border border-violet-500/30 rounded-full text-sm md:text-base text-gray-200 hover:border-violet-400 hover:bg-violet-500/10 hover:text-violet-300 transition-all"
+                      >
+                        {skill}
+                      </motion.span>
                     ))}
                   </div>
                 </motion.div>
@@ -292,7 +276,7 @@ const ResumeSection = () => {
                       className={`h-full rounded-full transition-all duration-1000 ease-out ${
                         lang.level === "Native"
                           ? "w-full bg-gradient-to-r from-emerald-500 to-teal-500"
-                          : lang.level === "Fluent"
+                          : lang.level === "Advanced"
                           ? "w-5/6 bg-gradient-to-r from-sky-500 to-cyan-600"
                           : "w-1/2 bg-gradient-to-r from-amber-500 to-orange-500"
                       }`}
@@ -313,7 +297,7 @@ const ResumeSection = () => {
           className="text-center mt-20 md:mt-32"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-8 leading-tight">
-            Let’s Build Something Great Together
+            Let's Build Something Great Together
           </h2>
           <Button className="bg-gradient-to-r from-rose-600 to-violet-600 hover:from-rose-700 hover:to-violet-700 text-white text-lg md:text-xl px-12 md:px-16 py-7 md:py-9 rounded-full shadow-2xl hover:shadow-rose-500/50 transform hover:scale-105 transition-all duration-300 font-bold">
             Get In Touch

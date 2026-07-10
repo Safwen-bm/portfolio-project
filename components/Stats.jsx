@@ -2,17 +2,17 @@
 "use client";
 
 import CountUp from "react-countup";
+import { projects } from "@/components/work/projectsData";
 
 const stats = [
   { num: 3, text: "Years Coding" },
-  { num: 15, text: "Projects Delivered" },
-  { num: 20, text: "Tech Stack" },
-  { num: 2500, text: "GitHub Commits" },
+  { num: projects.length, text: "Projects Delivered" },
+  { num: 12, text: "Core Technologies" },
 ];
 
 const Stats = () => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-10 my-32">
+    <div className="grid grid-cols-3 gap-6 md:gap-10 my-32">
       {stats.map((stat, i) => (
         <div key={i} className="text-center group">
           <CountUp

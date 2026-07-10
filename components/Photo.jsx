@@ -8,7 +8,7 @@ const Photo = () => {
   return (
     <motion.div
       whileHover={{ scale: 1.05 }}
-      className="relative w-72 h-72 md:w-80 md:h-80"
+      className="relative w-full h-full"
       style={{ perspective: 1000 }}
     >
       <motion.div
@@ -21,15 +21,15 @@ const Photo = () => {
           alt="Safwen Ben Mabrouk"
           fill
           priority
-          className="object-contain"
+          className="object-cover"
         />
       </motion.div>
 
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="absolute inset-0 -m-6 rounded-3xl border-4 border-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 opacity-70"
-        style={{ filter: "blur(2px)" }}
+        className="absolute inset-0 -m-10 -z-10 rounded-3xl border-4 border-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 opacity-40"
+        style={{ filter: "blur(6px)" }}
       />
     </motion.div>
   );
