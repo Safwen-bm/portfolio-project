@@ -5,7 +5,7 @@ export const projects = [
     num: "01",
     title: "Intelligent Document Management Platform",
     description:
-      "AI-powered semantic search, a conversational assistant, and real-time collaborative editing, with role-based access control and Stripe integration.",
+      "AI-powered semantic search, a conversational assistant, and real-time collaborative editing, with role-based access control.",
     stack: ["Next.js 15", "NestJS", "PostgreSQL/pgvector", "Prisma", "AI (RAG)", "Socket.IO", "Stripe", "Docker"],
     image: "/documind.png",
     github: "https://github.com/safwen-bm/documind",
