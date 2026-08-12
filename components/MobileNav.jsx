@@ -6,14 +6,15 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/com
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { motion } from "framer-motion";
 
 const links = [
-  { name: "HOME", href: "/" },
-  { name: "SERVICES", href: "/services" },
-  { name: "RESUME", href: "/resume" },
-  { name: "WORK", href: "/work" },
-  { name: "CONTACT", href: "/contact" },
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Resume", href: "/resume" },
+  { name: "Work", href: "/work" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const MobileNav = () => {
@@ -23,77 +24,28 @@ const MobileNav = () => {
 
   const handleLinkClick = (href) => {
     setOpen(false);
-    if (href !== pathname) {
-      router.push(href);
-    }
+    if (href !== pathname) router.push(href);
   };
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger className="p-3">
-        <motion.div
-          whileHover={{ rotate: 180, scale: 1.3 }}
-          whileTap={{ scale: 0.8 }}
-          className="relative"
-        >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-cyan-600 flex items-center justify-center">
-            <span className="text-white text-xl">≡</span>
-          </div>
-          <motion.div
-            className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600/50 to-cyan-600/50 blur-xl"
-            animate={{ scale: [1, 1.5, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </motion.div>
+      <SheetTrigger className="p-2 rounded-lg hover:bg-subtle transition-colors">
+        <HiOutlineMenuAlt4 className="text-2xl text-ink" />
       </SheetTrigger>
 
-      <SheetContent
-        side="top"
-        className="h-screen w-full p-0 bg-black/95 backdrop-blur-3xl border-0"
-      >
+      <SheetContent side="top" className="h-screen w-full p-0 bg-white border-0">
         <VisuallyHidden>
-          <SheetTitle>Cosmic Navigation</SheetTitle>
+          <SheetTitle>Navigation</SheetTitle>
         </VisuallyHidden>
 
-        <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: "spring", stiffness: 200, damping: 30 }}
-          className="relative h-full flex flex-col items-center justify-center gap-12"
-        >
-          {/* COSMIC ORBS */}
-          <div className="absolute inset-0 -z-10">
-            <motion.div
-              className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-purple-600/30 to-pink-600/20 rounded-full blur-3xl"
-              animate={{ x: [-50, 50, -50], y: [-50, 50, -50] }}
-              transition={{ duration: 15, repeat: Infinity }}
-            />
-            <motion.div
-              className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-tl from-cyan-600/30 to-blue-600/20 rounded-full blur-3xl"
-              animate={{ x: [50, -50, 50], y: [50, -50, 50] }}
-              transition={{ duration: 18, repeat: Infinity }}
-            />
-          </div>
-
-          {/* LOGO */}
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <h1 className="text-6xl font-black bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              SafOne
-            </h1>
-          </motion.div>
-
-          {/* LINKS — NOW CLOSE MENU ON CLICK */}
-          <nav className="space-y-6">
+        <div className="h-full flex flex-col items-center justify-center gap-10">
+          <nav className="flex flex-col items-center gap-6">
             {links.map((link, i) => (
               <motion.div
                 key={link.href}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 + 0.3 }}
+                transition={{ delay: i * 0.06 }}
               >
                 <SheetClose asChild>
                   <Link
@@ -102,10 +54,8 @@ const MobileNav = () => {
                       e.preventDefault();
                       handleLinkClick(link.href);
                     }}
-                    className={`block text-4xl font-bold transition-all ${
-                      link.href === pathname
-                        ? "bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-                        : "text-white/60 hover:text-white"
+                    className={`text-3xl font-bold transition-colors ${
+                      link.href === pathname ? "text-accent" : "text-ink/70 hover:text-ink"
                     }`}
                   >
                     {link.name}
@@ -115,25 +65,14 @@ const MobileNav = () => {
             ))}
           </nav>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.8 }}
-          >
-            <SheetClose asChild>
-              <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="px-12 py-6 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white font-bold text-xl shadow-2xl"
-                >
-                  ENTER THE PORTAL
-                </motion.button>
-              </Link>
-            </SheetClose>
-          </motion.div>
-        </motion.div>
+          <SheetClose asChild>
+            <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
+              <button className="px-8 py-4 rounded-full bg-ink text-white font-semibold">
+                Let's Talk
+              </button>
+            </Link>
+          </SheetClose>
+        </div>
       </SheetContent>
     </Sheet>
   );

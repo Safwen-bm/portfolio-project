@@ -4,14 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  FiBriefcase,
-  FiAward,
-  FiCode,
-  FiUser,
-  FiGlobe,
-  FiDownload,
-} from "react-icons/fi";
+import { FiBriefcase, FiAward, FiCode, FiUser, FiGlobe, FiDownload } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 
 const ResumeSection = () => {
@@ -22,44 +15,32 @@ const ResumeSection = () => {
       role: "Full-Stack Developer Intern",
       company: "Trinovatech",
       duration: "February 2026 – May 2026",
-      location: "Tunisia",
-      desc:
-        "Designed and built a full-stack platform end-to-end, from database schema to CI/CD deployment, as a final-year engineering project. Implemented AI-powered semantic search and a real-time collaborative editing system, along with role-based access control. Integrated Stripe subscription billing and delivered a full automated test suite.",
+      location: "Monastir, Tunisia",
+      desc: "Designed and built a full-stack platform end-to-end, from database schema to CI/CD deployment, as a final-year engineering project. Implemented AI-powered semantic search and a real-time collaborative editing system, along with role-based access control. Integrated Stripe subscription billing and delivered a full automated test suite.",
     },
     {
       role: "Full-Stack Developer Intern",
       company: "SWConsulting",
       duration: "June 2025 – July 2025",
       location: "Monastir, Tunisia",
-      desc:
-        "Analyzed an existing production system and its business logic to identify improvement points. Contributed to the dynamic evolution of financial calculation and estimation rules, enabling business teams to modify financial rules without code changes. Delivered full-stack features using Next.js, NestJS, PostgreSQL, and Prisma in an Agile environment.",
+      desc: "Analyzed an existing production system and its business logic to identify improvement points. Contributed to the dynamic evolution of financial calculation and estimation rules, enabling business teams to modify financial rules without code changes. Delivered full-stack features using Next.js, NestJS, PostgreSQL, and Prisma in an Agile environment.",
     },
   ];
 
   const education = [
-    {
-      degree: "Software Engineering Degree",
-      school: "EPI – International Multidisciplinary School, Sousse",
-      duration: "2023 – 2026",
-    },
-    {
-      degree: "Preparatory Cycle in Technology & Computer Science (TIC)",
-      school: "EPI – International Multidisciplinary School, Sousse",
-      duration: "2021 – 2023",
-    },
-    {
-      degree: "Baccalaureate in Technical Sciences",
-      school: "Lycée Bourguiba, Monastir",
-      duration: "2019",
-    },
+    { degree: "Software Engineering Degree", school: "EPI – International Multidisciplinary School, Sousse", duration: "2023 – 2026" },
+    { degree: "Preparatory Cycle in Technology & Computer Science (TIC)", school: "EPI – International Multidisciplinary School, Sousse", duration: "2021 – 2023" },
+    { degree: "Baccalaureate in Technical Sciences", school: "Lycée Bourguiba, Monastir", duration: "2019" },
   ];
 
   const skills = {
-    Frontend: ["React.js", "Next.js", "TypeScript", "Tailwind CSS"],
+    "Programming Languages": ["C", "Python", "Java", "JavaScript", "TypeScript"],
+    Frontend: ["React.js", "Next.js", "Tailwind CSS"],
     Backend: ["Node.js", "NestJS", "Express.js", "REST API"],
     "Databases & ORM": ["PostgreSQL", "MongoDB", "Prisma ORM", "Firebase"],
+    "AI & Machine Learning": ["RAG", "NumPy", "Machine Learning", "KNN", "SVM", "XGBoost"],
+    "Real-Time": ["WebRTC", "Socket.IO"],
     "Cloud & DevOps": ["AWS (Cloud Foundations)", "Docker", "GitHub Actions (CI/CD)", "Vercel", "Render", "Linux"],
-    "Real-Time & AI": ["WebRTC", "Socket.IO", "AI (RAG)"],
   };
 
   const softSkills = [
@@ -70,7 +51,7 @@ const ResumeSection = () => {
     "Resilient Under Technical Challenges",
   ];
 
-  const languages = [
+  const spokenLanguages = [
     { name: "Arabic", level: "Native" },
     { name: "English", level: "Advanced" },
     { name: "French", level: "Advanced" },
@@ -84,6 +65,14 @@ const ResumeSection = () => {
     lang: "linear-gradient(135deg, #0EA5E9, #0891B2)",
   };
 
+  const tabSolid = {
+    experience: "#10B981",
+    education: "#F59E0B",
+    skills: "#8B5CF6",
+    soft: "#DB2777",
+    lang: "#0891B2",
+  };
+
   const tabs = [
     { value: "experience", icon: FiBriefcase, label: "Experience" },
     { value: "education", icon: FiAward, label: "Education" },
@@ -93,49 +82,58 @@ const ResumeSection = () => {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-[#0a0e17] via-[#0b1426] to-[#0a0e17] overflow-hidden relative">
-      {/* CINEMATIC ORBS */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-32 left-10 md:left-20 w-80 h-80 md:w-96 md:h-96 bg-emerald-500/12 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-32 right-10 md:right-20 w-72 h-72 md:w-80 md:h-80 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-700" />
+    <section className="relative isolate overflow-hidden py-24 md:py-32 bg-primary">
+      {/* COLORFUL ORBS — scoped to this section only */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-20 left-10 md:left-20 w-80 h-80 md:w-96 md:h-96 bg-emerald-400/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-0 md:right-10 w-72 h-72 md:w-80 md:h-80 bg-violet-400/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-1/4 w-72 h-72 bg-rose-400/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* EPIC HEADER */}
+        {/* HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20 pt-16 sm:pt-0"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-14"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-600 leading-tight">
+          <h1 className="h2 text-ink">
             Resume
           </h1>
-          <p className="mt-4 md:mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            Full-Stack Engineer | Real-Time Systems | Secure Architecture
+          <p className="text-muted mt-2">
+            Full-Stack Engineer · Real-Time Systems · Secure Architecture
           </p>
         </motion.div>
 
-        {/* DOWNLOAD CV — BIG & TAPPABLE */}
+        {/* DOWNLOAD CV */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.92 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-12 md:mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14 md:mb-16"
         >
           <a href="/Safwen-Ben-Mabrouk-CV.pdf" download>
-            <Button className="bg-gradient-to-r from-violet-600 to-rose-600 hover:from-violet-700 hover:to-rose-700 text-white font-bold text-base md:text-lg px-8 md:px-12 py-6 md:py-7 rounded-full shadow-2xl hover:shadow-violet-600/40 transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
-              <FiDownload className="text-lg md:text-xl" />
+            <Button className="w-full sm:w-auto
+                bg-ink hover:bg-ink/90
+                text-white
+                font-semibold
+                text-base
+                px-7 py-5
+                rounded-xl
+                transition-all duration-200
+                hover:-translate-y-0.5">
+              <FiDownload className="text-lg" />
               Download CV (PDF)
             </Button>
           </a>
         </motion.div>
 
         {/* TABS */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-6xl mx-auto">
-          <TabsList className="grid grid-cols-2 sm:grid-cols-5 w-full mb-12 md:mb-16 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-2 gap-2">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-5xl mx-auto">
+          <TabsList className="grid grid-cols-2 sm:grid-cols-5 w-full mb-12 bg-subtle border border-line rounded-2xl p-1.5 gap-1.5">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.value;
@@ -144,16 +142,11 @@ const ResumeSection = () => {
                   key={tab.value}
                   value={tab.value}
                   style={isActive ? { background: tabGradients[tab.value] } : {}}
-                  className={`
-                    rounded-xl transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2
-                    ${isActive 
-                      ? "text-white shadow-lg shadow-white/30 scale-105" 
-                      : "text-gray-300 bg-transparent hover:bg-white/10"
-                    }
-                    px-3 py-3 text-xs sm:text-sm md:text-base
-                  `}
+                  className={`rounded-xl transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-1.5 px-3 py-2.5 text-xs sm:text-sm font-medium ${
+                    isActive ? "text-white shadow-md scale-[1.03]" : "text-muted hover:bg-white"
+                  }`}
                 >
-                  <Icon className="text-lg sm:text-xl" />
+                  <Icon className="text-base" />
                   <span className="whitespace-nowrap">{tab.label}</span>
                 </TabsTrigger>
               );
@@ -161,77 +154,93 @@ const ResumeSection = () => {
           </TabsList>
 
           {/* EXPERIENCE */}
-          <TabsContent value="experience" className="space-y-8">
+          <TabsContent value="experience" className="space-y-6">
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -60 }}
+                initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 hover:border-emerald-500/50 transition-all duration-500 shadow-xl"
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                className="group bg-white border border-line rounded-3xl p-6 md:p-8 hover:border-emerald-400/60 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-4">
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-emerald-400 group-hover:text-emerald-300 transition">
-                      {exp.role}
-                    </h3>
-                    <p className="text-base md:text-lg text-gray-300">{exp.company}</p>
+                  <div className="flex items-start gap-4">
+                    <div
+                      className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center"
+                      style={{ background: tabGradients.experience }}
+                    >
+                      <FiBriefcase className="text-white" size={18} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg md:text-xl font-bold text-ink">{exp.role}</h3>
+                      <p className="text-sm md:text-base font-medium" style={{ color: tabSolid.experience }}>
+                        {exp.company}
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-right text-sm text-gray-400">
+                  <div className="text-right text-sm text-muted shrink-0">
                     <p>{exp.duration}</p>
-                    <p className="flex items-center gap-1 justify-end mt-1">
-                      <span className="text-emerald-400">Location</span> {exp.location}
-                    </p>
+                    <p className="mt-1">{exp.location}</p>
                   </div>
                 </div>
-                <p className="text-gray-300 leading-relaxed text-sm md:text-base">{exp.desc}</p>
+                <p className="text-muted leading-relaxed text-sm md:text-base">{exp.desc}</p>
               </motion.div>
             ))}
           </TabsContent>
 
           {/* EDUCATION */}
-          <TabsContent value="education" className="space-y-6">
+          <TabsContent value="education" className="space-y-5">
             {education.map((edu, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -60 }}
+                initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.2 }}
-                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 hover:border-amber-500/50 transition-all shadow-lg"
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                className="flex items-start gap-4 bg-white border border-line rounded-3xl p-6 md:p-8 hover:border-amber-400/60 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300"
               >
-                <h3 className="text-lg md:text-xl font-bold text-amber-400">{edu.degree}</h3>
-                <p className="text-gray-300 mt-1">{edu.school}</p>
-                <p className="text-sm text-gray-400 mt-2">{edu.duration}</p>
+                <div
+                  className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center"
+                  style={{ background: tabGradients.education }}
+                >
+                  <FiAward className="text-white" size={18} />
+                </div>
+                <div>
+                  <h3 className="text-base md:text-lg font-bold text-ink">{edu.degree}</h3>
+                  <p className="text-muted mt-1">{edu.school}</p>
+                  <p className="text-sm mt-2 font-medium" style={{ color: tabSolid.education }}>
+                    {edu.duration}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </TabsContent>
 
-          {/* SKILLS — tag-based, no invented mastery percentages */}
+          {/* SKILLS */}
           <TabsContent value="skills">
-            <div className="space-y-10">
+            <div className="space-y-9">
               {Object.entries(skills).map(([category, items], i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-violet-400 mb-5 capitalize">{category}</h3>
-                  <div className="flex flex-wrap gap-3">
+                  <h3 className="text-sm font-bold uppercase tracking-wide mb-4" style={{ color: tabSolid.skills }}>
+                    {category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2.5">
                     {items.map((skill, j) => (
-                      <motion.span
+                      <span
                         key={j}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: j * 0.05 }}
-                        className="px-4 py-2 bg-white/5 border border-violet-500/30 rounded-full text-sm md:text-base text-gray-200 hover:border-violet-400 hover:bg-violet-500/10 hover:text-violet-300 transition-all"
+                        className="px-4 py-2 bg-white border border-violet-200 rounded-full text-sm text-ink font-medium hover:text-white hover:border-transparent transition-all duration-200"
+                        onMouseEnter={(e) => (e.currentTarget.style.background = tabGradients.skills)}
+                        onMouseLeave={(e) => (e.currentTarget.style.background = "white")}
                       >
                         {skill}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
                 </motion.div>
@@ -241,17 +250,23 @@ const ResumeSection = () => {
 
           {/* SOFT SKILLS */}
           <TabsContent value="soft">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
               {softSkills.map((skill, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.94 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-6 text-center hover:border-rose-500/50 transition-all shadow-lg"
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="flex items-center gap-3 bg-white border border-line rounded-2xl p-5 hover:border-rose-400/60 hover:shadow-lg hover:shadow-rose-500/10 transition-all duration-300"
                 >
-                  <p className="text-base md:text-lg text-gray-300 font-medium">{skill}</p>
+                  <span
+                    className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
+                    style={{ background: tabGradients.soft }}
+                  >
+                    <FiUser className="text-white" size={14} />
+                  </span>
+                  <p className="text-ink font-medium text-sm md:text-base text-left">{skill}</p>
                 </motion.div>
               ))}
             </div>
@@ -259,26 +274,24 @@ const ResumeSection = () => {
 
           {/* LANGUAGES */}
           <TabsContent value="lang">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto">
-              {languages.map((lang, i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+              {spokenLanguages.map((lang, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.15 }}
-                  className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 text-center shadow-lg"
+                  transition={{ duration: 0.5, delay: i * 0.12 }}
+                  className="bg-white border border-line rounded-3xl p-6 text-center hover:border-sky-400/60 hover:shadow-lg hover:shadow-sky-500/10 transition-all duration-300"
                 >
-                  <h4 className="text-xl md:text-2xl font-bold text-sky-400">{lang.name}</h4>
-                  <p className="text-gray-300 mt-2 text-sm md:text-base">{lang.level}</p>
-                  <div className="mt-4 h-2 bg-white/10 rounded-full overflow-hidden">
+                  <h4 className="text-lg font-bold text-ink">{lang.name}</h4>
+                  <p className="text-muted mt-1 text-sm">{lang.level}</p>
+                  <div className="mt-4 h-1.5 bg-subtle rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-1000 ease-out ${
                         lang.level === "Native"
                           ? "w-full bg-gradient-to-r from-emerald-500 to-teal-500"
-                          : lang.level === "Advanced"
-                          ? "w-5/6 bg-gradient-to-r from-sky-500 to-cyan-600"
-                          : "w-1/2 bg-gradient-to-r from-amber-500 to-orange-500"
+                          : "w-5/6 bg-gradient-to-r from-sky-500 to-cyan-600"
                       }`}
                     />
                   </div>
@@ -287,22 +300,6 @@ const ResumeSection = () => {
             </div>
           </TabsContent>
         </Tabs>
-
-        {/* FINAL CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mt-20 md:mt-32"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-8 leading-tight">
-            Let's Build Something Great Together
-          </h2>
-          <Button className="bg-gradient-to-r from-rose-600 to-violet-600 hover:from-rose-700 hover:to-violet-700 text-white text-lg md:text-xl px-12 md:px-16 py-7 md:py-9 rounded-full shadow-2xl hover:shadow-rose-500/50 transform hover:scale-105 transition-all duration-300 font-bold">
-            Get In Touch
-          </Button>
-        </motion.div>
       </div>
     </section>
   );

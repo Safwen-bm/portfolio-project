@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { projects } from "./projectsData";
+import AmbientGlow from "@/components/AmbientGlow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,7 +33,6 @@ const WorkSection = () => {
         const containerHeight = containerRef.current.offsetHeight || window.innerHeight;
         const rawOffset = Math.round(containerHeight * 0.18);
         const offset = Math.min(Math.max(rawOffset, 80), 260);
-
         const totalScrollWidth = (panels.length - 1) * window.innerWidth;
 
         const horizontalTween = gsap.to(panels, {
@@ -49,15 +49,8 @@ const WorkSection = () => {
           scrub: 1.2,
           animation: horizontalTween,
           anticipatePin: 1,
-          snap: {
-            snapTo: 1 / (panels.length - 1),
-            duration: 0.5,
-            ease: "power2.out",
-          },
-          onUpdate: (self) => {
-            const idx = Math.round(self.progress * (panels.length - 1));
-            setActiveIndex(idx);
-          },
+          snap: { snapTo: 1 / (panels.length - 1), duration: 0.5, ease: "power2.out" },
+          onUpdate: (self) => setActiveIndex(Math.round(self.progress * (panels.length - 1))),
           onEnter: () => setShowDots(true),
           onLeave: () => setShowDots(false),
           onEnterBack: () => setShowDots(true),
@@ -68,54 +61,34 @@ const WorkSection = () => {
       }, containerRef);
 
       return () => {
-        try {
-          ctx.revert();
-        } catch (e) {
-          ScrollTrigger.getAll().forEach((t) => t.kill());
-        }
+        try { ctx.revert(); } catch (e) { ScrollTrigger.getAll().forEach((t) => t.kill()); }
       };
     }
 
-    return () => {
-      window.removeEventListener("resize", onResize);
-    };
+    return () => window.removeEventListener("resize", onResize);
   }, [isMobile]);
 
   return (
     <>
-      <section
-        ref={containerRef}
-        className="relative bg-gradient-to-b from-[#05070c] via-[#0a0f21] to-[#05070c] overflow-hidden"
-      >
-        <div className="fixed inset-0 pointer-events-none z-0">
-          <div className="absolute top-32 left-32 w-[500px] h-[500px] bg-cyan-500/18 rounded-full blur-[160px]" />
-          <div className="absolute bottom-32 right-32 w-[460px] h-[460px] bg-purple-500/16 rounded-full blur-[160px]" />
-        </div>
-
-        <div className="pt-32 md:pt-39 pb-16 md:pb-20 text-center relative z-10">
+      <section ref={containerRef} className="relative isolate overflow-hidden border-t border-line">
+        <AmbientGlow variant="default" />
+        <div className="pt-20 md:pt-24 pb-14 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            className="max-w-5xl mx-auto px-6"
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto px-6"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-violet-500 to-rose-600 leading-tight">
-              Featured Projects
-            </h1>
-            <p className="mt-5 text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-              Selected works — full stack & realtime.
-            </p>
+            <h2 className="h2 text-ink">Featured Projects</h2>
+            <p className="mt-3 text-muted">Selected works — full stack & real-time.</p>
           </motion.div>
         </div>
 
         {!isMobile && (
-          <div className="flex h-[calc(100vh-200px)]">
+          <div className="flex h-[calc(100vh-220px)] relative z-10">
             {projects.map((project, i) => (
-              <div
-                key={i}
-                className="project-panel min-w-full h-full flex items-center justify-center px-10"
-              >
+              <div key={i} className="project-panel min-w-full h-full flex items-center justify-center px-10">
                 <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
                   <ProjectContent project={project} />
                   <ProjectImage project={project} />
@@ -126,7 +99,7 @@ const WorkSection = () => {
         )}
 
         {isMobile && (
-          <div className="px-5 pb-20 space-y-12">
+          <div className="px-5 pb-16 space-y-8 relative z-10">
             {projects.map((project, i) => (
               <MobileCard key={i} project={project} index={i} />
             ))}
@@ -136,7 +109,7 @@ const WorkSection = () => {
 
       {!isMobile && (
         <div
-          className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-50 flex gap-3 transition-all duration-300 ${
+          className={`fixed bottom-10 left-1/2 -translate-x-1/2 z-50 flex gap-2 transition-opacity duration-300 ${
             showDots ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
@@ -144,7 +117,7 @@ const WorkSection = () => {
             <div
               key={i}
               className={`rounded-full transition-all duration-300 ${
-                activeIndex === i ? "w-14 h-2 bg-cyan-400 shadow-lg shadow-cyan-400/30" : "w-3 h-2 bg-gray-600"
+                activeIndex === i ? "w-8 h-1.5 bg-ink" : "w-1.5 h-1.5 bg-line"
               }`}
             />
           ))}
@@ -156,39 +129,32 @@ const WorkSection = () => {
 
 const ProjectContent = ({ project }) => (
   <motion.div
-    initial={{ opacity: 0, x: -60 }}
+    initial={{ opacity: 0, x: -40 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.7 }}
-    className="space-y-6"
+    transition={{ duration: 0.6 }}
+    className="space-y-5"
   >
-    <div className="text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-      {project.num}
-    </div>
+    <span className="text-sm font-semibold text-accent">{project.num}</span>
+    <h3 className="text-3xl md:text-4xl font-bold text-ink">{project.title}</h3>
+    <p className="text-muted text-base max-w-xl leading-relaxed">{project.description}</p>
 
-    <h3 className="text-4xl md:text-5xl font-extrabold text-white">{project.title}</h3>
-
-    <p className="text-gray-300 text-lg max-w-xl leading-relaxed">{project.description}</p>
-
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-2">
       {project.stack.map((tech, idx) => (
-        <span
-          key={idx}
-          className="px-3 py-1.5 bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 rounded-full text-sm"
-        >
+        <span key={idx} className="px-3 py-1 bg-subtle border border-line rounded-full text-xs text-ink">
           {tech}
         </span>
       ))}
     </div>
 
-    <div className="flex gap-4">
+    <div className="flex gap-3 pt-2">
       <Link href={project.github} target="_blank">
-        <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-5 py-3 rounded-full flex items-center gap-2">
+        <Button className="bg-ink hover:bg-ink/90 text-white px-5 py-2.5 rounded-full flex items-center gap-2 text-sm">
           <BsGithub /> GitHub
         </Button>
       </Link>
       <Link href={project.live} target="_blank">
-        <Button variant="outline" className="border-cyan-400 text-cyan-300 px-5 py-3 rounded-full flex items-center gap-2">
+        <Button variant="outline" className="border-line text-ink hover:bg-subtle hover:text-ink/90 px-5 py-2.5 rounded-full flex items-center gap-2 text-sm">
           <BsBoxArrowUpRight /> Live
         </Button>
       </Link>
@@ -198,75 +164,51 @@ const ProjectContent = ({ project }) => (
 
 const ProjectImage = ({ project }) => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.98 }}
+    initial={{ opacity: 0, scale: 0.97 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.8 }}
-    className="relative h-[520px] rounded-3xl overflow-hidden bg-gradient-to-br from-cyan-500/10 to-purple-600/10 p-4 shadow-xl"
+    transition={{ duration: 0.6 }}
+    className="relative h-[420px] rounded-2xl overflow-hidden bg-subtle border border-line p-3"
   >
-    <div className="relative w-full h-full rounded-2xl overflow-hidden bg-black/60">
-      <Image src={project.image} alt={project.title} fill className="object-contain transition-transform duration-1000 hover:scale-105" />
-      <div className="absolute bottom-6 left-6">
-        <p className="text-white/70 text-sm">Project {project.num}</p>
-        <p className="text-white text-lg font-bold">{project.title}</p>
-      </div>
+    <div className="relative w-full h-full rounded-xl overflow-hidden bg-white">
+      <Image src={project.image} alt={project.title} fill className="object-contain" />
     </div>
   </motion.div>
 );
 
 const MobileCard = ({ project, index }) => (
   <motion.article
-    initial={{ opacity: 0, y: 40 }}
+    initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.6, delay: index * 0.05 }}
-    className="bg-[#0d1220] border border-white/5 rounded-3xl p-5 shadow-2xl space-y-5"
+    transition={{ duration: 0.5, delay: index * 0.05 }}
+    className="bg-white border border-line rounded-2xl p-5 space-y-4"
   >
     <div className="flex justify-between items-center">
-      <div className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-        {project.num}
-      </div>
-
+      <span className="text-sm font-semibold text-accent">{project.num}</span>
       <div className="flex gap-2">
         <Link href={project.github} target="_blank">
-          <Button size="sm" className="bg-gradient-to-r from-cyan-500 to-blue-600 px-3 py-2">
-            <BsGithub className="text-base" />
-          </Button>
+          <Button size="sm" className="bg-ink px-3 py-2"><BsGithub className="text-sm" /></Button>
         </Link>
         <Link href={project.live} target="_blank">
-          <Button size="sm" variant="outline" className="border-cyan-400 text-cyan-300 px-3 py-2">
-            <BsBoxArrowUpRight className="text-base" />
-          </Button>
+          <Button size="sm" variant="outline" className="border-line text-ink px-3 py-2"><BsBoxArrowUpRight className="text-sm" /></Button>
         </Link>
       </div>
     </div>
 
-    <h4 className="text-xl font-bold text-white leading-tight">
-      {project.title}
-    </h4>
-
-    <p className="text-gray-300 text-sm leading-relaxed">
-      {project.description}
-    </p>
+    <h4 className="text-lg font-bold text-ink">{project.title}</h4>
+    <p className="text-muted text-sm leading-relaxed">{project.description}</p>
 
     <div className="flex flex-wrap gap-2">
       {project.stack.map((tech, i) => (
-        <span
-          key={i}
-          className="px-2 py-1 bg-cyan-500/10 text-cyan-300 border border-cyan-500/20 rounded-full text-[10px]"
-        >
+        <span key={i} className="px-2 py-1 bg-subtle border border-line rounded-full text-[10px] text-ink">
           {tech}
         </span>
       ))}
     </div>
 
-    <div className="relative h-52 rounded-2xl overflow-hidden bg-black/40 shadow-lg">
-      <Image
-        src={project.image}
-        alt={project.title}
-        fill
-        className="object-contain transition-transform duration-700 hover:scale-105"
-      />
+    <div className="relative h-44 rounded-xl overflow-hidden bg-white border border-line">
+      <Image src={project.image} alt={project.title} fill className="object-contain" />
     </div>
   </motion.article>
 );

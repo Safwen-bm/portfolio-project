@@ -9,40 +9,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ClientWrapper({ children }) {
   useEffect(() => {
-    // -------------------------------
-    // INIT LENIS SMOOTH SCROLL
-    // -------------------------------
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      smoothTouch: true,
+      smoothTouch: false,
     });
 
-    function raf(time) {
+    let animationFrameId;
+
+    const raf = (time) => {
       lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+      animationFrameId = requestAnimationFrame(raf);
+    };
 
-    // Sync ScrollTrigger with Lenis
-    lenis.on("scroll", () => {
+    animationFrameId = requestAnimationFrame(raf);
+
+    const handleScroll = () => {
       ScrollTrigger.update();
-    });
+    };
 
-    // -------------------------------
-    // FIXED + CLEAN GSAP PROXY
-    // -------------------------------
+    lenis.on("scroll", handleScroll);
+
     ScrollTrigger.scrollerProxy(document.body, {
       scrollTop(value) {
         if (arguments.length) {
-          // when ScrollTrigger attempts to set scroll position
-          lenis.scrollTo(value, { immediate: true });
+          lenis.scrollTo(value, {
+            immediate: true,
+          });
         } else {
-          // when ScrollTrigger wants the current position
           return lenis.scroll;
         }
       },
+
       getBoundingClientRect() {
         return {
           top: 0,
@@ -53,12 +52,19 @@ export default function ClientWrapper({ children }) {
       },
     });
 
-    // MUST REFRESH after setting proxy
     ScrollTrigger.refresh();
 
-    // CLEANUP
     return () => {
+      // Stop the animation loop
+      cancelAnimationFrame(animationFrameId);
+
+      // Remove Lenis listener
+      lenis.off("scroll", handleScroll);
+
+      // Destroy Lenis
       lenis.destroy();
+
+      // Kill ScrollTrigger instances
       ScrollTrigger.killAll();
     };
   }, []);

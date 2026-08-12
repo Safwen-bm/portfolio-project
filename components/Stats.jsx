@@ -12,17 +12,11 @@ const stats = [
 
 const Stats = () => {
   return (
-    <div className="grid grid-cols-3 gap-6 md:gap-10 my-32">
+    <div className="grid grid-cols-3 gap-6 md:gap-10 py-16 border-y border-line">
       {stats.map((stat, i) => (
-        <div key={i} className="text-center group">
-          <CountUp
-            end={stat.num}
-            duration={3}
-            className="text-5xl md:text-6xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500"
-          />
-          <p className="text-sm md:text-base text-gray-400 mt-3 group-hover:text-cyan-300 transition">
-            {stat.text}
-          </p>
+        <div key={i} className="text-center">
+          <CountUp end={stat.num} duration={2.5} className="text-4xl md:text-5xl font-black text-ink" />
+          <p className="text-sm md:text-base text-muted mt-2">{stat.text}</p>
         </div>
       ))}
     </div>
