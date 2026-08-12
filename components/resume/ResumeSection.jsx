@@ -28,9 +28,9 @@ const ResumeSection = () => {
   ];
 
   const education = [
-    { degree: "Software Engineering Degree", school: "EPI – International Multidisciplinary School, Sousse", duration: "2023 – 2026" },
-    { degree: "Preparatory Cycle in Technology & Computer Science (TIC)", school: "EPI – International Multidisciplinary School, Sousse", duration: "2021 – 2023" },
-    { degree: "Baccalaureate in Technical Sciences", school: "Lycée Bourguiba, Monastir", duration: "2019" },
+    { degree: "Software Engineering Degree", school: "EPI – International Multidisciplinary School, Sousse, Tunisia", duration: "2023 – 2026" },
+    { degree: "Preparatory Cycle in Technology & Computer Science (TIC)", school: "EPI – International Multidisciplinary School, Sousse, Tunisia", duration: "2021 – 2023" },
+    { degree: "Baccalaureate in Technical Sciences", school: "Lycée Bourguiba, Monastir, Tunisia", duration: "2019" },
   ];
 
   const skills = {
@@ -44,11 +44,12 @@ const ResumeSection = () => {
   };
 
   const softSkills = [
-    "Analytical & Rigorous Thinking",
+    "Analytical Thinking",
+    "Problem Solving & Resilience",
     "Autonomous & Proactive",
-    "Strong Team Collaboration",
+    "Team Collaboration",
     "Fast Learner & Adaptable",
-    "Resilient Under Technical Challenges",
+    "Clear Communication",
   ];
 
   const spokenLanguages = [
@@ -58,19 +59,19 @@ const ResumeSection = () => {
   ];
 
   const tabGradients = {
-    experience: "linear-gradient(135deg, #10B981, #14B8A6)",
-    education: "linear-gradient(135deg, #F59E0B, #F97316)",
-    skills: "linear-gradient(135deg, #8B5CF6, #7C3AED)",
-    soft: "linear-gradient(135deg, #FB7185, #DB2777)",
-    lang: "linear-gradient(135deg, #0EA5E9, #0891B2)",
+    experience: "linear-gradient(135deg, #A855F7, #7C3AED)",
+    education: "linear-gradient(135deg, #22C55E, #16A34A)",
+    skills: "linear-gradient(135deg, #3B82F6, #2563EB)",
+    soft: "linear-gradient(135deg, #FB923C, #EA580C)",
+    lang: "linear-gradient(135deg, #14B8A6, #0D9488)",
   };
 
   const tabSolid = {
-    experience: "#10B981",
-    education: "#F59E0B",
-    skills: "#8B5CF6",
-    soft: "#DB2777",
-    lang: "#0891B2",
+    experience: "#7C3AED",
+    education: "#16A34A",
+    skills: "#2563EB",
+    soft: "#EA580C",
+    lang: "#0D9488",
   };
 
   const tabs = [
@@ -85,9 +86,9 @@ const ResumeSection = () => {
     <section className="relative isolate overflow-hidden py-24 md:py-32 bg-primary">
       {/* COLORFUL ORBS — scoped to this section only */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-20 left-10 md:left-20 w-80 h-80 md:w-96 md:h-96 bg-emerald-400/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 right-0 md:right-10 w-72 h-72 md:w-80 md:h-80 bg-violet-400/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-1/4 w-72 h-72 bg-rose-400/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-10 md:left-20 w-80 h-80 md:w-96 md:h-96 bg-purple-400/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-0 md:right-10 w-72 h-72 md:w-80 md:h-80 bg-blue-400/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-1/4 w-72 h-72 bg-teal-400/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -162,7 +163,7 @@ const ResumeSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="group bg-white border border-line rounded-3xl p-6 md:p-8 hover:border-emerald-400/60 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300"
+                className="group bg-white border border-line rounded-3xl p-6 md:p-8 hover:border-purple-400/60 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300"
               >
                 <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-4">
                   <div className="flex items-start gap-4">
@@ -198,7 +199,7 @@ const ResumeSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="flex items-start gap-4 bg-white border border-line rounded-3xl p-6 md:p-8 hover:border-amber-400/60 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300"
+                className="flex items-start gap-4 bg-white border border-line rounded-3xl p-6 md:p-8 hover:border-green-400/60 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300"
               >
                 <div
                   className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center"
@@ -235,7 +236,7 @@ const ResumeSection = () => {
                     {items.map((skill, j) => (
                       <span
                         key={j}
-                        className="px-4 py-2 bg-white border border-violet-200 rounded-full text-sm text-ink font-medium hover:text-white hover:border-transparent transition-all duration-200"
+                        className="px-4 py-2 bg-white border border-blue-200 rounded-full text-sm text-ink font-medium hover:text-white hover:border-transparent transition-all duration-200"
                         onMouseEnter={(e) => (e.currentTarget.style.background = tabGradients.skills)}
                         onMouseLeave={(e) => (e.currentTarget.style.background = "white")}
                       >
@@ -258,7 +259,7 @@ const ResumeSection = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="flex items-center gap-3 bg-white border border-line rounded-2xl p-5 hover:border-rose-400/60 hover:shadow-lg hover:shadow-rose-500/10 transition-all duration-300"
+                  className="flex items-center gap-3 bg-white border border-line rounded-2xl p-5 hover:border-orange-400/60 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300"
                 >
                   <span
                     className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
@@ -282,7 +283,7 @@ const ResumeSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.12 }}
-                  className="bg-white border border-line rounded-3xl p-6 text-center hover:border-sky-400/60 hover:shadow-lg hover:shadow-sky-500/10 transition-all duration-300"
+                  className="bg-white border border-line rounded-3xl p-6 text-center hover:border-teal-400/60 hover:shadow-lg hover:shadow-teal-500/10 transition-all duration-300"
                 >
                   <h4 className="text-lg font-bold text-ink">{lang.name}</h4>
                   <p className="text-muted mt-1 text-sm">{lang.level}</p>
@@ -290,8 +291,8 @@ const ResumeSection = () => {
                     <div
                       className={`h-full rounded-full transition-all duration-1000 ease-out ${
                         lang.level === "Native"
-                          ? "w-full bg-gradient-to-r from-emerald-500 to-teal-500"
-                          : "w-5/6 bg-gradient-to-r from-sky-500 to-cyan-600"
+                          ? "w-full bg-gradient-to-r from-teal-500 to-emerald-600"
+                          : "w-5/6 bg-gradient-to-r from-teal-400 to-cyan-600"
                       }`}
                     />
                   </div>

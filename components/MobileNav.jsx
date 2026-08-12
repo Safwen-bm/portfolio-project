@@ -7,6 +7,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
+import { FiArrowRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 const links = [
@@ -67,9 +68,16 @@ const MobileNav = () => {
 
           <SheetClose asChild>
             <Link href="/contact" onClick={() => handleLinkClick("/contact")}>
-              <button className="px-8 py-4 rounded-full bg-ink text-white font-semibold">
-                Let's Talk
-              </button>
+              <motion.button
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.96 }}
+                className="relative overflow-hidden rounded-full px-8 py-4 font-semibold text-white bg-gradient-to-r from-accent to-indigo-600 shadow-[0_8px_24px_rgba(37,99,235,0.35)]"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Let's Talk
+                  <FiArrowRight className="text-base" />
+                </span>
+              </motion.button>
             </Link>
           </SheetClose>
         </div>

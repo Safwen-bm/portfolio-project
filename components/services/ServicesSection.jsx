@@ -12,24 +12,40 @@ const services = [
     title: "Full-Stack Development",
     description: "High-performance web apps with Next.js, NestJS, PostgreSQL, and Prisma. Clean architecture and automated deployment.",
     icon: FiCode,
+    gradient: "linear-gradient(135deg, #3B82F6, #2563EB)",
+    solid: "#2563EB",
+    border: "hover:border-blue-400/60",
+    shadow: "hover:shadow-blue-500/10",
   },
   {
     num: "02",
     title: "Architecture & Security",
     description: "JWT, RBAC, encryption, SQL optimization, CI/CD, Docker. Solid foundations that scale safely.",
     icon: FiShield,
+    gradient: "linear-gradient(135deg, #A855F7, #7C3AED)",
+    solid: "#7C3AED",
+    border: "hover:border-purple-400/60",
+    shadow: "hover:shadow-purple-500/10",
   },
   {
     num: "03",
     title: "Real-Time & WebRTC",
     description: "Live chat, HD video calls, push notifications, instant sync — smooth experiences with low latency.",
     icon: FiZap,
+    gradient: "linear-gradient(135deg, #FB923C, #EA580C)",
+    solid: "#EA580C",
+    border: "hover:border-orange-400/60",
+    shadow: "hover:shadow-orange-500/10",
   },
   {
     num: "04",
     title: "Consulting & Innovation",
     description: "Technical audits, performance optimization, and AI integration to take your project further.",
     icon: FiGlobe,
+    gradient: "linear-gradient(135deg, #14B8A6, #0D9488)",
+    solid: "#0D9488",
+    border: "hover:border-teal-400/60",
+    shadow: "hover:shadow-teal-500/10",
   },
 ];
 
@@ -55,21 +71,39 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-white border border-line rounded-2xl p-7 md:p-8 hover:border-ink/20 hover:shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition-all"
+              style={{ "--card-color": service.solid, "--card-gradient": service.gradient }}
+              className={`group relative overflow-hidden bg-white border border-line rounded-2xl p-7 md:p-8 ${service.border} hover:shadow-lg ${service.shadow} transition-all duration-300`}
             >
-              <div className="flex justify-between items-start mb-6">
-                <span className="text-3xl font-black text-line group-hover:text-accent/20 transition-colors">
+              {/* soft color wash in the corner, fades in on hover */}
+              <div
+                className="absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
+                style={{ background: "var(--card-gradient)" }}
+              />
+
+              {/* top accent line, grows in on hover */}
+              <div
+                className="absolute top-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500 ease-out"
+                style={{ background: "var(--card-gradient)" }}
+              />
+
+              <div className="relative flex justify-between items-start mb-6">
+                <span className="text-3xl font-black text-line group-hover:text-[color:var(--card-color)] group-hover:opacity-30 transition-colors duration-300">
                   {service.num}
                 </span>
-                <div className="w-11 h-11 rounded-xl bg-subtle flex items-center justify-center group-hover:bg-accent-light transition-colors">
-                  <Icon className="text-lg text-ink group-hover:text-accent transition-colors" />
+                <div
+                  className="w-11 h-11 rounded-xl bg-subtle flex items-center justify-center transition-all duration-300 group-hover:shadow-md group-hover:bg-[image:var(--card-gradient)]"
+                >
+                  <Icon className="text-lg text-ink group-hover:text-white transition-colors duration-300" />
                 </div>
               </div>
 
-              <h3 className="text-xl md:text-2xl font-bold text-ink mb-3">{service.title}</h3>
-              <p className="text-sm md:text-base text-muted leading-relaxed mb-6">{service.description}</p>
+              <h3 className="relative text-xl md:text-2xl font-bold text-ink mb-3">{service.title}</h3>
+              <p className="relative text-sm md:text-base text-muted leading-relaxed mb-6">{service.description}</p>
 
-              <Link href="/contact" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink group-hover:text-accent transition-colors">
+              <Link
+                href="/contact"
+                className="relative inline-flex items-center gap-1.5 text-sm font-semibold text-ink group-hover:text-[color:var(--card-color)] transition-colors duration-300"
+              >
                 Get Started <FiArrowUpRight />
               </Link>
             </motion.article>

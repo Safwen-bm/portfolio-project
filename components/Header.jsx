@@ -6,6 +6,7 @@ import Nav from "./Nav";
 import MobileNav from "./MobileNav";
 import { motion } from "framer-motion";
 import { useMouse } from "react-use";
+import { FiArrowRight } from "react-icons/fi";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -79,7 +80,7 @@ const Header = () => {
                   animate={{ scale: [1, 1.15, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  {`</S>`}
+                  {`<S>`}
                 </motion.span>
               </motion.div>
 
@@ -97,15 +98,13 @@ const Header = () => {
           <div className="hidden xl:block">
             <Link href="/contact">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative overflow-hidden rounded-full px-7 py-3 font-bold text-sm tracking-wide text-white bg-accent hover:bg-accent-hover transition-colors"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.96 }}
+                className="relative overflow-hidden rounded-full px-6 py-3 font-semibold text-sm text-white bg-gradient-to-r from-accent to-indigo-600 shadow-[0_8px_24px_rgba(37,99,235,0.35)] hover:shadow-[0_10px_28px_rgba(37,99,235,0.45)] transition-shadow duration-300"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  ENTER PORTAL
-                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-                    →
-                  </motion.span>
+                  Let's Talk
+                  <FiArrowRight className="text-base" />
                 </span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/25 to-white/0"

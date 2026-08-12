@@ -18,7 +18,7 @@ export const projects = [
       "Full-featured app with live video calls, medical record management, appointment scheduling, automated notifications, and a doctor dashboard.",
     stack: ["React", "Node.js", "Express", "MongoDB", "PeerJS", "SendGrid"],
     image: "/telemed.png",
-    github: "https://github.com/Safwen-bm/medical-platform",
+    github: "https://github.com/Safwen-bm/telemedicine-platform",
     live: "https://medical.safone.tn",
   },
   {
@@ -76,7 +76,7 @@ export const projects = [
     description: "Task manager with a Kanban board, drag & drop, and Firebase authentication.",
     stack: ["React", "Firebase"],
     image: "/task-manager.png",
-    github: "https://github.com/Safwen-bm/task-manager",
+    github: "https://github.com/Safwen-bm/my-dashboard",
     live: "https://task-manager.safone.tn",
   },
   {

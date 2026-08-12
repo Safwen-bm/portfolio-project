@@ -100,13 +100,13 @@ const Footer = () => {
             </Link>
 
             <p className="text-muted text-sm max-w-xs leading-relaxed">
-              Full-Stack Engineer • PFE 2026 • Monastir, Tunisia
+              Full-Stack Engineer • Monastir, Tunisia
             </p>
 
             <div className="mt-8 flex gap-4">
               {[
                 { Icon: FiMail, href: "mailto:safwenbenmabrouk@gmail.com", label: "Email" },
-                { Icon: FiPhone, href: "tel:+21655574559", label: "Phone" },
+                { Icon: FiPhone, href: "tel:+21658221658", label: "Phone" },
                 { Icon: FiMapPin, href: "https://maps.google.com/?q=Monastir,Tunisia", label: "Location" },
               ].map(({ Icon, href, label }) => (
                 <motion.a

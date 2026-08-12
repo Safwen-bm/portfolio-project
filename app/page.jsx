@@ -227,7 +227,7 @@ const Home = () => {
           >
             <div className="max-w-3xl mx-auto border-l-4 border-accent pl-6 md:pl-8 text-left">
               <p className="text-xl md:text-2xl font-medium text-ink leading-relaxed">
-                I don't just write code — I build systems that scale, stay secure, and solve real problems.
+                I don't just write code I build systems that scale, stay secure, and solve real problems.
               </p>
               <p className="mt-4 text-muted">— Safwen Ben Mabrouk</p>
             </div>

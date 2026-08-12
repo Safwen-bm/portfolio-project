@@ -15,24 +15,28 @@ const badges = [
     label: "Next.js",
     position: "-top-2 left-1 sm:-left-5",
     delay: 0,
+    color: "#000000",
   },
   {
     Icon: SiReact,
     label: "React",
     position: "top-10 -right-1 sm:-right-7",
     delay: 0.5,
+    color: "#61DAFB",
   },
   {
     Icon: SiTypescript,
     label: "TypeScript",
     position: "bottom-10 -left-2 sm:-left-8",
     delay: 1,
+    color: "#3178C6",
   },
   {
     Icon: SiNestjs,
     label: "NestJS",
     position: "-bottom-2 right-1 sm:-right-5",
     delay: 1.5,
+    color: "#E0234E",
   },
 ];
 
@@ -136,6 +140,34 @@ const Photo = () => {
         />
       </motion.div>
 
+      {/* Purple accent dot */}
+      <motion.div
+        animate={{
+          rotate: 360,
+        }}
+        transition={{
+          duration: 21,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="
+          absolute
+          w-full h-full
+          pointer-events-none
+        "
+      >
+        <span
+          className="
+            absolute
+            top-[45%]
+            left-[2%]
+            w-2 h-2
+            rounded-full
+            bg-purple-500
+          "
+        />
+      </motion.div>
+
       {/* ==================== MAIN PHOTO ==================== */}
 
       <motion.div
@@ -181,7 +213,7 @@ const Photo = () => {
         </div>
 
         {/* Technology badges */}
-        {badges.map(({ Icon, label, position, delay }) => (
+        {badges.map(({ Icon, label, position, delay, color }) => (
           <motion.div
             key={label}
             animate={{ y: [0, -7, 0] }}
@@ -211,7 +243,7 @@ const Photo = () => {
                   bg-subtle
                 "
               >
-                <Icon className="text-ink text-sm" />
+                <Icon className="text-sm" style={{ color }} />
               </div>
 
               <span className="text-xs font-semibold text-ink whitespace-nowrap">
