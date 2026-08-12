@@ -84,7 +84,7 @@ const Footer = () => {
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  {`</>`}
+                  {`</S>`}
                 </motion.span>
               </motion.div>
 

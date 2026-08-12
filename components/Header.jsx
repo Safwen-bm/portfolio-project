@@ -79,7 +79,7 @@ const Header = () => {
                   animate={{ scale: [1, 1.15, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  {`</>`}
+                  {`</S>`}
                 </motion.span>
               </motion.div>
 
