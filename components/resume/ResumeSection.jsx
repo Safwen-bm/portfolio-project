@@ -4,7 +4,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FiBriefcase, FiAward, FiCode, FiUser, FiGlobe, FiDownload } from "react-icons/fi";
+import {
+  FiBriefcase,
+  FiAward,
+  FiCode,
+  FiUser,
+  FiGlobe,
+  FiDownload,
+} from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 
 const ResumeSection = () => {
@@ -28,19 +35,48 @@ const ResumeSection = () => {
   ];
 
   const education = [
-    { degree: "Software Engineering Degree", school: "EPI – International Multidisciplinary School, Sousse, Tunisia", duration: "2023 – 2026" },
-    { degree: "Preparatory Cycle in Technology & Computer Science (TIC)", school: "EPI – International Multidisciplinary School, Sousse, Tunisia", duration: "2021 – 2023" },
-    { degree: "Baccalaureate in Technical Sciences", school: "Lycée Bourguiba, Monastir, Tunisia", duration: "2019" },
+    {
+      degree: "Engineering Degree — Software Engineering",
+      school: "EPI – International Multidisciplinary School, Sousse, Tunisia",
+      duration: "2021 – 2026",
+      desc: "5-year engineering program, including a Preparatory Cycle in Technology & Computer Science (2021 – 2023) before specializing in Software Engineering.",
+    },
+    {
+      degree: "Baccalaureate, Technical Sciences",
+      school: "Lycée Bourguiba, Monastir, Tunisia",
+      duration: "2019",
+      desc: "National secondary school-leaving qualification, completed after 4 years of study (2015 – 2019).",
+    },
   ];
 
   const skills = {
-    "Programming Languages": ["C", "Python", "Java", "JavaScript", "TypeScript"],
+    "Programming Languages": [
+      "C",
+      "Python",
+      "Java",
+      "JavaScript",
+      "TypeScript",
+    ],
     Frontend: ["React.js", "Next.js", "Tailwind CSS"],
     Backend: ["Node.js", "NestJS", "Express.js", "REST API"],
     "Databases & ORM": ["PostgreSQL", "MongoDB", "Prisma ORM", "Firebase"],
-    "AI & Machine Learning": ["RAG", "NumPy", "Machine Learning", "KNN", "SVM", "XGBoost"],
+    "AI & Machine Learning": [
+      "RAG",
+      "NumPy",
+      "Machine Learning",
+      "KNN",
+      "SVM",
+      "XGBoost",
+    ],
     "Real-Time": ["WebRTC", "Socket.IO"],
-    "Cloud & DevOps": ["AWS (Cloud Foundations)", "Docker", "GitHub Actions (CI/CD)", "Vercel", "Render", "Linux"],
+    "Cloud & DevOps": [
+      "AWS (Cloud Foundations)",
+      "Docker",
+      "GitHub Actions (CI/CD)",
+      "Vercel",
+      "Render",
+      "Linux",
+    ],
   };
 
   const softSkills = [
@@ -100,9 +136,7 @@ const ResumeSection = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <h1 className="h2 text-ink">
-            Resume
-          </h1>
+          <h1 className="h2 text-ink">Resume</h1>
           <p className="text-muted mt-2">
             Full-Stack Engineer · Real-Time Systems · Secure Architecture
           </p>
@@ -117,7 +151,8 @@ const ResumeSection = () => {
           className="text-center mb-14 md:mb-16"
         >
           <a href="/Safwen-Ben-Mabrouk-CV.pdf" download>
-            <Button className="w-full sm:w-auto
+            <Button
+              className="w-full sm:w-auto
                 bg-ink hover:bg-ink/90
                 text-white
                 font-semibold
@@ -125,7 +160,8 @@ const ResumeSection = () => {
                 px-7 py-5
                 rounded-xl
                 transition-all duration-200
-                hover:-translate-y-0.5">
+                hover:-translate-y-0.5"
+            >
               <FiDownload className="text-lg" />
               Download CV (PDF)
             </Button>
@@ -133,7 +169,11 @@ const ResumeSection = () => {
         </motion.div>
 
         {/* TABS */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-5xl mx-auto">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="max-w-5xl mx-auto"
+        >
           <TabsList className="grid grid-cols-2 sm:grid-cols-5 w-full mb-12 bg-subtle border border-line rounded-2xl p-1.5 gap-1.5">
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -142,9 +182,13 @@ const ResumeSection = () => {
                 <TabsTrigger
                   key={tab.value}
                   value={tab.value}
-                  style={isActive ? { background: tabGradients[tab.value] } : {}}
+                  style={
+                    isActive ? { background: tabGradients[tab.value] } : {}
+                  }
                   className={`rounded-xl transition-all duration-300 flex flex-col sm:flex-row items-center justify-center gap-1.5 px-3 py-2.5 text-xs sm:text-sm font-medium ${
-                    isActive ? "text-white shadow-md scale-[1.03]" : "text-muted hover:bg-white"
+                    isActive
+                      ? "text-white shadow-md scale-[1.03]"
+                      : "text-muted hover:bg-white"
                   }`}
                 >
                   <Icon className="text-base" />
@@ -174,8 +218,13 @@ const ResumeSection = () => {
                       <FiBriefcase className="text-white" size={18} />
                     </div>
                     <div>
-                      <h3 className="text-lg md:text-xl font-bold text-ink">{exp.role}</h3>
-                      <p className="text-sm md:text-base font-medium" style={{ color: tabSolid.experience }}>
+                      <h3 className="text-lg md:text-xl font-bold text-ink">
+                        {exp.role}
+                      </h3>
+                      <p
+                        className="text-sm md:text-base font-medium"
+                        style={{ color: tabSolid.experience }}
+                      >
                         {exp.company}
                       </p>
                     </div>
@@ -185,7 +234,9 @@ const ResumeSection = () => {
                     <p className="mt-1">{exp.location}</p>
                   </div>
                 </div>
-                <p className="text-muted leading-relaxed text-sm md:text-base">{exp.desc}</p>
+                <p className="text-muted leading-relaxed text-sm md:text-base">
+                  {exp.desc}
+                </p>
               </motion.div>
             ))}
           </TabsContent>
@@ -208,10 +259,20 @@ const ResumeSection = () => {
                   <FiAward className="text-white" size={18} />
                 </div>
                 <div>
-                  <h3 className="text-base md:text-lg font-bold text-ink">{edu.degree}</h3>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 md:gap-4">
+                    <h3 className="text-base md:text-lg font-bold text-ink">
+                      {edu.degree}
+                    </h3>
+                    <p
+                      className="text-sm font-medium shrink-0"
+                      style={{ color: tabSolid.education }}
+                    >
+                      {edu.duration}
+                    </p>
+                  </div>
                   <p className="text-muted mt-1">{edu.school}</p>
-                  <p className="text-sm mt-2 font-medium" style={{ color: tabSolid.education }}>
-                    {edu.duration}
+                  <p className="text-muted text-sm mt-2 leading-relaxed">
+                    {edu.desc}
                   </p>
                 </div>
               </motion.div>
@@ -229,7 +290,10 @@ const ResumeSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                 >
-                  <h3 className="text-sm font-bold uppercase tracking-wide mb-4" style={{ color: tabSolid.skills }}>
+                  <h3
+                    className="text-sm font-bold uppercase tracking-wide mb-4"
+                    style={{ color: tabSolid.skills }}
+                  >
                     {category}
                   </h3>
                   <div className="flex flex-wrap gap-2.5">
@@ -237,8 +301,13 @@ const ResumeSection = () => {
                       <span
                         key={j}
                         className="px-4 py-2 bg-white border border-blue-200 rounded-full text-sm text-ink font-medium hover:text-white hover:border-transparent transition-all duration-200"
-                        onMouseEnter={(e) => (e.currentTarget.style.background = tabGradients.skills)}
-                        onMouseLeave={(e) => (e.currentTarget.style.background = "white")}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.background =
+                            tabGradients.skills)
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.background = "white")
+                        }
                       >
                         {skill}
                       </span>
@@ -267,7 +336,9 @@ const ResumeSection = () => {
                   >
                     <FiUser className="text-white" size={14} />
                   </span>
-                  <p className="text-ink font-medium text-sm md:text-base text-left">{skill}</p>
+                  <p className="text-ink font-medium text-sm md:text-base text-left">
+                    {skill}
+                  </p>
                 </motion.div>
               ))}
             </div>
