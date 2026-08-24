@@ -10,4 +10,4 @@ Next.js, React, Tailwind CSS, Framer Motion
 
 ## License
 
-All rights reserved © Safwen Ben Mabrouk. This code is publicly visible for portfolio purposes only — no permission is granted to copy, modify, or redistribute it.
+All rights reserved © Safwen Ben Mabrouk. See [LICENSE](./LICENSE) for details.
