@@ -65,7 +65,7 @@ export const projects = [
     num: "07",
     title: "FluffyShop",
     description:
-      "High-end pet adoption platform. Full-stack e-commerce with Next.js 15, Strapi CMS, Clerk auth, a custom cart system, and production deployment.",
+      "High-end e-commerce platform selling pets and pet food. Built with Next.js 15, Strapi CMS, Clerk auth, a custom cart system, and production deployment.",
     stack: ["Next.js 15", "Strapi v5", "Clerk", "Tailwind CSS", "Railway"],
     image: "/fluffy-shop.png",
     github: "https://github.com/Safwen-bm/fluffy-shop",
@@ -73,6 +73,16 @@ export const projects = [
   },
   {
     num: "08",
+    title: "AXIS-7 — Drone Concept Landing Page",
+    description:
+      "Concept landing page for an autonomous recon drone, with an interactive 3D drone model that repositions and scales as you scroll, and a finish-swapping color picker.",
+    stack: ["Next.js", "Tailwind CSS", "Three.js", "React Three Fiber", "Framer Motion"],
+    image: "/axis-7.png",
+    github: "https://github.com/Safwen-bm/future-gadget-landing",
+    live: "https://future-gadget-landing.vercel.app/",
+  },
+  {
+    num: "09",
     title: "Movie Explorer",
     description: "Modern app to explore, search, and discover films with a fluid interface.",
     stack: ["React", "Vite", "TMDB API"],
@@ -81,7 +91,7 @@ export const projects = [
     live: "https://safwen-bm.github.io/movie-explorer/",
   },
   {
-    num: "09",
+    num: "10",
     title: "Task Management Tool",
     description: "Task manager with a Kanban board, drag & drop, and Firebase authentication.",
     stack: ["React", "Firebase"],
@@ -90,7 +100,7 @@ export const projects = [
     live: "https://task-manager.safone.tn",
   },
   {
-    num: "10",
+    num: "11",
     title: "Gym Website",
     description: "Fully responsive, interactive gym website with animated sections.",
     stack: ["React", "TailwindCSS", "Vercel"],
@@ -99,7 +109,7 @@ export const projects = [
     live: "https://gym-website-seven-xi.vercel.app/",
   },
   {
-    num: "11",
+    num: "12",
     title: "Coffee Shop Website",
     description: "Responsive website for a café with interactive menu and contact form.",
     stack: ["HTML", "CSS", "JavaScript"],
@@ -108,7 +118,7 @@ export const projects = [
     live: "https://safwen-bm.github.io/coffee-shop/",
   },
   {
-    num: "12",
+    num: "13",
     title: "Flower Shop Website",
     description: "Responsive flower shop site with a product catalog and contact form.",
     stack: ["HTML", "CSS"],
