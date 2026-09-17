@@ -9,16 +9,16 @@ import { projects } from "@/components/work/projectsData";
 const stats = [
   {
     icon: FiClock,
-    num: 3,
+    num: 5,
     suffix: "+",
-    text: "Years Coding",
+    text: "Years Studying & Building",
     gradient: "linear-gradient(135deg, #3B82F6, #2563EB)",
   },
   {
     icon: FiFolder,
     num: 30,
     suffix: "+",
-    text: "Projects Delivered",
+    text: "Projects Built",
     gradient: "linear-gradient(135deg, #A855F7, #7C3AED)",
   },
   {

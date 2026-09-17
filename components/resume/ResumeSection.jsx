@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 const ResumeSection = () => {
-  const [activeTab, setActiveTab] = useState("experience");
+  const [activeTab, setActiveTab] = useState("skills");
 
   const experiences = [
     {
@@ -57,17 +57,10 @@ const ResumeSection = () => {
       "JavaScript",
       "TypeScript",
     ],
-    Frontend: ["React.js", "Next.js", "Tailwind CSS"],
-    Backend: ["Node.js", "NestJS", "Express.js", "REST API"],
+    Frontend: ["Next.js", "React.js", "Tailwind CSS"],
+    Backend: ["NestJS", "Node.js", "Express.js", "REST API"],
     "Databases & ORM": ["PostgreSQL", "MongoDB", "Prisma ORM", "Firebase"],
-    "AI & Machine Learning": [
-      "RAG",
-      "NumPy",
-      "Machine Learning",
-      "KNN",
-      "SVM",
-      "XGBoost",
-    ],
+    "AI & Machine Learning": ["NLP", "LLMs", "RAG", "Machine Learning"],
     "Real-Time": ["WebRTC", "Socket.IO"],
     "Cloud & DevOps": [
       "AWS (Cloud Foundations)",
@@ -111,9 +104,9 @@ const ResumeSection = () => {
   };
 
   const tabs = [
+    { value: "skills", icon: FiCode, label: "Skills" },
     { value: "experience", icon: FiBriefcase, label: "Experience" },
     { value: "education", icon: FiAward, label: "Education" },
-    { value: "skills", icon: FiCode, label: "Skills" },
     { value: "soft", icon: FiUser, label: "Soft Skills" },
     { value: "lang", icon: FiGlobe, label: "Languages" },
   ];
@@ -198,6 +191,45 @@ const ResumeSection = () => {
             })}
           </TabsList>
 
+          {/* SKILLS */}
+          <TabsContent value="skills">
+            <div className="space-y-9">
+              {Object.entries(skills).map(([category, items], i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                >
+                  <h3
+                    className="text-sm font-bold uppercase tracking-wide mb-4"
+                    style={{ color: tabSolid.skills }}
+                  >
+                    {category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2.5">
+                    {items.map((skill, j) => (
+                      <span
+                        key={j}
+                        className="px-4 py-2 bg-white border border-blue-200 rounded-full text-sm text-ink font-medium hover:text-white hover:border-transparent transition-all duration-200"
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.background =
+                            tabGradients.skills)
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.background = "white")
+                        }
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </TabsContent>
+
           {/* EXPERIENCE */}
           <TabsContent value="experience" className="space-y-6">
             {experiences.map((exp, i) => (
@@ -277,45 +309,6 @@ const ResumeSection = () => {
                 </div>
               </motion.div>
             ))}
-          </TabsContent>
-
-          {/* SKILLS */}
-          <TabsContent value="skills">
-            <div className="space-y-9">
-              {Object.entries(skills).map(([category, items], i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                >
-                  <h3
-                    className="text-sm font-bold uppercase tracking-wide mb-4"
-                    style={{ color: tabSolid.skills }}
-                  >
-                    {category}
-                  </h3>
-                  <div className="flex flex-wrap gap-2.5">
-                    {items.map((skill, j) => (
-                      <span
-                        key={j}
-                        className="px-4 py-2 bg-white border border-blue-200 rounded-full text-sm text-ink font-medium hover:text-white hover:border-transparent transition-all duration-200"
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.background =
-                            tabGradients.skills)
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.background = "white")
-                        }
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </TabsContent>
 
           {/* SOFT SKILLS */}

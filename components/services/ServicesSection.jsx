@@ -30,7 +30,7 @@ const services = [
   {
     num: "03",
     title: "Real-Time & WebRTC",
-    description: "Live chat, HD video calls, push notifications, instant sync — smooth experiences with low latency.",
+    description: "Live chat, HD video calls, push notifications, instant sync smooth experiences with low latency.",
     icon: FiZap,
     gradient: "linear-gradient(135deg, #FB923C, #EA580C)",
     solid: "#EA580C",

@@ -3,7 +3,7 @@
 export const projects = [
   {
     num: "01",
-    title: "AI Document Management Platform",
+    title: "Documind — AI Document Management Platform",
     description:
       "AI-powered semantic search, a conversational assistant, and real-time collaborative editing, with role-based access control.",
     stack: ["Next.js 15", "NestJS", "PostgreSQL/pgvector", "Prisma", "AI (RAG)", "Socket.IO", "Stripe", "Docker"],
@@ -13,7 +13,7 @@ export const projects = [
   },
   {
     num: "02",
-    title: "Medical Teleconsultation Platform",
+    title: "TeleMed — Medical Teleconsultation Platform",
     description:
       "Full-featured app with live video calls, medical record management, appointment scheduling, automated notifications, and a doctor dashboard.",
     stack: ["React", "Node.js", "Express", "MongoDB", "PeerJS", "SendGrid"],
@@ -45,7 +45,7 @@ export const projects = [
     num: "05",
     title: "Controluce — Italian Restaurant Landing Page",
     description:
-      "Elegant concept landing page for a fictional Italian restaurant, built around a golden-hour lighting theme — a printed-menu-style dish list, an asymmetric photo gallery, and a scroll-aware nav, with the Italian flag reduced to a single subtle three-colour hairline.",
+      "Elegant concept landing page for a fictional Italian restaurant, built around a golden-hour lighting theme a printed-menu-style dish list, an asymmetric photo gallery, and a scroll-aware nav, with the Italian flag reduced to a single subtle three-colour hairline.",
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4"],
     image: "/controluce.png",
     github: "https://github.com/Safwen-bm/Cucina-Italia",
@@ -53,7 +53,7 @@ export const projects = [
   },
   {
     num: "06",
-    title: "LMS E-Learning Platform",
+    title: "AcademyX — LMS E-Learning Platform",
     description:
       "Complete course management system: enrollment, progress tracking, real-time messaging, and admin panel.",
     stack: ["Next.js", "Node.js", "Tailwind", "Prisma", "PostgreSQL"],
@@ -73,7 +73,7 @@ export const projects = [
   },
   {
     num: "08",
-    title: "MERN Chat Application",
+    title: "OnlyChat — MERN Chat Application",
     description:
       "Real-time messaging with typing indicators, online status, and responsive UI.",
     stack: ["MERN", "Socket.IO"],
@@ -83,7 +83,7 @@ export const projects = [
   },
   {
     num: "09",
-    title: "FluffyShop",
+    title: "FluffyShop — e-commerce platform",
     description:
       "High-end e-commerce platform selling pets and pet food. Built with Next.js 15, Strapi CMS, Clerk auth, a custom cart system, and production deployment.",
     stack: ["Next.js 15", "Strapi v5", "Clerk", "Tailwind CSS", "Railway"],
@@ -121,7 +121,7 @@ export const projects = [
   },
   {
     num: "13",
-    title: "Gym Website",
+    title: "gym. — Gym landing page",
     description: "Fully responsive, interactive gym website with animated sections.",
     stack: ["React", "TailwindCSS", "Vercel"],
     image: "/gym-web.png",
@@ -130,7 +130,7 @@ export const projects = [
   },
   {
     num: "14",
-    title: "Coffee Shop Website",
+    title: "CoffeeOne — Coffee Shop Website",
     description: "Responsive website for a café with interactive menu and contact form.",
     stack: ["HTML", "CSS", "JavaScript"],
     image: "/coffee-shop.png",
@@ -139,7 +139,7 @@ export const projects = [
   },
   {
     num: "15",
-    title: "Flower Shop Website",
+    title: "OneFlower — Flower Shop Website",
     description: "Responsive flower shop site with a product catalog and contact form.",
     stack: ["HTML", "CSS"],
     image: "/flower-shop.png",

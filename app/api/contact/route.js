@@ -6,7 +6,9 @@ export async function POST(req) {
     const { firstName, lastName, email, message } = body;
 
     if (!firstName || !email || !message) {
-      return new Response(JSON.stringify({ error: "Missing fields" }), { status: 400 });
+      return new Response(JSON.stringify({ error: "Missing fields" }), {
+        status: 400,
+      });
     }
 
     // Transporter
@@ -35,6 +37,8 @@ ${message}
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
     console.log(error);
-    return new Response(JSON.stringify({ error: "Server error" }), { status: 500 });
+    return new Response(JSON.stringify({ error: "Server error" }), {
+      status: 500,
+    });
   }
 }
