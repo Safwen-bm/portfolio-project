@@ -1,10 +1,8 @@
 // components/work/WorkSection.jsx
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BsGithub, BsBoxArrowUpRight } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,65 +10,116 @@ import { Button } from "@/components/ui/button";
 import { projects } from "./projectsData";
 import AmbientGlow from "@/components/AmbientGlow";
 
-gsap.registerPlugin(ScrollTrigger);
-
 const WorkSection = () => {
-  const containerRef = useRef(null);
+  const sectionRef = useRef(null);
+  const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showDots, setShowDots] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  useLayoutEffect(() => {
+  // Track viewport size
+  useEffect(() => {
     const onResize = () => setIsMobile(window.innerWidth < 1024);
     onResize();
     window.addEventListener("resize", onResize);
-
-    if (!isMobile && containerRef.current) {
-      const ctx = gsap.context(() => {
-        const panels = gsap.utils.toArray(".project-panel", containerRef.current);
-        if (!panels || panels.length === 0) return;
-
-        const containerHeight = containerRef.current.offsetHeight || window.innerHeight;
-        const rawOffset = Math.round(containerHeight * 0.18);
-        const offset = Math.min(Math.max(rawOffset, 80), 260);
-        const totalScrollWidth = (panels.length - 1) * window.innerWidth;
-
-        const horizontalTween = gsap.to(panels, {
-          xPercent: -100 * (panels.length - 1),
-          ease: "none",
-          force3D: true,
-        });
-
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: `top+=${offset} top`,
-          end: `+=${totalScrollWidth}`,
-          pin: true,
-          scrub: 1.2,
-          animation: horizontalTween,
-          anticipatePin: 1,
-          snap: { snapTo: 1 / (panels.length - 1), duration: 0.5, ease: "power2.out" },
-          onUpdate: (self) => setActiveIndex(Math.round(self.progress * (panels.length - 1))),
-          onEnter: () => setShowDots(true),
-          onLeave: () => setShowDots(false),
-          onEnterBack: () => setShowDots(true),
-          onLeaveBack: () => setShowDots(false),
-        });
-
-        ScrollTrigger.refresh();
-      }, containerRef);
-
-      return () => {
-        try { ctx.revert(); } catch (e) { ScrollTrigger.getAll().forEach((t) => t.kill()); }
-      };
-    }
-
     return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  // Show dots only while the horizontal section is actually in view
+  useEffect(() => {
+    if (isMobile || !sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowDots(entry.isIntersecting),
+      { threshold: 0.5 },
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [isMobile]);
+
+  // Smooth horizontal scroll via wheel, with a manual rAF lerp
+  // so it feels as smooth as Lenis instead of snapping instantly.
+  useEffect(() => {
+    if (isMobile) return;
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let target = el.scrollLeft;
+    let current = el.scrollLeft;
+    let rafId;
+    let isAnimating = false;
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    const animate = () => {
+      current = lerp(current, target, 0.12); // easing factor — lower = smoother/slower
+
+      if (Math.abs(target - current) < 0.5) {
+        current = target;
+        el.scrollLeft = current;
+        isAnimating = false;
+        return;
+      }
+
+      el.scrollLeft = current;
+      rafId = requestAnimationFrame(animate);
+    };
+
+    const startAnimating = () => {
+      if (!isAnimating) {
+        isAnimating = true;
+        rafId = requestAnimationFrame(animate);
+      }
+    };
+
+    const handleWheel = (e) => {
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (maxScroll <= 0) return;
+
+      const delta =
+        Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      const atStart = target <= 1;
+      const atEnd = target >= maxScroll - 1;
+
+      if (delta > 0 && atEnd) return; // let page scroll down
+      if (delta < 0 && atStart) return; // let page scroll up
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      target += delta;
+      target = Math.max(0, Math.min(maxScroll, target));
+      startAnimating();
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+      cancelAnimationFrame(rafId);
+    };
+  }, [isMobile]);
+
+  // Update active dot as the user scrolls horizontally
+  useEffect(() => {
+    if (isMobile) return;
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const handleScroll = () => {
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      const progress = maxScroll > 0 ? el.scrollLeft / maxScroll : 0;
+      setActiveIndex(Math.round(progress * (projects.length - 1)));
+    };
+
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    return () => el.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
   return (
     <>
-      <section ref={containerRef} className="relative isolate overflow-hidden border-t border-line">
+      <section
+        ref={sectionRef}
+        className="relative isolate overflow-hidden border-t border-line"
+      >
         <AmbientGlow variant="default" />
         <div className="pt-20 md:pt-24 pb-14 text-center relative z-10">
           <motion.div
@@ -81,14 +130,24 @@ const WorkSection = () => {
             className="max-w-3xl mx-auto px-6"
           >
             <h2 className="h2 text-ink">Featured Projects</h2>
-            <p className="mt-3 text-muted">Selected works — full stack & real-time.</p>
+            <p className="mt-3 text-muted">
+              Selected works — full stack & real-time. Scroll here to browse, or
+              move your cursor away to keep scrolling the page.
+            </p>
           </motion.div>
         </div>
 
         {!isMobile && (
-          <div className="flex h-[calc(100vh-220px)] relative z-10">
+          <div
+            ref={scrollRef}
+            className="no-scrollbar flex overflow-x-auto overflow-y-hidden h-[calc(100vh-220px)] relative z-10"
+            style={{ scrollBehavior: "auto", willChange: "scroll-position" }}
+          >
             {projects.map((project, i) => (
-              <div key={i} className="project-panel min-w-full h-full flex items-center justify-center px-10">
+              <div
+                key={i}
+                className="project-panel min-w-full h-full flex items-center justify-center px-10"
+              >
                 <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
                   <ProjectContent project={project} />
                   <ProjectImage project={project} />
@@ -137,11 +196,16 @@ const ProjectContent = ({ project }) => (
   >
     <span className="text-sm font-semibold text-accent">{project.num}</span>
     <h3 className="text-3xl md:text-4xl font-bold text-ink">{project.title}</h3>
-    <p className="text-muted text-base max-w-xl leading-relaxed">{project.description}</p>
+    <p className="text-muted text-base max-w-xl leading-relaxed">
+      {project.description}
+    </p>
 
     <div className="flex flex-wrap gap-2">
       {project.stack.map((tech, idx) => (
-        <span key={idx} className="px-3 py-1 bg-subtle border border-line rounded-full text-xs text-ink">
+        <span
+          key={idx}
+          className="px-3 py-1 bg-subtle border border-line rounded-full text-xs text-ink"
+        >
           {tech}
         </span>
       ))}
@@ -154,7 +218,10 @@ const ProjectContent = ({ project }) => (
         </Button>
       </Link>
       <Link href={project.live} target="_blank">
-        <Button variant="outline" className="border-line text-ink hover:bg-subtle hover:text-ink/90 px-5 py-2.5 rounded-full flex items-center gap-2 text-sm">
+        <Button
+          variant="outline"
+          className="border-line text-ink hover:bg-subtle hover:text-ink/90 px-5 py-2.5 rounded-full flex items-center gap-2 text-sm"
+        >
           <BsBoxArrowUpRight /> Live
         </Button>
       </Link>
@@ -171,7 +238,12 @@ const ProjectImage = ({ project }) => (
     className="relative h-[420px] rounded-2xl overflow-hidden bg-subtle border border-line p-3"
   >
     <div className="relative w-full h-full rounded-xl overflow-hidden bg-white">
-      <Image src={project.image} alt={project.title} fill className="object-contain" />
+      <Image
+        src={project.image}
+        alt={project.title}
+        fill
+        className="object-contain"
+      />
     </div>
   </motion.div>
 );
@@ -188,10 +260,18 @@ const MobileCard = ({ project, index }) => (
       <span className="text-sm font-semibold text-accent">{project.num}</span>
       <div className="flex gap-2">
         <Link href={project.github} target="_blank">
-          <Button size="sm" className="bg-ink px-3 py-2"><BsGithub className="text-sm" /></Button>
+          <Button size="sm" className="bg-ink px-3 py-2">
+            <BsGithub className="text-sm" />
+          </Button>
         </Link>
         <Link href={project.live} target="_blank">
-          <Button size="sm" variant="outline" className="border-line text-ink px-3 py-2"><BsBoxArrowUpRight className="text-sm" /></Button>
+          <Button
+            size="sm"
+            variant="outline"
+            className="border-line text-ink px-3 py-2"
+          >
+            <BsBoxArrowUpRight className="text-sm" />
+          </Button>
         </Link>
       </div>
     </div>
@@ -201,14 +281,22 @@ const MobileCard = ({ project, index }) => (
 
     <div className="flex flex-wrap gap-2">
       {project.stack.map((tech, i) => (
-        <span key={i} className="px-2 py-1 bg-subtle border border-line rounded-full text-[10px] text-ink">
+        <span
+          key={i}
+          className="px-2 py-1 bg-subtle border border-line rounded-full text-[10px] text-ink"
+        >
           {tech}
         </span>
       ))}
     </div>
 
     <div className="relative h-44 rounded-xl overflow-hidden bg-white border border-line">
-      <Image src={project.image} alt={project.title} fill className="object-contain" />
+      <Image
+        src={project.image}
+        alt={project.title}
+        fill
+        className="object-contain"
+      />
     </div>
   </motion.article>
 );

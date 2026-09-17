@@ -11,6 +11,13 @@ import {
   FiUser,
   FiGlobe,
   FiDownload,
+  FiTerminal,
+  FiLayout,
+  FiServer,
+  FiDatabase,
+  FiCpu,
+  FiZap,
+  FiCloud,
 } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 
@@ -51,17 +58,17 @@ const ResumeSection = () => {
 
   const skills = {
     "Programming Languages": [
-      "C",
-      "Python",
-      "Java",
       "JavaScript",
       "TypeScript",
+      "Python",
+      "Java",
+      "C",
     ],
     Frontend: ["Next.js", "React.js", "Tailwind CSS"],
     Backend: ["NestJS", "Node.js", "Express.js", "REST API"],
     "Databases & ORM": ["PostgreSQL", "MongoDB", "Prisma ORM", "Firebase"],
     "AI & Machine Learning": ["NLP", "LLMs", "RAG", "Machine Learning"],
-    "Real-Time": ["WebRTC", "Socket.IO"],
+
     "Cloud & DevOps": [
       "AWS (Cloud Foundations)",
       "Docker",
@@ -70,6 +77,7 @@ const ResumeSection = () => {
       "Render",
       "Linux",
     ],
+    "Real-Time": ["WebRTC", "Socket.IO"],
   };
 
   const softSkills = [
@@ -93,6 +101,51 @@ const ResumeSection = () => {
     skills: "linear-gradient(135deg, #3B82F6, #2563EB)",
     soft: "linear-gradient(135deg, #FB923C, #EA580C)",
     lang: "linear-gradient(135deg, #14B8A6, #0D9488)",
+  };
+
+  const skillCategoryMeta = {
+    "Programming Languages": {
+      icon: FiTerminal,
+      gradient: "linear-gradient(135deg, #6366F1, #4F46E5)",
+      solid: "#4F46E5",
+      tint: "#EEF2FF",
+    },
+    Frontend: {
+      icon: FiLayout,
+      gradient: "linear-gradient(135deg, #3B82F6, #2563EB)",
+      solid: "#2563EB",
+      tint: "#EFF6FF",
+    },
+    Backend: {
+      icon: FiServer,
+      gradient: "linear-gradient(135deg, #8B5CF6, #7C3AED)",
+      solid: "#7C3AED",
+      tint: "#F5F3FF",
+    },
+    "Databases & ORM": {
+      icon: FiDatabase,
+      gradient: "linear-gradient(135deg, #10B981, #059669)",
+      solid: "#059669",
+      tint: "#ECFDF5",
+    },
+    "AI & Machine Learning": {
+      icon: FiCpu,
+      gradient: "linear-gradient(135deg, #EC4899, #DB2777)",
+      solid: "#DB2777",
+      tint: "#FDF2F8",
+    },
+    "Real-Time": {
+      icon: FiZap,
+      gradient: "linear-gradient(135deg, #F59E0B, #D97706)",
+      solid: "#D97706",
+      tint: "#FFFBEB",
+    },
+    "Cloud & DevOps": {
+      icon: FiCloud,
+      gradient: "linear-gradient(135deg, #06B6D4, #0891B2)",
+      solid: "#0891B2",
+      tint: "#ECFEFF",
+    },
   };
 
   const tabSolid = {
@@ -193,40 +246,90 @@ const ResumeSection = () => {
 
           {/* SKILLS */}
           <TabsContent value="skills">
-            <div className="space-y-9">
-              {Object.entries(skills).map(([category, items], i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                >
-                  <h3
-                    className="text-sm font-bold uppercase tracking-wide mb-4"
-                    style={{ color: tabSolid.skills }}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {Object.entries(skills).map(([category, items], i) => {
+                const meta = skillCategoryMeta[category] || {
+                  icon: FiCode,
+                  gradient: tabGradients.skills,
+                  solid: tabSolid.skills,
+                  tint: "#EFF6FF",
+                };
+                const Icon = meta.icon;
+                const slug = category
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/(^-|-$)/g, "");
+
+                return (
+                  <motion.div
+                    key={category}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    className="group relative bg-ink rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
                   >
-                    {category}
-                  </h3>
-                  <div className="flex flex-wrap gap-2.5">
-                    {items.map((skill, j) => (
-                      <span
-                        key={j}
-                        className="px-4 py-2 bg-white border border-blue-200 rounded-full text-sm text-ink font-medium hover:text-white hover:border-transparent transition-all duration-200"
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.background =
-                            tabGradients.skills)
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.background = "white")
-                        }
-                      >
-                        {skill}
+                    {/* terminal title bar */}
+                    <div className="flex items-center gap-2 px-4 py-3 bg-white/[0.04] border-b border-white/10">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
+                      <span className="ml-2.5 text-[11px] font-mono text-white/35 truncate">
+                        ~/skills/{slug}.sh
                       </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
+                      <Icon
+                        className="ml-auto"
+                        size={13}
+                        style={{ color: meta.solid, opacity: 0.7 }}
+                      />
+                    </div>
+
+                    {/* terminal body */}
+                    <div className="px-5 pt-4 pb-5 font-mono">
+                      <p className="text-[11px] text-white/30 mb-3">
+                        <span style={{ color: meta.solid }}>$</span> ls ./
+                        {category}
+                        <span className="text-white/20">
+                          {" "}
+                          — {items.length} found
+                        </span>
+                      </p>
+
+                      <div>
+                        {items.map((skill, j) => (
+                          <div
+                            key={j}
+                            className="term-row flex items-center gap-2.5 py-1 rounded"
+                          >
+                            <span
+                              className="text-[13px] font-bold shrink-0"
+                              style={{ color: meta.solid }}
+                            >
+                              &gt;
+                            </span>
+                            <span className="text-[13px] text-white/75 group-hover:text-white/90 transition-colors">
+                              {skill}
+                            </span>
+                          </div>
+                        ))}
+
+                        <div className="flex items-center gap-2.5 py-1">
+                          <span
+                            className="text-[13px] font-bold shrink-0"
+                            style={{ color: meta.solid }}
+                          >
+                            &gt;
+                          </span>
+                          <span
+                            className="term-cursor inline-block w-[7px] h-[15px]"
+                            style={{ backgroundColor: meta.solid }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </TabsContent>
 

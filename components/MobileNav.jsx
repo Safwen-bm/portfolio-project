@@ -12,9 +12,9 @@ import { motion } from "framer-motion";
 
 const links = [
   { name: "Home", href: "/" },
+  { name: "Work", href: "/work" },
   { name: "Services", href: "/services" },
   { name: "Resume", href: "/resume" },
-  { name: "Work", href: "/work" },
   { name: "Contact", href: "/contact" },
 ];
 
