@@ -2,7 +2,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { FiDownload, FiGithub, FiLinkedin, FiMail, FiArrowRight } from "react-icons/fi";
+import {
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiArrowRight,
+} from "react-icons/fi";
 import Photo from "@/components/Photo";
 import Stats from "@/components/Stats";
 import { motion } from "framer-motion";
@@ -17,9 +23,18 @@ import AmbientGlow from "@/components/AmbientGlow";
 import TechMarquee from "@/components/TechMarquee";
 
 const techStack = [
-  { name: "React" }, { name: "Next.js" }, { name: "Node.js" }, { name: "NestJS" },
-  { name: "TypeScript" }, { name: "PostgreSQL" }, { name: "MongoDB" }, { name: "Prisma" },
-  { name: "Python" }, { name: "Docker" }, { name: "Git" }, { name: "Tailwind" },
+  { name: "React" },
+  { name: "Next.js" },
+  { name: "Node.js" },
+  { name: "NestJS" },
+  { name: "TypeScript" },
+  { name: "PostgreSQL" },
+  { name: "MongoDB" },
+  { name: "Prisma" },
+  { name: "Python" },
+  { name: "Docker" },
+  { name: "Git" },
+  { name: "Tailwind" },
 ];
 
 const Home = () => {
@@ -52,19 +67,17 @@ const Home = () => {
                 <br />
                 complicated ideas
                 <br />
-                into{" "}
-                <span className="text-accent">simple software.</span>
+                into <span className="text-accent">simple software.</span>
               </h1>
 
               {/* Description */}
-              <p className="mt-6 text-base md:text-lg text-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
-                I'm Safwen, a Full-Stack Software Engineer focused on building
-                reliable web applications. I work across the stack with{" "}
+              <p className="mt-6 text-lg md:text-xl text-muted leading-relaxed max-w-xl mx-auto lg:mx-0">
+                I'm Safwen, a developer who turns ideas into real products using{" "}
                 <span className="font-medium text-ink">Next.js</span>,{" "}
                 <span className="font-medium text-ink">React</span>,{" "}
                 <span className="font-medium text-ink">TypeScript</span>, and{" "}
-                <span className="font-medium text-ink">NestJS</span> from
-                database design and APIs to the final interface.
+                <span className="font-medium text-ink">NestJS</span>, with AI
+                woven in through NLP, RAG, and LLMs when it earns its place.
               </p>
 
               {/* Buttons */}
@@ -195,7 +208,9 @@ const Home = () => {
           >
             <div className="text-center mb-10">
               <h2 className="h2 text-ink">Tech Stack</h2>
-              <p className="text-muted mt-2">Full-stack, AI, and DevOps the tools I use daily</p>
+              <p className="text-muted mt-2">
+                Full-stack, AI, and DevOps the tools I use daily
+              </p>
             </div>
           </motion.div>
           <motion.div
@@ -211,27 +226,6 @@ const Home = () => {
 
       {/* ==================== ABOUT ME ==================== */}
       <AboutSection />
-
-      {/* ==================== QUOTE ==================== */}
-      <section className="relative isolate overflow-hidden py-10 md:py-16">
-        <AmbientGlow variant="center" />
-        <div className="relative z-10 container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <div className="max-w-3xl mx-auto border-l-4 border-accent pl-6 md:pl-8 text-left">
-              <p className="text-xl md:text-2xl font-medium text-ink leading-relaxed">
-                I don't just write code I build systems that scale, stay secure, and solve real problems.
-              </p>
-              <p className="mt-4 text-muted">— Safwen Ben Mabrouk</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* ==================== FROM IDEA TO PRODUCTION ==================== */}
       <RoadmapSection />
