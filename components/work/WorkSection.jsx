@@ -131,8 +131,7 @@ const WorkSection = () => {
           >
             <h2 className="h2 text-ink">Featured Projects</h2>
             <p className="mt-3 text-muted">
-              Selected works — full stack & real-time. Scroll here to browse, or
-              move your cursor away to keep scrolling the page.
+              Selected works — full stack & real-time.
             </p>
           </motion.div>
         </div>
