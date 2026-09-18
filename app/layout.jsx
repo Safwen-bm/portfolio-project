@@ -6,6 +6,7 @@ import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
 import ClientWrapper from "./ClientWrapper";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/next";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
           </div>
           <Footer />
         </ClientWrapper>
+        <Analytics />
       </body>
     </html>
   );
