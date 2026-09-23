@@ -6,7 +6,16 @@ export const projects = [
     title: "Documind — AI Document Management Platform",
     description:
       "AI-powered semantic search, a conversational assistant, and real-time collaborative editing, with role-based access control.",
-    stack: ["Next.js 15", "NestJS", "PostgreSQL/pgvector", "Prisma", "AI (RAG)", "Socket.IO", "Stripe", "Docker"],
+    stack: [
+      "Next.js 15",
+      "NestJS",
+      "PostgreSQL/pgvector",
+      "Prisma",
+      "AI (RAG)",
+      "Socket.IO",
+      "Stripe",
+      "Docker",
+    ],
     image: "/documind.png",
     github: "https://github.com/safwen-bm/documind",
     live: "https://documind-red.vercel.app/",
@@ -36,7 +45,13 @@ export const projects = [
     title: "PRISM — Streetwear Concept Store",
     description:
       "Colour-driven concept e-commerce site for a streetwear label, with per-page accent theming, scroll and reveal animations, a product grid, editorial lookbook, and a contact/newsletter flow.",
-    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Framer Motion"],
+    stack: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Framer Motion",
+    ],
     image: "/prism.png",
     github: "https://github.com/Safwen-bm/prism-clothingBrand",
     live: "https://prism-mocha-five.vercel.app/",
@@ -45,7 +60,7 @@ export const projects = [
     num: "05",
     title: "Artist Archive — AI-Structured Digital Archive",
     description:
-      "Turns an unstructured artist CV into a browsable digital archive: Gemini extracts structured JSON per entry with a fixed response schema, Zod validates it, Pexels supplies contextual images, and a live playground lets visitors run the AI extraction themselves.",
+      "Turns an unstructured artist CV into a structured digital archive. Gemini extracts and structures each entry, validated with Zod, Pexels adds contextual images, and a separate artist dashboard lets you upload a CV as text, PDF, Word or Excel and review the results before publishing.",
     stack: ["Next.js 15", "TypeScript", "Zod", "Gemini API", "Pexels API"],
     image: "/artist-archive.png",
     github: "https://github.com/Safwen-bm/artist-archive",
@@ -76,7 +91,14 @@ export const projects = [
     title: "IRent TN — Luxury Car Rental Landing Page",
     description:
       "Custom-designed rental landing page with a gold/dark visual identity, RTL Arabic UI, a live booking widget, and an interactive 3D car viewer.",
-    stack: ["React 19", "Vite", "Tailwind CSS v4", "React Router", "Three.js", "GSAP"],
+    stack: [
+      "React 19",
+      "Vite",
+      "Tailwind CSS v4",
+      "React Router",
+      "Three.js",
+      "GSAP",
+    ],
     image: "/car-rental.png",
     github: "https://github.com/Safwen-bm/car-rental-project",
     live: "https://car-rental-project-ebon-two.vercel.app/",
@@ -106,7 +128,13 @@ export const projects = [
     title: "AXIS-7 — Drone Concept Landing Page",
     description:
       "Concept landing page for an autonomous recon drone, with an interactive 3D drone model that repositions and scales as you scroll, and a finish-swapping color picker.",
-    stack: ["Next.js", "Tailwind CSS", "Three.js", "React Three Fiber", "Framer Motion"],
+    stack: [
+      "Next.js",
+      "Tailwind CSS",
+      "Three.js",
+      "React Three Fiber",
+      "Framer Motion",
+    ],
     image: "/axis-7.png",
     github: "https://github.com/Safwen-bm/future-gadget-landing",
     live: "https://future-gadget-landing.vercel.app/",
@@ -114,7 +142,8 @@ export const projects = [
   {
     num: "12",
     title: "Movie Explorer",
-    description: "Modern app to explore, search, and discover films with a fluid interface.",
+    description:
+      "Modern app to explore, search, and discover films with a fluid interface.",
     stack: ["React", "Vite", "TMDB API"],
     image: "/movie-explorer.png",
     github: "https://github.com/Safwen-bm/movie-explorer",
@@ -123,7 +152,8 @@ export const projects = [
   {
     num: "13",
     title: "Task Management Tool",
-    description: "Task manager with a Kanban board, drag & drop, and Firebase authentication.",
+    description:
+      "Task manager with a Kanban board, drag & drop, and Firebase authentication.",
     stack: ["React", "Firebase"],
     image: "/task-manager.png",
     github: "https://github.com/Safwen-bm/my-dashboard",
@@ -132,7 +162,8 @@ export const projects = [
   {
     num: "14",
     title: "gym. — Gym landing page",
-    description: "Fully responsive, interactive gym website with animated sections.",
+    description:
+      "Fully responsive, interactive gym website with animated sections.",
     stack: ["React", "TailwindCSS", "Vercel"],
     image: "/gym-web.png",
     github: "https://github.com/Safwen-bm/gym-website",
@@ -141,7 +172,8 @@ export const projects = [
   {
     num: "15",
     title: "CoffeeOne — Coffee Shop Website",
-    description: "Responsive website for a café with interactive menu and contact form.",
+    description:
+      "Responsive website for a café with interactive menu and contact form.",
     stack: ["HTML", "CSS", "JavaScript"],
     image: "/coffee-shop.png",
     github: "https://github.com/Safwen-bm/coffee-shop",
@@ -150,7 +182,8 @@ export const projects = [
   {
     num: "16",
     title: "OneFlower — Flower Shop Website",
-    description: "Responsive flower shop site with a product catalog and contact form.",
+    description:
+      "Responsive flower shop site with a product catalog and contact form.",
     stack: ["HTML", "CSS"],
     image: "/flower-shop.png",
     github: "https://github.com/Safwen-bm/flower-shop",
