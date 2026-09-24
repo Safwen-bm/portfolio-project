@@ -42,6 +42,23 @@ export const projects = [
   },
   {
     num: "04",
+    title: "OneSet — Full-Stack Gaming Setup Store",
+    description:
+      "A complete e-commerce platform for gaming and desk setups real auth, cart, Stripe-ready checkout, and an admin dashboard, plus a budget-based setup builder, a part-compatibility checker, and search that understands natural language.",
+    stack: [
+      "Next.js",
+      "NestJS",
+      "PostgreSQL",
+      "Prisma",
+      "Stripe",
+      "Zustand",
+    ],
+    image: "/oneset.png",
+    github: "https://github.com/Safwen-bm/OneSet",
+    live: "https://oneset-three.vercel.app/",
+  },
+  {
+    num: "05",
     title: "PRISM — Streetwear Concept Store",
     description:
       "Colour-driven concept e-commerce site for a streetwear label, with per-page accent theming, scroll and reveal animations, a product grid, editorial lookbook, and a contact/newsletter flow.",
@@ -57,7 +74,7 @@ export const projects = [
     live: "https://prism-mocha-five.vercel.app/",
   },
   {
-    num: "05",
+    num: "06",
     title: "Artist Archive — AI-Structured Digital Archive",
     description:
       "Turns an unstructured artist CV into a structured digital archive. Gemini extracts and structures each entry, validated with Zod, Pexels adds contextual images, and a separate artist dashboard lets you upload a CV as text, PDF, Word or Excel and review the results before publishing.",
@@ -67,7 +84,7 @@ export const projects = [
     live: "https://artist-archive-five.vercel.app/",
   },
   {
-    num: "06",
+    num: "07",
     title: "Controluce — Italian Restaurant Landing Page",
     description:
       "Elegant concept landing page for a fictional Italian restaurant, built around a golden-hour lighting theme a printed-menu-style dish list, an asymmetric photo gallery, and a scroll-aware nav, with the Italian flag reduced to a single subtle three-colour hairline.",
@@ -77,7 +94,7 @@ export const projects = [
     live: "https://controluce.vercel.app/",
   },
   {
-    num: "07",
+    num: "08",
     title: "AcademyX — LMS E-Learning Platform",
     description:
       "Complete course management system: enrollment, progress tracking, real-time messaging, and admin panel.",
@@ -87,7 +104,7 @@ export const projects = [
     live: "https://elearning.safone.tn",
   },
   {
-    num: "08",
+    num: "09",
     title: "IRent TN — Luxury Car Rental Landing Page",
     description:
       "Custom-designed rental landing page with a gold/dark visual identity, RTL Arabic UI, a live booking widget, and an interactive 3D car viewer.",
@@ -104,7 +121,7 @@ export const projects = [
     live: "https://car-rental-project-ebon-two.vercel.app/",
   },
   {
-    num: "09",
+    num: "10",
     title: "OnlyChat — MERN Chat Application",
     description:
       "Real-time messaging with typing indicators, online status, and responsive UI.",
@@ -114,7 +131,7 @@ export const projects = [
     live: "https://fullstack-chat-app-70i9.onrender.com",
   },
   {
-    num: "10",
+    num: "11",
     title: "FluffyShop — e-commerce platform",
     description:
       "High-end e-commerce platform selling pets and pet food. Built with Next.js 15, Strapi CMS, Clerk auth, a custom cart system, and production deployment.",
@@ -124,7 +141,7 @@ export const projects = [
     live: "https://fluffy-shop-frontend.onrender.com",
   },
   {
-    num: "11",
+    num: "12",
     title: "AXIS-7 — Drone Concept Landing Page",
     description:
       "Concept landing page for an autonomous recon drone, with an interactive 3D drone model that repositions and scales as you scroll, and a finish-swapping color picker.",
@@ -140,7 +157,7 @@ export const projects = [
     live: "https://future-gadget-landing.vercel.app/",
   },
   {
-    num: "12",
+    num: "13",
     title: "Movie Explorer",
     description:
       "Modern app to explore, search, and discover films with a fluid interface.",
@@ -150,7 +167,7 @@ export const projects = [
     live: "https://safwen-bm.github.io/movie-explorer/",
   },
   {
-    num: "13",
+    num: "14",
     title: "Task Management Tool",
     description:
       "Task manager with a Kanban board, drag & drop, and Firebase authentication.",
@@ -160,7 +177,7 @@ export const projects = [
     live: "https://task-manager.safone.tn",
   },
   {
-    num: "14",
+    num: "15",
     title: "gym. — Gym landing page",
     description:
       "Fully responsive, interactive gym website with animated sections.",
@@ -170,7 +187,7 @@ export const projects = [
     live: "https://gym-website-seven-xi.vercel.app/",
   },
   {
-    num: "15",
+    num: "16",
     title: "CoffeeOne — Coffee Shop Website",
     description:
       "Responsive website for a café with interactive menu and contact form.",
@@ -180,7 +197,7 @@ export const projects = [
     live: "https://safwen-bm.github.io/coffee-shop/",
   },
   {
-    num: "16",
+    num: "17",
     title: "OneFlower — Flower Shop Website",
     description:
       "Responsive flower shop site with a product catalog and contact form.",
