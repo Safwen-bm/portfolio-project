@@ -42,9 +42,9 @@ export const projects = [
   },
   {
     num: "04",
-    title: "OneSet — Full-Stack Gaming Setup Store",
+    title: "OneSet — Full-Stack E-Commerce Platform",
     description:
-      "A complete e-commerce platform for gaming and desk setups real auth, cart, Stripe-ready checkout, and an admin dashboard, plus a budget-based setup builder, a part-compatibility checker, and search that understands natural language.",
+      "A complete e-commerce platform for gaming and desk setups with real authentication, cart, checkout, and an admin dashboard, plus a budget-based setup builder, compatibility checker, and natural-language product search.",
     stack: [
       "Next.js",
       "NestJS",
