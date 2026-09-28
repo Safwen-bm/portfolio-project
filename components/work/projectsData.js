@@ -32,10 +32,10 @@ export const projects = [
   },
   {
     num: "03",
-    title: "AutoValu — AI Car Price Analyzer",
+    title: "AutoValu - AI Car Price Analyzer",
     description:
       "AI-powered platform to estimate used car prices in Tunisia, detect deal quality, and generate smart counter-offers. Includes an admin dashboard for monitoring usage and system stats.",
-    stack: ["Next.js", "NestJS", "FastAPI", "Python", "XGBoost", "KNN"],
+    stack: ["Next.js", "Tailwind CSS", "FastAPI", "Python", "XGBoost", "KNN"],
     image: "/autovalu.png",
     github: "https://github.com/Safwen-bm/autovalu",
     live: "https://autovalu.vercel.app/",
