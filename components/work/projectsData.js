@@ -97,11 +97,11 @@ export const projects = [
     num: "08",
     title: "AcademyX — LMS E-Learning Platform",
     description:
-      "Complete course management system: enrollment, progress tracking, real-time messaging, and admin panel.",
-    stack: ["Next.js", "Node.js", "Tailwind", "Prisma", "PostgreSQL"],
+      "A full-stack e-learning platform where instructors publish chaptered video courses and students track progress in real time. Built and redesigned solo: custom UI, Mux video pipeline, Stripe payments, and a public landing page for course discovery.",
+    stack: ["Next.js", "TypeScript", "Prisma", "MySQL", "Clerk", "Mux", "Stripe", "Tailwind CSS"],
     image: "/elearning.png",
     github: "https://github.com/Safwen-bm/E_learning_app",
-    live: "https://elearning.safone.tn",
+    live: "https://academyx-tawny.vercel.app/",
   },
   {
     num: "09",
