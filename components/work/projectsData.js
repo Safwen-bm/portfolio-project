@@ -26,7 +26,7 @@ export const projects = [
     description:
       "Full-featured app with live video calls, medical record management, appointment scheduling, automated notifications, and a doctor dashboard.",
     stack: ["React", "Node.js", "Express", "MongoDB", "PeerJS", "SendGrid"],
-    image: "/telemed.png",
+    image: "/tabibi.png",
     github: "https://github.com/Safwen-bm/telemedicine-platform",
     live: "https://medical.safone.tn",
   },
