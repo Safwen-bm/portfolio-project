@@ -203,7 +203,7 @@ const Photo = () => {
           "
         >
           <Image
-            src="/image.png"
+            src="/myImage.png"
             alt="Safwen Ben Mabrouk"
             fill
             priority

@@ -178,9 +178,9 @@ export const projects = [
   },
   {
     num: "15",
-    title: "gym. — Gym landing page",
+    title: "Redline gym — Gym landing page",
     description:
-      "Fully responsive, interactive gym website with animated sections.",
+      "Developed a fully responsive, interactive gym website using React, TailwindCSS, and Vercel deployment. Features: Hero animations, interactive features section, offer section, contact form, and dynamic UI/UX enhancements.",
     stack: ["React", "TailwindCSS", "Vercel"],
     image: "/gym-web.png",
     github: "https://github.com/Safwen-bm/gym-website",
@@ -190,7 +190,7 @@ export const projects = [
     num: "16",
     title: "CoffeeOne — Coffee Shop Website",
     description:
-      "Responsive website for a café with interactive menu and contact form.",
+      "A responsive, interactive website for a coffee shop built using HTML, CSS, and vanilla JavaScript. Features include a product menu, contact form, and a fully responsive layout.",
     stack: ["HTML", "CSS", "JavaScript"],
     image: "/coffee-shop.png",
     github: "https://github.com/Safwen-bm/coffee-shop",
@@ -200,7 +200,7 @@ export const projects = [
     num: "17",
     title: "OneFlower — Flower Shop Website",
     description:
-      "Responsive flower shop site with a product catalog and contact form.",
+      "Designed and developed a responsive flower shop website using HTML and CSS Features include a product catalog and a contact form. The site is fully responsive and optimized for all devices.",
     stack: ["HTML", "CSS"],
     image: "/flower-shop.png",
     github: "https://github.com/Safwen-bm/flower-shop",
