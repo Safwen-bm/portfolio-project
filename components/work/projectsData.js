@@ -178,7 +178,7 @@ export const projects = [
   },
   {
     num: "15",
-    title: "Redline gym — Gym landing page",
+    title: "Redline — Gym landing page",
     description:
       "Developed a fully responsive, interactive gym website using React, TailwindCSS, and Vercel deployment. Features: Hero animations, interactive features section, offer section, contact form, and dynamic UI/UX enhancements.",
     stack: ["React", "TailwindCSS", "Vercel"],
