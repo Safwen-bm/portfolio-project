@@ -5,9 +5,9 @@ export const projects = [
     num: "01",
     title: "Documind — AI Document Management Platform",
     description:
-      "AI-powered semantic search, a conversational assistant, and real-time collaborative editing, with role-based access control.",
+      "A full-stack document platform for organizing, searching, and collaborating on files, featuring RAG-based AI assistance, real-time editing, granular access control, workspace management, and Stripe subscriptions.",
     stack: [
-      "Next.js 15",
+      "Next.js",
       "NestJS",
       "PostgreSQL/pgvector",
       "Prisma",
@@ -15,6 +15,7 @@ export const projects = [
       "Socket.IO",
       "Stripe",
       "Docker",
+      "CI/CD",
     ],
     image: "/documind.png",
     github: "https://github.com/safwen-bm/documind",
@@ -22,13 +23,21 @@ export const projects = [
   },
   {
     num: "02",
-    title: "TeleMed — Medical Teleconsultation Platform",
+    title: "Tabibi — Medical Teleconsultation Platform",
     description:
-      "Full-featured app with live video calls, medical record management, appointment scheduling, automated notifications, and a doctor dashboard.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "PeerJS", "SendGrid"],
+      "Telemedicine app with live video consultations, online booking and Stripe payments, medical records, email reminders, and dedicated dashboards for patients, doctors and admins.",
+    stack: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "PeerJS",
+      "Stripe",
+      "SendGrid",
+    ],
     image: "/tabibi.png",
     github: "https://github.com/Safwen-bm/telemedicine-platform",
-    live: "https://medical.safone.tn",
+    live: "https://tabibi-lime-eight.vercel.app/",
   },
   {
     num: "03",
@@ -45,14 +54,7 @@ export const projects = [
     title: "OneSet — Full-Stack E-Commerce Platform",
     description:
       "A complete e-commerce platform for gaming and desk setups with real authentication, cart, checkout, and an admin dashboard, plus a budget-based setup builder, compatibility checker, and natural-language product search.",
-    stack: [
-      "Next.js",
-      "NestJS",
-      "PostgreSQL",
-      "Prisma",
-      "Stripe",
-      "Zustand",
-    ],
+    stack: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "Stripe", "Zustand"],
     image: "/oneset.png",
     github: "https://github.com/Safwen-bm/OneSet",
     live: "https://oneset-three.vercel.app/",
@@ -62,13 +64,7 @@ export const projects = [
     title: "PRISM — Streetwear Concept Store",
     description:
       "Colour-driven concept e-commerce site for a streetwear label, with per-page accent theming, scroll and reveal animations, a product grid, editorial lookbook, and a contact/newsletter flow.",
-    stack: [
-      "Next.js 16",
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS v4",
-      "Framer Motion",
-    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS v4", "Framer Motion"],
     image: "/prism.png",
     github: "https://github.com/Safwen-bm/prism-clothingBrand",
     live: "https://prism-mocha-five.vercel.app/",
@@ -78,7 +74,7 @@ export const projects = [
     title: "Artist Archive — AI-Structured Digital Archive",
     description:
       "Turns an unstructured artist CV into a structured digital archive. Gemini extracts and structures each entry, validated with Zod, Pexels adds contextual images, and a separate artist dashboard lets you upload a CV as text, PDF, Word or Excel and review the results before publishing.",
-    stack: ["Next.js 15", "TypeScript", "Zod", "Gemini API", "Pexels API"],
+    stack: ["Next.js", "TypeScript", "Zod", "Gemini API", "Pexels API"],
     image: "/artist-archive.png",
     github: "https://github.com/Safwen-bm/artist-archive",
     live: "https://artist-archive-five.vercel.app/",
@@ -88,7 +84,7 @@ export const projects = [
     title: "Controluce — Italian Restaurant Landing Page",
     description:
       "Elegant concept landing page for a fictional Italian restaurant, built around a golden-hour lighting theme a printed-menu-style dish list, an asymmetric photo gallery, and a scroll-aware nav, with the Italian flag reduced to a single subtle three-colour hairline.",
-    stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4"],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS v4"],
     image: "/controluce.png",
     github: "https://github.com/Safwen-bm/Cucina-Italia",
     live: "https://controluce.vercel.app/",
@@ -98,8 +94,17 @@ export const projects = [
     title: "AcademyX — LMS E-Learning Platform",
     description:
       "A full-stack e-learning platform where instructors publish chaptered video courses and students track progress in real time. Built and redesigned solo: custom UI, Mux video pipeline, Stripe payments, and a public landing page for course discovery.",
-    stack: ["Next.js", "TypeScript", "Prisma", "MySQL", "Clerk", "Mux", "Stripe", "Tailwind CSS"],
-    image: "/elearning.png",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "MySQL",
+      "Clerk",
+      "Mux",
+      "Stripe",
+      "Tailwind CSS",
+    ],
+    image: "/academyx.png",
     github: "https://github.com/Safwen-bm/E_learning_app",
     live: "https://academyx-tawny.vercel.app/",
   },
@@ -109,7 +114,7 @@ export const projects = [
     description:
       "Custom-designed rental landing page with a gold/dark visual identity, RTL Arabic UI, a live booking widget, and an interactive 3D car viewer.",
     stack: [
-      "React 19",
+      "React",
       "Vite",
       "Tailwind CSS v4",
       "React Router",
@@ -125,7 +130,7 @@ export const projects = [
     title: "OnlyChat — MERN Chat Application",
     description:
       "Real-time messaging with typing indicators, online status, and responsive UI.",
-    stack: ["MERN", "Socket.IO"],
+    stack: ["React", "Node.js", "Express", "MongoDB", "Socket.IO"],
     image: "/chatapp.png",
     github: "https://github.com/Safwen-bm/fullstack-chat-app",
     live: "https://fullstack-chat-app-70i9.onrender.com",
@@ -135,7 +140,7 @@ export const projects = [
     title: "FluffyShop — e-commerce platform",
     description:
       "High-end e-commerce platform selling pets and pet food. Built with Next.js 15, Strapi CMS, Clerk auth, a custom cart system, and production deployment.",
-    stack: ["Next.js 15", "Strapi v5", "Clerk", "Tailwind CSS", "Railway"],
+    stack: ["Next.js", "Strapi v5", "Clerk", "Tailwind CSS"],
     image: "/fluffy-shop.png",
     github: "https://github.com/Safwen-bm/fluffy-shop",
     live: "https://fluffy-shop-frontend.onrender.com",
