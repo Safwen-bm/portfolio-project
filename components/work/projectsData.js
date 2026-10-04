@@ -61,36 +61,6 @@ export const projects = [
   },
   {
     num: "05",
-    title: "PRISM — Streetwear Concept Store",
-    description:
-      "Colour-driven concept e-commerce site for a streetwear label, with per-page accent theming, scroll and reveal animations, a product grid, editorial lookbook, and a contact/newsletter flow.",
-    stack: ["Next.js", "TypeScript", "Tailwind CSS v4", "Framer Motion"],
-    image: "/prism.png",
-    github: "https://github.com/Safwen-bm/prism-clothingBrand",
-    live: "https://prism-mocha-five.vercel.app/",
-  },
-  {
-    num: "06",
-    title: "Artist Archive — AI-Structured Digital Archive",
-    description:
-      "Turns an unstructured artist CV into a structured digital archive. Gemini extracts and structures each entry, validated with Zod, Pexels adds contextual images, and a separate artist dashboard lets you upload a CV as text, PDF, Word or Excel and review the results before publishing.",
-    stack: ["Next.js", "TypeScript", "Zod", "Gemini API", "Pexels API"],
-    image: "/artist-archive.png",
-    github: "https://github.com/Safwen-bm/artist-archive",
-    live: "https://artist-archive-five.vercel.app/",
-  },
-  {
-    num: "07",
-    title: "Controluce — Italian Restaurant Landing Page",
-    description:
-      "Elegant concept landing page for a fictional Italian restaurant, built around a golden-hour lighting theme a printed-menu-style dish list, an asymmetric photo gallery, and a scroll-aware nav, with the Italian flag reduced to a single subtle three-colour hairline.",
-    stack: ["Next.js", "TypeScript", "Tailwind CSS v4"],
-    image: "/controluce.png",
-    github: "https://github.com/Safwen-bm/Cucina-Italia",
-    live: "https://controluce.vercel.app/",
-  },
-  {
-    num: "08",
     title: "AcademyX — LMS E-Learning Platform",
     description:
       "A full-stack e-learning platform where instructors publish chaptered video courses and students track progress in real time. Built and redesigned solo: custom UI, Mux video pipeline, Stripe payments, and a public landing page for course discovery.",
@@ -109,7 +79,47 @@ export const projects = [
     live: "https://academyx-tawny.vercel.app/",
   },
   {
+    num: "06",
+    title: "OnlyChat: Real-Time MERN Chat App",
+    description:
+      "Full-stack chat with live messaging, typing indicators, read receipts, reactions, photo sharing, 10 themes and a secured Express and Socket.IO backend.",
+    stack: ["React", "Node.js", "Express", "MongoDB", "Socket.IO", "Tailwind CSS"],
+    image: "/chatapp.png",
+    github: "https://github.com/Safwen-bm/fullstack-chat-app",
+    live: "https://fullstack-chat-app-70i9.onrender.com",
+  },
+  {
+    num: "07",
+    title: "PRISM — Streetwear Concept Store",
+    description:
+      "Colour-driven concept e-commerce site for a streetwear label, with per-page accent theming, scroll and reveal animations, a product grid, editorial lookbook, and a contact/newsletter flow.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS v4", "Framer Motion"],
+    image: "/prism.png",
+    github: "https://github.com/Safwen-bm/prism-clothingBrand",
+    live: "https://prism-mocha-five.vercel.app/",
+  },
+  {
+    num: "08",
+    title: "Artist Archive — AI-Structured Digital Archive",
+    description:
+      "Turns an unstructured artist CV into a structured digital archive. Gemini extracts and structures each entry, validated with Zod, Pexels adds contextual images, and a separate artist dashboard lets you upload a CV as text, PDF, Word or Excel and review the results before publishing.",
+    stack: ["Next.js", "TypeScript", "Zod", "Gemini API", "Pexels API"],
+    image: "/artist-archive.png",
+    github: "https://github.com/Safwen-bm/artist-archive",
+    live: "https://artist-archive-five.vercel.app/",
+  },
+  {
     num: "09",
+    title: "Controluce — Italian Restaurant Landing Page",
+    description:
+      "Elegant concept landing page for a fictional Italian restaurant, built around a golden-hour lighting theme a printed-menu-style dish list, an asymmetric photo gallery, and a scroll-aware nav, with the Italian flag reduced to a single subtle three-colour hairline.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS v4"],
+    image: "/controluce.png",
+    github: "https://github.com/Safwen-bm/Cucina-Italia",
+    live: "https://controluce.vercel.app/",
+  },
+  {
+    num: "10",
     title: "IRent TN — Luxury Car Rental Landing Page",
     description:
       "Custom-designed rental landing page with a gold/dark visual identity, RTL Arabic UI, a live booking widget, and an interactive 3D car viewer.",
@@ -124,16 +134,6 @@ export const projects = [
     image: "/car-rental.png",
     github: "https://github.com/Safwen-bm/car-rental-project",
     live: "https://car-rental-project-ebon-two.vercel.app/",
-  },
-  {
-    num: "10",
-    title: "OnlyChat — MERN Chat Application",
-    description:
-      "Real-time messaging with typing indicators, online status, and responsive UI.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "Socket.IO"],
-    image: "/chatapp.png",
-    github: "https://github.com/Safwen-bm/fullstack-chat-app",
-    live: "https://fullstack-chat-app-70i9.onrender.com",
   },
   {
     num: "11",
