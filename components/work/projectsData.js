@@ -80,7 +80,7 @@ export const projects = [
   },
   {
     num: "06",
-    title: "OnlyChat: Real-Time MERN Chat App",
+    title: "OnlyChat — Real-Time MERN Chat App",
     description:
       "Full-stack chat with live messaging, typing indicators, read receipts, reactions, photo sharing, 10 themes and a secured Express and Socket.IO backend.",
     stack: ["React", "Node.js", "Express", "MongoDB", "Socket.IO", "Tailwind CSS"],
