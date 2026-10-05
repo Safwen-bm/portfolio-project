@@ -3,15 +3,15 @@
 export const projects = [
   {
     num: "01",
-    title: "Documind — AI Document Management Platform",
+    title: "DocuMind — AI Document Management Platform",
     description:
-      "A full-stack document platform for organizing, searching, and collaborating on files, featuring RAG-based AI assistance, real-time editing, granular access control, workspace management, and Stripe subscriptions.",
+      "Full-stack SaaS platform for teams to organize, search, and collaborate on documents. Features a RAG pipeline for AI-powered chat grounded in your actual files, hybrid vector + full-text search, real-time collaborative editing, granular RBAC across workspaces, and Stripe subscription billing.",
     stack: [
       "Next.js",
       "NestJS",
-      "PostgreSQL/pgvector",
-      "Prisma",
-      "AI (RAG)",
+      "PostgreSQL",
+      "pgvector",
+      "RAG",
       "Socket.IO",
       "Stripe",
       "Docker",
