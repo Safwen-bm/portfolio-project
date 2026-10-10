@@ -22,16 +22,16 @@ export default function HeroSection() {
           <div className="mx-auto max-w-2xl animate-fade-up text-center lg:mx-0 lg:text-left">
             <div className="mb-6 flex items-center justify-center gap-3 lg:justify-start">
               <CodeMark className="h-4 w-4 text-saffron" />
-              <span className="kicker text-glow">Full-Stack Software Engineer</span>
+              <span className="kicker text-accent">Full-Stack Software Engineer</span>
             </div>
 
-            <h1 className="font-display text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-white sm:text-5xl md:text-[54px] xl:text-[66px]">
+            <h1 className="font-display text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-ink sm:text-5xl md:text-[54px] xl:text-[66px]">
               I like turning
               <br />
               complicated ideas
               <br />
               into{" "}
-              <span className="relative inline-block bg-gradient-to-r from-glow to-saffron bg-clip-text pr-1 italic text-transparent">
+              <span className="relative inline-block bg-gradient-to-r from-accent from-40% to-saffron bg-clip-text pr-1 italic text-transparent">
                 simple software.
                 <svg
                   className="absolute -bottom-2 left-0 h-3 w-full text-saffron"
@@ -50,17 +50,17 @@ export default function HeroSection() {
               </span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-white/70 md:text-xl lg:mx-0">
+            <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-muted md:text-xl lg:mx-0">
               I'm Safwen, a developer who turns ideas into real products using{" "}
-              <span className="font-semibold text-white">Next.js</span>,{" "}
-              <span className="font-semibold text-white">React</span>,{" "}
-              <span className="font-semibold text-white">TypeScript</span>, and{" "}
-              <span className="font-semibold text-white">NestJS</span>, with AI
+              <span className="font-semibold text-ink">Next.js</span>,{" "}
+              <span className="font-semibold text-ink">React</span>,{" "}
+              <span className="font-semibold text-ink">TypeScript</span>, and{" "}
+              <span className="font-semibold text-ink">NestJS</span>, with AI
               woven in through NLP, RAG, and LLMs when it earns its place.
             </p>
 
             <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-              <Button asChild variant="glow" className="w-full sm:w-auto">
+              <Button asChild className="w-full sm:w-auto">
                 <Link href="/work">
                   View My Work
                   <FiArrowRight />
@@ -77,7 +77,7 @@ export default function HeroSection() {
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={label}
-                  className="grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:-translate-y-1 hover:border-glow hover:bg-glow hover:text-ink"
+                  className="grid h-11 w-11 place-items-center rounded-full border border-line bg-surface text-ink transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:bg-accent hover:text-onaccent"
                 >
                   <Icon size={18} />
                 </a>

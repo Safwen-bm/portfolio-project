@@ -1,7 +1,6 @@
 // components/services/ServicesSection.jsx
 "use client";
 
-import { useRef } from "react";
 import { motion } from "framer-motion";
 import { FiArrowUpRight, FiCode, FiShield, FiZap, FiGlobe } from "react-icons/fi";
 import Link from "next/link";
@@ -40,29 +39,10 @@ const services = [
   },
 ];
 
-// One service = one 3D box (front + right + top faces, see .box3d in globals.css).
-// On desktop the box leans toward the mouse; on touch screens it stays in its resting pose.
-const ServiceBox = ({ service, index }) => {
-  const boxRef = useRef(null);
+// One service = one 3D block. It faces you; the depth is a solid extrusion (see .block3d in globals.css)
+// and the whole block lifts on hover.
+const ServiceBlock = ({ service, index }) => {
   const Icon = service.icon;
-
-  const handleMove = (e) => {
-    if (e.pointerType !== "mouse") return;
-    const el = boxRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const nx = (e.clientX - r.left) / r.width - 0.5;
-    const ny = (e.clientY - r.top) / r.height - 0.5;
-    el.style.setProperty("--tx", (nx * 16).toFixed(2));
-    el.style.setProperty("--ty", (ny * -12).toFixed(2));
-  };
-
-  const handleLeave = () => {
-    const el = boxRef.current;
-    if (!el) return;
-    el.style.setProperty("--tx", "0");
-    el.style.setProperty("--ty", "0");
-  };
 
   return (
     <motion.div
@@ -70,44 +50,41 @@ const ServiceBox = ({ service, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.55, delay: index * 0.09 }}
-      className="box3d-wrap relative"
-      onPointerMove={handleMove}
-      onPointerLeave={handleLeave}
+      className="block3d-wrap"
     >
-      <div className="box3d-shadow" aria-hidden="true" />
+      <article className="block3d group relative flex flex-col overflow-hidden border border-line bg-surface p-7">
+        {/* accent bar on top + faint zellige corner */}
+        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-accent via-glow to-saffron" />
+        <div className="fade-diagonal pointer-events-none absolute -right-6 -top-6 h-40 w-40 rotate-180">
+          <div
+            className="zellige-mask absolute inset-0"
+            style={{ "--zellige-color": "var(--c-accent)", "--zellige-alpha": 0.25 }}
+          />
+        </div>
 
-      <article ref={boxRef} className="box3d">
-        <div className="box3d-top" aria-hidden="true" />
-        <div className="box3d-right" aria-hidden="true" />
-
-        <div className="box3d-front relative flex flex-col items-center overflow-hidden bg-gradient-to-br from-accent via-accent to-accent-hover px-6 pb-8 pt-10 text-center text-white">
-          {/* nail studs (fade in from the middle of the box) */}
-          <div className="studs pointer-events-none absolute inset-0 [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,#000_60%)] [mask-image:linear-gradient(to_bottom,transparent_0%,#000_60%)]" />
-          {/* corner light */}
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgb(255_255_255/0.22),transparent_55%)]" />
-          {/* inner frame */}
-          <div className="pointer-events-none absolute inset-2 rounded-md border border-white/30" />
-
-          <div className="relative mb-2 grid h-16 w-16 place-items-center text-ink transition-transform duration-500 [.box3d-wrap:hover_&]:rotate-45">
+        <div className="relative mb-6 flex items-start justify-between">
+          <div className="relative grid h-16 w-16 place-items-center text-deep transition-transform duration-500 group-hover:rotate-45">
             <span className="absolute inset-0 bg-saffron" style={{ clipPath: CODE_MARK_CLIP }} />
           </div>
-          <Icon className="relative -mt-[54px] mb-6 text-xl text-ink" />
-
-          <span className="relative font-mono text-xs font-bold text-white/60">{service.num}</span>
-          <h3 className="relative mt-2 font-display text-2xl font-semibold leading-tight">
-            {service.title}
-          </h3>
-          <p className="relative mt-3 flex-1 text-sm leading-relaxed text-white/80">
-            {service.description}
-          </p>
-
-          <Link
-            href="/contact"
-            className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-saffron transition-all duration-200 [.box3d-wrap:hover_&]:gap-2.5"
-          >
-            Get Started <FiArrowUpRight />
-          </Link>
+          <Icon className="absolute left-[21px] top-[21px] text-[22px] text-deep" />
+          <span className="font-display text-5xl font-semibold leading-none text-accent/20">
+            {service.num}
+          </span>
         </div>
+
+        <h3 className="relative font-display text-2xl font-semibold leading-tight text-ink">
+          {service.title}
+        </h3>
+        <p className="relative mt-3 flex-1 text-sm leading-relaxed text-muted">
+          {service.description}
+        </p>
+
+        <Link
+          href="/contact"
+          className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-accent transition-all duration-200 group-hover:gap-2.5"
+        >
+          Get Started <FiArrowUpRight />
+        </Link>
       </article>
     </motion.div>
   );
@@ -115,7 +92,7 @@ const ServiceBox = ({ service, index }) => {
 
 const ServicesSection = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-primary py-20 md:py-28">
+    <section className="relative isolate overflow-hidden bg-subtle py-20 md:py-28">
       {/* theme-tinted dots + glow, fading out toward the edges */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="bg-dots fade-radial absolute inset-0" />
@@ -129,9 +106,9 @@ const ServicesSection = () => {
           subtitle="High-level technical solutions, ready to turn your ideas into reality."
         />
 
-        <div className="mx-auto grid max-w-6xl gap-x-10 gap-y-14 pt-4 sm:grid-cols-2 xl:grid-cols-4 xl:gap-x-8">
+        <div className="mx-auto grid max-w-6xl gap-x-10 gap-y-14 pr-4 pt-4 sm:grid-cols-2 xl:grid-cols-4 xl:gap-x-9">
           {services.map((service, i) => (
-            <ServiceBox key={service.num} service={service} index={i} />
+            <ServiceBlock key={service.num} service={service} index={i} />
           ))}
         </div>
 

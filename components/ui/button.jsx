@@ -10,18 +10,18 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-accent text-white shadow-lift hover:-translate-y-0.5 hover:bg-accent-hover active:translate-y-0",
+          "bg-accent text-onaccent shadow-lift hover:-translate-y-0.5 hover:bg-accent-hover active:translate-y-0",
         // for dark sections
         glow:
-          "bg-glow text-ink shadow-glow hover:-translate-y-0.5 hover:bg-white active:translate-y-0",
+          "bg-glow text-deep shadow-glow hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0",
         ghost:
-          "border-2 border-white/30 bg-white/5 text-white hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-ink",
+          "border-2 border-line bg-surface/60 text-ink hover:-translate-y-0.5 hover:border-accent hover:text-accent",
         saffron:
-          "bg-saffron text-ink shadow-soft hover:-translate-y-0.5 hover:brightness-95",
-        dark: "bg-ink text-white shadow-soft hover:-translate-y-0.5 hover:bg-ink/90",
-        light: "bg-white text-accent shadow-soft hover:-translate-y-0.5",
+          "bg-saffron text-deep shadow-soft hover:-translate-y-0.5 hover:brightness-95",
+        dark: "bg-ink text-primary shadow-soft hover:-translate-y-0.5 hover:bg-ink/90",
+        light: "bg-surface text-accent shadow-soft hover:-translate-y-0.5",
         outline:
-          "border-2 border-ink/80 bg-transparent text-ink hover:-translate-y-0.5 hover:bg-ink hover:text-white",
+          "border-2 border-ink/80 bg-transparent text-ink hover:-translate-y-0.5 hover:bg-ink hover:text-primary",
         primary: "bg-primary text-ink",
       },
       size: {

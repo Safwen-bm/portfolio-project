@@ -36,22 +36,22 @@ export default function SkillsPyramid() {
   };
 
   return (
-    <div className="relative isolate overflow-hidden rounded-3xl bg-ink shadow-lift ring-1 ring-white/10">
+    <div className="relative isolate overflow-hidden rounded-3xl bg-surface shadow-soft ring-1 ring-line">
       {/* themed stage: grid + glow + floor light */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-ink via-night to-ink" />
+        <div className="absolute inset-0 bg-gradient-to-b from-surface via-subtle to-surface" />
         <div className="hud-grid fade-radial absolute inset-0 opacity-60" />
-        <div className="absolute left-1/2 top-1/4 h-[420px] w-[620px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(var(--c-glow)/0.22),transparent)]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-accent/25 to-transparent" />
+        <div className="absolute left-1/2 top-1/4 h-[420px] w-[620px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(var(--c-glow)/0.2),transparent)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-accent/15 to-transparent" />
       </div>
 
       {/* terminal title bar */}
-      <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.04] px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-line bg-subtle/70 px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F]" />
-        <span className="ml-2.5 truncate font-mono text-[11px] text-white/40">~/skills/stack.sh</span>
-        <span className="ml-auto font-mono text-[11px] text-white/30">
+        <span className="ml-2.5 truncate font-mono text-[11px] text-muted">~/skills/stack.sh</span>
+        <span className="ml-auto font-mono text-[11px] text-muted">
           <span className="text-saffron">$</span> {total} found
           <span className="term-cursor ml-1 inline-block h-[11px] w-[6px] translate-y-px bg-saffron" />
         </span>
@@ -98,7 +98,7 @@ export default function SkillsPyramid() {
                     </div>
                   </div>
 
-                  <span className="mt-[calc(var(--cube)*0.2)] whitespace-nowrap text-center font-mono text-[8.5px] font-bold text-white/85 sm:text-[11px]">
+                  <span className="mt-[calc(var(--cube)*0.2)] whitespace-nowrap text-center font-mono text-[8.5px] font-bold text-ink sm:text-[11px]">
                     {name}
                   </span>
                 </div>
@@ -112,7 +112,7 @@ export default function SkillsPyramid() {
           {moreSkills.map((skill) => (
             <span
               key={skill}
-              className="rounded-full border border-white/15 bg-white/5 px-3 py-1 font-mono text-[11px] text-white/70"
+              className="rounded-full border border-line bg-subtle px-3 py-1 font-mono text-[11px] text-muted"
             >
               {skill}
             </span>

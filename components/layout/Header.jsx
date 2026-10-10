@@ -8,6 +8,7 @@ import { FiArrowRight } from "react-icons/fi";
 import Nav from "./Nav";
 import MobileNav from "./MobileNav";
 import ThemeSwitcher from "./ThemeSwitcher";
+import ModeToggle from "./ModeToggle";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -92,7 +93,7 @@ const Header = () => {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
                 <motion.span
-                  className="text-xl font-black text-white"
+                  className="text-xl font-black text-primary"
                   animate={{ scale: [1, 1.15, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -115,12 +116,13 @@ const Header = () => {
 
           {/* RIGHT SIDE: theme button + CTA + mobile menu */}
           <div className="flex items-center gap-3">
+            <ModeToggle />
             <ThemeSwitcher />
 
             <div className="hidden xl:block">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-accent to-accent-hover px-6 py-3 text-sm font-semibold text-white shadow-lift transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-accent to-accent-hover px-6 py-3 text-sm font-semibold text-onaccent shadow-lift transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Let's Talk

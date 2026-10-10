@@ -41,30 +41,30 @@ const CvSection = () => {
   return (
     <section
       id="cv"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-ink py-20 md:py-28"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-primary py-20 md:py-28"
     >
       <SectionBackdrop />
 
       <div className="container relative mx-auto px-4">
-        <SectionHeading index="07" kicker="Live preview" title="My CV" tone="dark" />
+        <SectionHeading index="07" kicker="Live preview" title="My CV" />
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl bg-ink/80 p-3 shadow-lift ring-1 ring-white/10 backdrop-blur-sm md:p-4"
+          className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl bg-surface/90 p-3 shadow-lift ring-1 ring-line backdrop-blur-sm md:p-4"
         >
           <div className="relative">
             {/* toolbar */}
             <div className="flex flex-wrap items-center justify-between gap-3 px-1 pb-3 pt-1">
               <div className="flex min-w-0 items-center gap-2">
                 <FiFileText className="shrink-0 text-saffron" />
-                <span className="truncate font-mono text-xs text-white/70">{fileName}</span>
+                <span className="truncate font-mono text-xs text-muted">{fileName}</span>
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="flex rounded-full bg-white/10 p-1" role="group" aria-label="CV language">
+                <div className="flex rounded-full bg-ink/10 p-1" role="group" aria-label="CV language">
                   {Object.entries(CVS).map(([key, item]) => (
                     <button
                       key={key}
@@ -73,8 +73,8 @@ const CvSection = () => {
                       onClick={() => switchLang(key)}
                       className={`rounded-full px-3 py-1.5 font-mono text-xs font-bold transition-colors sm:px-4 ${
                         lang === key
-                          ? "bg-saffron text-ink"
-                          : "bg-transparent text-white hover:bg-white/10"
+                          ? "bg-saffron text-deep"
+                          : "bg-transparent text-ink hover:bg-ink/10"
                       }`}
                     >
                       {item.label}
@@ -86,7 +86,7 @@ const CvSection = () => {
                   href={cv.file}
                   download
                   aria-label="Download CV"
-                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+                  className="grid h-9 w-9 place-items-center rounded-full bg-ink/10 text-ink transition-colors hover:bg-ink/20"
                 >
                   <FiDownload />
                 </a>
@@ -95,7 +95,7 @@ const CvSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Open CV in a new tab"
-                  className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+                  className="grid h-9 w-9 place-items-center rounded-full bg-ink/10 text-ink transition-colors hover:bg-ink/20"
                 >
                   <FiExternalLink />
                 </a>
@@ -132,7 +132,7 @@ const CvSection = () => {
                       aria-label="Enable scrolling inside the CV"
                       className="absolute inset-0 flex cursor-pointer items-end justify-center pb-4"
                     >
-                      <span className="inline-flex items-center gap-2 rounded-full bg-ink/90 px-4 py-2 font-mono text-xs font-bold text-white shadow-soft">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 font-mono text-xs font-bold text-primary shadow-soft">
                         <FiMousePointer />
                         Click to scroll the CV
                       </span>

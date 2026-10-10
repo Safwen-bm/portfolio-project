@@ -28,6 +28,8 @@ const readColor = (name, fallback) => {
   return new Color(fallback);
 };
 
+const isDarkMode = () => document.documentElement.getAttribute("data-mode") === "dark";
+
 export default function ThreeBackground() {
   const containerRef = useRef(null);
 
@@ -62,6 +64,9 @@ export default function ThreeBackground() {
     let glow = readColor("--c-glow", "#7c93ff");
     let hot = readColor("--c-saffron", "#f4b63f");
     const white = new Color("#ffffff");
+    // on a light page the scene is drawn stronger and without the "white glow" lerp
+    let dark = isDarkMode();
+    const nodeColor = () => (dark ? glow.clone().lerp(white, 0.35) : glow.clone());
 
     // 2. Animated wireframe terrain
     const planeGeometry = new PlaneGeometry(80, 50, isMobile ? 40 : 80, isMobile ? 25 : 50);
@@ -69,7 +74,7 @@ export default function ThreeBackground() {
       color: glow,
       wireframe: true,
       transparent: true,
-      opacity: 0.26,
+      opacity: dark ? 0.26 : 0.34,
       depthWrite: false,
     });
     const plane = new Mesh(planeGeometry, planeMaterial);
@@ -113,7 +118,7 @@ export default function ThreeBackground() {
       size: 0.12,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: dark ? 0.85 : 0.9,
       depthWrite: false,
       sizeAttenuation: true,
     });
@@ -125,10 +130,10 @@ export default function ThreeBackground() {
     const nodeBaseY = [];
     const nodeGeometry = new IcosahedronGeometry(0.7, 1);
     const nodeMaterial = new MeshBasicMaterial({
-      color: glow.clone().lerp(white, 0.35),
+      color: nodeColor(),
       wireframe: true,
       transparent: true,
-      opacity: 0.8,
+      opacity: dark ? 0.8 : 0.7,
     });
 
     for (let i = 0; i < 7; i++) {
@@ -227,8 +232,12 @@ export default function ThreeBackground() {
     const handleTheme = () => {
       glow = readColor("--c-glow", "#7c93ff");
       hot = readColor("--c-saffron", "#f4b63f");
+      dark = isDarkMode();
       planeMaterial.color.copy(glow);
-      nodeMaterial.color.copy(glow).lerp(white, 0.35);
+      planeMaterial.opacity = dark ? 0.26 : 0.34;
+      particleMaterial.opacity = dark ? 0.85 : 0.9;
+      nodeMaterial.color.copy(nodeColor());
+      nodeMaterial.opacity = dark ? 0.8 : 0.7;
       paintParticles();
       if (reduceMotion) renderFrame();
     };

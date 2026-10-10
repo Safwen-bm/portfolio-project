@@ -28,12 +28,12 @@ export default function TopBand({ children }) {
   }, []);
 
   return (
-    <div className="relative isolate bg-ink text-white">
+    <div className="relative isolate bg-primary text-ink">
       {/* sticky 3D layer: stays on screen while you scroll through Hero, Stats and Tech Stack */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="sticky top-0 h-svh w-full overflow-hidden bg-gradient-to-b from-ink via-night to-ink">
+        <div className="sticky top-0 h-svh w-full overflow-hidden bg-gradient-to-b from-primary via-subtle to-primary">
           {show3d && <ThreeBackground />}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgb(var(--c-ink)/0.85)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgb(var(--c-primary)/0.9)_100%)]" />
         </div>
       </div>
 

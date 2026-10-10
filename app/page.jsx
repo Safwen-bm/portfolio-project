@@ -26,7 +26,7 @@ const Home = () => {
 
         <TechStackSection />
 
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-glow/60 to-transparent" />
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
       </TopBand>
 
       <AboutSection />

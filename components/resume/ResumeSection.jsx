@@ -20,7 +20,7 @@ const tabs = [
 
 const ResumeSection = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-subtle py-24 md:py-32">
+    <section className="relative isolate overflow-hidden bg-primary py-24 md:py-32">
       <KnowledgeNetworkBg />
 
       <div className="container relative z-10 mx-auto px-4 md:px-6">
@@ -49,7 +49,7 @@ const ResumeSection = () => {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex-col gap-1.5 rounded-2xl border border-line bg-primary px-3 py-3 text-xs font-semibold text-ink shadow-soft last:col-span-2 hover:border-accent/40 hover:bg-accent-light data-[state=active]:border-accent data-[state=active]:bg-accent data-[state=active]:text-white data-[state=active]:shadow-lift sm:flex-row sm:text-sm sm:last:col-span-1"
+                className="flex-col gap-1.5 rounded-2xl border border-line bg-surface px-3 py-3 text-xs font-semibold text-ink shadow-soft last:col-span-2 hover:border-accent/40 hover:bg-accent-light data-[state=active]:border-accent data-[state=active]:bg-accent data-[state=active]:text-onaccent data-[state=active]:shadow-lift sm:flex-row sm:text-sm sm:last:col-span-1"
               >
                 <Icon className="text-base" />
                 <span className="whitespace-nowrap">{label}</span>
@@ -71,11 +71,11 @@ const ResumeSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="rounded-3xl border border-line bg-primary p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 md:p-8"
+                className="rounded-3xl border border-line bg-surface p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 md:p-8"
               >
                 <div className="mb-4 flex flex-col items-start justify-between gap-4 md:flex-row">
                   <div className="flex items-start gap-4">
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-accent text-white">
+                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-accent text-onaccent">
                       <FiBriefcase size={18} />
                     </div>
                     <div>
@@ -107,9 +107,9 @@ const ResumeSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="flex items-start gap-4 rounded-3xl border border-line bg-primary p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 md:p-8"
+                className="flex items-start gap-4 rounded-3xl border border-line bg-surface p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 md:p-8"
               >
-                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-saffron text-ink">
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-saffron text-deep">
                   <FiAward size={18} />
                 </div>
                 <div>
@@ -136,7 +136,7 @@ const ResumeSection = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
-                  className="flex items-center gap-3 rounded-2xl border border-line bg-primary p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-accent/40"
+                  className="flex items-center gap-3 rounded-2xl border border-line bg-surface p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-accent/40"
                 >
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent-light text-accent">
                     <FiUser size={14} />
@@ -159,7 +159,7 @@ const ResumeSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className="rounded-3xl border border-line bg-primary p-6 text-center shadow-soft"
+                    className="rounded-3xl border border-line bg-surface p-6 text-center shadow-soft"
                   >
                     <h4 className="font-display text-xl font-semibold text-ink">{lang.name}</h4>
                     <p className="mt-1 text-sm text-muted">{lang.level}</p>

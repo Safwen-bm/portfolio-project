@@ -3,20 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { FiDroplet, FiX } from "react-icons/fi";
-import { THEMES, DEFAULT_THEME } from "@/lib/themes";
-
-// keeps the mobile browser bar in the color of the active theme
-const setBarColor = (id) => {
-  const bar = THEMES.find((t) => t.id === id)?.bar;
-  if (!bar) return;
-  let meta = document.querySelector("meta[name=theme-color]");
-  if (!meta) {
-    meta = document.createElement("meta");
-    meta.setAttribute("name", "theme-color");
-    document.head.appendChild(meta);
-  }
-  meta.setAttribute("content", bar);
-};
+import { THEMES, DEFAULT_THEME, syncBarColor } from "@/lib/themes";
 
 export default function ThemeSwitcher() {
   const [open, setOpen] = useState(false);
@@ -29,7 +16,7 @@ export default function ThemeSwitcher() {
     const current = document.documentElement.getAttribute("data-theme");
     const id = current && THEMES.some((t) => t.id === current) ? current : DEFAULT_THEME;
     setTheme(id);
-    setBarColor(id);
+    syncBarColor();
   }, []);
 
   // close on outside click / Escape / scroll / resize
@@ -66,7 +53,7 @@ export default function ThemeSwitcher() {
   const apply = (id) => {
     setTheme(id);
     document.documentElement.setAttribute("data-theme", id);
-    setBarColor(id);
+    syncBarColor();
     try {
       localStorage.setItem("theme", id);
     } catch {}
@@ -91,7 +78,7 @@ export default function ThemeSwitcher() {
           <div
             ref={popRef}
             style={{ top: pos.top, right: pos.right }}
-            className="fixed z-[70] flex items-center gap-2 rounded-full border border-white/15 bg-ink/95 p-2 shadow-soft backdrop-blur-md"
+            className="fixed z-[70] flex items-center gap-2 rounded-full border border-line bg-surface/95 p-2 shadow-soft backdrop-blur-md"
           >
             {THEMES.map((t) => (
               <button
@@ -102,7 +89,7 @@ export default function ThemeSwitcher() {
                 aria-pressed={theme === t.id}
                 onClick={() => apply(t.id)}
                 className={`h-8 w-8 rounded-full ring-2 transition-all duration-200 ${
-                  theme === t.id ? "scale-110 ring-white" : "ring-transparent hover:ring-white/50"
+                  theme === t.id ? "scale-110 ring-ink" : "ring-transparent hover:ring-ink/40"
                 }`}
                 style={{
                   background: `linear-gradient(135deg, ${t.swatch[0]} 50%, ${t.swatch[1]} 50%)`,

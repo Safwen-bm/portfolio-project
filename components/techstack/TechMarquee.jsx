@@ -16,10 +16,10 @@ import {
   SiTailwindcss,
 } from "react-icons/si";
 
-// colors tuned to be readable on the dark band
+// brand colors; "currentColor" (follows light / dark mode) for the logos that are black or white
 const techStack = [
   { name: "React", Icon: SiReact, color: "#61DAFB" },
-  { name: "Next.js", Icon: SiNextdotjs, color: "#FFFFFF" },
+  { name: "Next.js", Icon: SiNextdotjs, color: "currentColor" },
   { name: "Node.js", Icon: SiNodedotjs, color: "#68B15A" },
   { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
   { name: "TypeScript", Icon: SiTypescript, color: "#3B82F6" },
@@ -40,10 +40,10 @@ export default function TechMarquee() {
           <div
             key={i}
             aria-hidden={i >= techStack.length}
-            className="mx-1.5 flex shrink-0 items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2 transition-all duration-200 hover:border-glow/60 hover:bg-white/10 md:mx-2"
+            className="mx-1.5 flex shrink-0 items-center gap-2.5 rounded-xl border border-line bg-surface px-4 py-2 text-ink transition-all duration-200 hover:border-accent/60 md:mx-2"
           >
             <Icon size={18} style={{ color }} className="shrink-0" />
-            <span className="whitespace-nowrap font-mono text-[13px] font-semibold text-white/90">
+            <span className="whitespace-nowrap font-mono text-[13px] font-semibold text-ink">
               {name}
             </span>
           </div>

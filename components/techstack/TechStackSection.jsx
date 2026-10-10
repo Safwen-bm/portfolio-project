@@ -12,10 +12,10 @@ export default function TechStackSection() {
             <CodeMark className="h-3 w-3 text-saffron" />
             <span className="h-px w-8 bg-saffron/60" />
           </div>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-white md:text-4xl">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
             Tech Stack
           </h2>
-          <p className="mt-2 text-sm text-white/60">
+          <p className="mt-2 text-sm text-muted">
             Full-stack, AI, and DevOps the tools I use daily
           </p>
         </div>

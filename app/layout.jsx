@@ -38,8 +38,9 @@ export const viewport = {
   themeColor: "#0B1330",
 };
 
-// applies the saved theme BEFORE the first paint (no color flash)
-const themeInit = `try{var t=localStorage.getItem("theme");if(t){document.documentElement.setAttribute("data-theme",t)}}catch(e){}`;
+// applies the saved theme + mode BEFORE the first paint (no color flash).
+// First visit: the mode follows the visitor's system setting (light / dark).
+const themeInit = `try{var d=document.documentElement,t=localStorage.getItem("theme"),m=localStorage.getItem("mode");if(t){d.setAttribute("data-theme",t)}if(m!=="light"&&m!=="dark"){m=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.setAttribute("data-mode",m)}catch(e){}`;
 
 export default function RootLayout({ children }) {
   return (

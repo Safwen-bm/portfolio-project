@@ -27,17 +27,17 @@ const Stats = () => {
             className="group"
           >
             {/* gradient edge */}
-            <div className="clip-hud h-full rounded-br-2xl rounded-tl-2xl bg-gradient-to-br from-white/35 via-white/10 to-glow/50 p-px transition-all duration-300 [--s:6px] group-hover:from-glow group-hover:to-saffron md:[--s:8px]">
+            <div className="clip-hud h-full rounded-br-2xl rounded-tl-2xl bg-gradient-to-br from-glow/70 via-line to-accent/50 p-px transition-all duration-300 [--s:6px] group-hover:from-accent group-hover:to-saffron md:[--s:8px]">
               {/* card */}
-              <div className="clip-hud relative flex h-full items-center gap-3 overflow-hidden rounded-br-[15px] rounded-tl-[15px] bg-ink/60 p-4 md:gap-4 md:p-5">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgb(var(--c-glow)/0.2),transparent_55%)]" />
+              <div className="clip-hud relative flex h-full items-center gap-3 overflow-hidden rounded-br-[15px] rounded-tl-[15px] bg-surface p-4 md:gap-4 md:p-5">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgb(var(--c-glow)/0.18),transparent_55%)]" />
 
-                <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-glow/15 text-glow ring-1 ring-glow/30 md:h-12 md:w-12">
+                <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent-light text-accent ring-1 ring-accent/25 md:h-12 md:w-12">
                   <Icon className="text-lg md:text-xl" />
                 </span>
 
                 <div className="relative text-left">
-                  <div className="flex items-center gap-0.5 font-display text-white">
+                  <div className="flex items-center gap-0.5 font-display text-ink">
                     {stat.infinity ? (
                       <span className="text-4xl font-semibold leading-none md:text-5xl">∞</span>
                     ) : (
@@ -50,7 +50,7 @@ const Stats = () => {
                           className="text-4xl font-semibold leading-none md:text-5xl"
                         />
                         {stat.suffix && (
-                          <span className="self-center text-xl font-semibold leading-none text-glow md:text-2xl">
+                          <span className="self-center text-xl font-semibold leading-none text-accent md:text-2xl">
                             {stat.suffix}
                           </span>
                         )}
@@ -58,7 +58,7 @@ const Stats = () => {
                     )}
                   </div>
 
-                  <p className="mt-1.5 font-mono text-[10px] uppercase leading-snug tracking-[0.12em] text-white/60 md:text-[11px]">
+                  <p className="mt-1.5 font-mono text-[10px] uppercase leading-snug tracking-[0.12em] text-muted md:text-[11px]">
                     {stat.text}
                   </p>
                 </div>

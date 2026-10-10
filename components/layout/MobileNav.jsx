@@ -66,7 +66,7 @@ const MobileNav = () => {
           <SheetClose asChild>
             <Link
               href="/contact"
-              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-accent to-accent-hover px-8 py-4 font-semibold text-white shadow-lift transition-transform duration-200 hover:-translate-y-0.5 active:scale-95"
+              className="relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-accent to-accent-hover px-8 py-4 font-semibold text-onaccent shadow-lift transition-transform duration-200 hover:-translate-y-0.5 active:scale-95"
             >
               Let's Talk
               <FiArrowRight className="text-base" />
