@@ -1,114 +1,157 @@
+// components/about/AboutSection.jsx
 "use client";
 
 import { motion } from "framer-motion";
-import AmbientGlow from "@/components/AmbientGlow";
-import { FiLayers, FiCode, FiCpu } from "react-icons/fi";
+import Image from "next/image";
+import { Caveat } from "next/font/google";
+import {
+  FiLayers,
+  FiCode,
+  FiCpu,
+  FiTarget,
+  FiPenTool,
+  FiCompass,
+  FiBox,
+} from "react-icons/fi";
+import CodeMark from "@/components/ornaments/CodeMark";
 
-const highlights = [
-  {
-    icon: FiLayers,
-    label: "Software Engineering",
-    desc: "Designing and building reliable software solutions",
-  },
-  {
-    icon: FiCode,
-    label: "Full-Stack Development",
-    desc: "Frontend, backend, APIs, and databases",
-  },
-  {
-    icon: FiCpu,
-    label: "AI Development",
-    desc: "NLP, machine learning, RAG, and LLMs",
-  },
+// handwritten font, only for the quote
+const caveat = Caveat({ subsets: ["latin"], weight: ["500", "600"], display: "swap" });
+
+const enjoy = [
+  { icon: FiLayers, label: "Software Engineering" },
+  { icon: FiCode, label: "Web Development" },
+  { icon: FiCpu, label: "AI & Machine Learning" },
+  { icon: FiTarget, label: "Problem Solving" },
+  { icon: FiPenTool, label: "Design & Creativity" },
+  { icon: FiCompass, label: "Exploring Technology" },
+  { icon: FiBox, label: "Building Real Projects" },
 ];
 
 const AboutSection = () => {
   return (
-    <section className="relative isolate overflow-hidden py-20 md:py-28">
-      <AmbientGlow variant="center" />
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <span className="text-xs font-semibold tracking-[0.18em] uppercase text-accent">
-            Get to know me
-          </span>
-          <h2 className="h2 text-ink mt-3">About Me</h2>
-        </motion.div>
+    <section
+      id="about"
+      className="relative isolate overflow-hidden bg-ink py-20 text-white md:py-28"
+    >
+      {/* ============ BACKGROUND IMAGE ============ */}
+      <div
+        className="absolute inset-0 -z-10 flex items-center justify-center"
+        aria-hidden="true"
+      >
+        <div className="relative w-full">
+          <Image
+            src="/about-bg.png"
+            alt=""
+            width={1909}
+            height={824}
+            sizes="100vw"
+            quality={85}
+            className="h-auto w-full max-w-none"
+          />
+          {/* re-colors the photo with the active theme (hue only, details stay) */}
+          <div className="absolute inset-0 bg-accent opacity-70 mix-blend-color" />
+          <div className="absolute inset-0 bg-ink/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/45 to-ink/10" />
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink to-transparent" />
+        </div>
+      </div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-10 items-stretch">
-          {/* LEFT — story + highlight cards */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="md:col-span-3 space-y-5"
-          >
-            <p className="text-muted leading-relaxed text-base md:text-lg">
-              After my Technical Baccalaureate, I chose software engineering
-              because I wanted to understand how software actually gets built
-              how an idea becomes architecture, then code, then a real product.
-              That curiosity is what pulled me into this field.
-            </p>
-            <p className="text-muted leading-relaxed text-base md:text-lg">
-              Over five years at EPI Sousse, including two years of preparatory
-              studies in Technology and Computer Science, I built a strong base
-              in algorithms and data structures, then grew into software
-              architecture and design patterns, full-stack web development,
-              DevOps and cloud, and AI machine learning, deep learning, NLP,
-              and big data.
-            </p>
-            <p className="text-muted leading-relaxed text-base md:text-lg">
-              Today, I'm looking to bring that experience into a team, keep
-              learning fast, and help build software that people actually rely
-              on.
-            </p>
-
-            <div className="grid sm:grid-cols-3 gap-3 pt-2">
-              {highlights.map(({ icon: Icon, label, desc }, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
-                  className="flex flex-col gap-2 bg-white border border-line rounded-2xl p-4 hover:border-accent/40 hover:shadow-md transition-all duration-300"
-                >
-                  <Icon className="text-accent" size={18} />
-                  <p className="text-sm font-semibold text-ink leading-tight">
-                    {label}
-                  </p>
-                  <p className="text-xs text-muted leading-snug">{desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* RIGHT — quote card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-2"
-          >
-            <div className="relative bg-ink rounded-3xl p-7 md:p-8 h-full flex flex-col justify-center overflow-hidden">
-              <span className="absolute top-3 left-5 text-7xl font-black text-white/10 leading-none select-none">
-                "
-              </span>
-              <p className="relative text-white text-lg md:text-xl font-medium leading-relaxed">
-                I don&apos;t just write code. I build systems that scale, stay
-                secure, and solve real problems.
-              </p>
-              <div className="relative mt-6 flex items-center gap-3">
-                <span className="h-px w-8 bg-accent" />
-                <p className="text-white/60 text-sm">Safwen Ben Mabrouk</p>
+      <div className="container relative mx-auto px-4">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* ============ LEFT ============ */}
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="mb-6 flex items-center gap-3">
+                <span className="relative grid h-11 w-11 place-items-center">
+                  <CodeMark className="absolute inset-0 h-full w-full text-saffron" />
+                  <span className="relative font-mono text-[11px] font-bold text-white/80">02</span>
+                </span>
+                <span className="kicker text-white/80">
+                  Get to know me <span className="text-glow">/</span> About Me
+                </span>
               </div>
+
+              <h2 className="font-display text-[44px] font-semibold leading-[1.02] tracking-[-0.025em] sm:text-6xl xl:text-[78px]">
+                More than
+                <br />
+                just a{" "}
+                <span className="bg-gradient-to-r from-glow to-saffron bg-clip-text pr-1 italic text-transparent">
+                  developer.
+                </span>
+              </h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-8 max-w-2xl space-y-5 text-base leading-relaxed text-white/70 md:text-lg"
+            >
+              <p className="text-white/85">
+                I enjoy turning complex ideas into software that solves real problems. Whether it's building a full-stack application, working with AI, or figuring out how different parts of a system fit together, I'm interested in understanding the problem and building the right solution.
+              </p>
+              <p>
+                I work across frontend, backend, databases, and AI, which helps me see a project as a complete system rather than just a collection of features. I care about writing maintainable code, making thoughtful technical decisions, and building things that are genuinely useful.
+              </p>
+              <p>
+                I'm always exploring new technologies, experimenting with ideas, and looking for better ways to build.
+              </p>
+            </motion.div>
+
+            {/* QUOTE */}
+            <motion.blockquote
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className={`${caveat.className} relative mt-10 max-w-xl pl-5 text-3xl leading-snug text-white md:text-4xl`}
+            >
+              <span className="absolute bottom-1 left-0 top-1 w-0.5 rounded-full bg-gradient-to-b from-glow to-saffron" />
+              “Think deeply. Build thoughtfully. Keep improving.”
+            </motion.blockquote>
+          </div>
+
+          {/* ============ RIGHT — WHAT I ENJOY ============ */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-5 lg:-translate-x-10 xl:-translate-x-20"
+          >
+            <div className="rounded-3xl border border-white/10 bg-ink/15 p-5 md:p-6 lg:backdrop-blur-sm">
+              <div className="mb-5 flex items-center justify-between">
+                <h3 className="font-display text-2xl font-semibold text-white/90">What I Enjoy</h3>
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-glow/10 ring-1 ring-glow/20">
+                  <CodeMark className="h-4 w-4 text-glow" />
+                </span>
+              </div>
+
+              <ul className="space-y-3">
+                {enjoy.map(({ icon: Icon, label }, i) => (
+                  <motion.li
+                    key={label}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.25 + i * 0.06 }}
+                    className="group flex items-center gap-4 rounded-2xl border border-white/[0.07] bg-white/[0.02] px-4 py-3.5 transition-all duration-300 hover:translate-x-1 hover:border-glow/40 hover:bg-white/[0.06]"
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-glow/10 text-glow ring-1 ring-glow/20 transition-colors duration-300 group-hover:bg-glow group-hover:text-ink">
+                      <Icon size={18} />
+                    </span>
+                    <span className="font-semibold text-white/85">{label}</span>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         </div>

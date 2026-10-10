@@ -3,60 +3,270 @@
 @tailwind utilities;
 
 :root {
-  --radius: 16px;
+  --radius: 14px;
 }
 
 @layer base {
-  body {
-    @apply font-primary bg-primary text-ink;
-    line-height: 1.6;
-  }
-  .h1 {
-    @apply text-[36px] xl:text-[52px] leading-[1.15] font-bold tracking-tight;
-  }
-  .h2 {
-    @apply text-[28px] xl:text-[36px] leading-[1.2] font-bold tracking-tight;
-  }
-  .h3 {
-    @apply text-[18px] xl:text-[20px] leading-[1.2] font-semibold;
-  }
   html {
     scroll-padding-top: 100px;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply font-primary bg-primary text-ink antialiased;
+    line-height: 1.6;
+    overflow-x: clip;
   }
   ::selection {
-    background: #2563EB;
-    color: white;
+    background: rgb(var(--c-saffron));
+    color: rgb(var(--c-ink));
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent));
+    outline-offset: 3px;
   }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+@layer components {
+  .h1 {
+    @apply font-display text-[36px] xl:text-[56px] leading-[1.05] font-semibold tracking-[-0.02em];
+  }
+  .h2 {
+    @apply font-display text-[34px] sm:text-[42px] xl:text-[54px] leading-[1.06] font-semibold tracking-[-0.02em];
+  }
+  .h3 {
+    @apply font-display text-[20px] xl:text-[22px] leading-[1.2] font-semibold;
+  }
+  .kicker {
+    @apply font-mono text-[11px] font-bold uppercase tracking-[0.2em];
+  }
+
+  /* ---------- HUD box: small zigzag cut top-right, BIGGER zigzag cut bottom-left ----------
+     size it with --s (step size), e.g. [--s:10px] md:[--s:14px] */
+  .clip-hud {
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--s, 8px) * 2) 0,
+      calc(100% - var(--s, 8px) * 2) var(--s, 8px),
+      calc(100% - var(--s, 8px)) var(--s, 8px),
+      calc(100% - var(--s, 8px)) calc(var(--s, 8px) * 2),
+      100% calc(var(--s, 8px) * 2),
+      100% 100%,
+      calc(var(--s, 8px) * 4) 100%,
+      calc(var(--s, 8px) * 4) calc(100% - var(--s, 8px)),
+      calc(var(--s, 8px) * 3) calc(100% - var(--s, 8px)),
+      calc(var(--s, 8px) * 3) calc(100% - var(--s, 8px) * 2),
+      calc(var(--s, 8px) * 2) calc(100% - var(--s, 8px) * 2),
+      calc(var(--s, 8px) * 2) calc(100% - var(--s, 8px) * 3),
+      var(--s, 8px) calc(100% - var(--s, 8px) * 3),
+      var(--s, 8px) calc(100% - var(--s, 8px) * 4),
+      0 calc(100% - var(--s, 8px) * 4)
+    );
+  }
+
+  .hud-grid {
+    background-image:
+      linear-gradient(rgb(var(--c-glow) / 0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--c-glow) / 0.14) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* ---------- Zellige: 8-point star tile, painted with a MASK so it follows the theme ----------
+     color: --zellige-color ("r g b", default = glow)   opacity: --zellige-alpha (default .2) */
+  .zellige-mask {
+    background-color: rgb(var(--zellige-color, var(--c-glow)) / var(--zellige-alpha, 0.2));
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' fill='none' stroke='black'%3E%3Cpath d='M32 6 L38 20 L52 14 L46 28 L60 32 L46 36 L52 50 L38 44 L32 58 L26 44 L12 50 L18 36 L4 32 L18 28 L12 14 L26 20 Z'/%3E%3Ccircle cx='32' cy='32' r='4'/%3E%3Cpath d='M0 0 L6 6 M64 0 L58 6 M0 64 L6 58 M64 64 L58 58'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64' fill='none' stroke='black'%3E%3Cpath d='M32 6 L38 20 L52 14 L46 28 L60 32 L46 36 L52 50 L38 44 L32 58 L26 44 L12 50 L18 36 L4 32 L18 28 L12 14 L26 20 Z'/%3E%3Ccircle cx='32' cy='32' r='4'/%3E%3Cpath d='M0 0 L6 6 M64 0 L58 6 M0 64 L6 58 M64 64 L58 58'/%3E%3C/svg%3E");
+    -webkit-mask-size: 64px 64px;
+    mask-size: 64px 64px;
+  }
+
+  /* soft radial fade, used to melt a pattern into its section */
+  .fade-radial {
+    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(ellipse at 50% 40%, #000 0%, transparent 72%);
+  }
+  .fade-diagonal {
+    -webkit-mask-image: linear-gradient(135deg, #000 0%, transparent 70%);
+    mask-image: linear-gradient(135deg, #000 0%, transparent 70%);
+  }
+
+  /* light sections: tiny dots tinted by the theme */
+  .bg-dots {
+    background-image: radial-gradient(rgb(var(--c-accent) / 0.2) 1.2px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+
+  /* ---------- Nail studs of the Tunisian doors ---------- */
+  .studs {
+    background-image:
+      radial-gradient(circle, rgba(255, 255, 255, 0.35) 2.5px, transparent 3px),
+      radial-gradient(circle, rgba(255, 255, 255, 0.35) 2.5px, transparent 3px);
+    background-size: 28px 28px;
+    background-position: 0 0, 14px 14px;
+  }
+
+  /* ---------- Scalloped arch edges (use text-* for the color) ---------- */
+  .scallop {
+    height: 14px;
+    background-image: radial-gradient(circle at 14px 0, currentColor 13px, transparent 13.5px);
+    background-size: 28px 14px;
+    background-repeat: repeat-x;
+  }
+  .scallop-up {
+    height: 14px;
+    background-image: radial-gradient(circle at 14px 14px, currentColor 13px, transparent 13.5px);
+    background-size: 28px 14px;
+    background-repeat: repeat-x;
+  }
+
+  /* ---------- 3D service box (Services) ----------
+     A flat card extruded into a box. Only the 3 visible faces exist (front, right, top).
+     Tilt is driven by --tx / --ty (set from JS on pointer move, numbers in degrees). */
+  .box3d-wrap {
+    perspective: 1100px;
+  }
+  .box3d {
+    --depth: 46px;
+    position: relative;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50% calc(var(--depth) * -0.5);
+    transform: rotateX(calc(-12deg + var(--ty, 0) * 1deg)) rotateY(calc(-20deg + var(--tx, 0) * 1deg));
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  .box3d-wrap:hover .box3d {
+    transform: translateZ(16px) rotateX(calc(-12deg + var(--ty, 0) * 1deg)) rotateY(calc(-20deg + var(--tx, 0) * 1deg));
+    transition-duration: 0.18s;
+  }
+  .box3d-front {
+    position: relative;
+    height: 100%;
+    border-radius: 8px;
+  }
+  .box3d-right {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: var(--depth);
+    height: 100%;
+    transform-origin: left center;
+    transform: rotateY(90deg);
+    border-radius: 0 8px 8px 0;
+    background: linear-gradient(to right, rgb(var(--c-accent-hover)), rgb(var(--c-ink)));
+  }
+  .box3d-top {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 100%;
+    height: var(--depth);
+    transform-origin: bottom center;
+    transform: rotateX(90deg);
+    border-radius: 8px 8px 0 0;
+    background: linear-gradient(to top, rgb(var(--c-glow)), rgb(var(--c-glow) / 0.55));
+  }
+  .box3d-shadow {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: -26px;
+    height: 26px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(var(--c-ink) / 0.4), transparent);
+    transition: transform 0.45s ease, opacity 0.45s ease;
+  }
+  .box3d-wrap:hover .box3d-shadow {
+    transform: scale(0.88);
+    opacity: 0.7;
+  }
+
+  /* ---------- 3D skill cubes (Resume pyramid) ----------
+     --px / --py (-1..1) come from the pointer, set on .pyramid. */
+  .pyramid-wrap {
+    container-type: inline-size;
+  }
+  .pyramid {
+    --cube: clamp(40px, 12.4cqw, 92px);
+    --depth: calc(var(--cube) * 0.5);
+    --gap: calc(var(--cube) * 0.2);
+  }
+  .cube3d {
+    position: relative;
+    width: var(--cube);
+    height: var(--cube);
+    transform-style: preserve-3d;
+    transform-origin: 50% 50% calc(var(--depth) * -0.5);
+    transform: perspective(700px) rotateX(calc(-20deg + var(--py, 0) * -8deg))
+      rotateY(calc(-26deg + var(--px, 0) * 14deg));
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .cube3d-item:hover .cube3d {
+    transform: perspective(700px) translateZ(14px) rotateX(-14deg) rotateY(-14deg) scale(1.1);
+  }
+  .cube-front {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: linear-gradient(145deg, rgb(var(--c-night)), rgb(var(--c-ink)));
+    box-shadow:
+      inset 0 0 0 1px rgb(var(--c-glow) / 0.4),
+      inset 0 0 18px rgb(var(--c-glow) / 0.14);
+  }
+  .cube-right {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: var(--depth);
+    height: 100%;
+    transform-origin: left center;
+    transform: rotateY(90deg);
+    border-radius: 0 10px 10px 0;
+    background: linear-gradient(to right, rgb(var(--c-accent)), rgb(var(--c-accent-hover)));
+  }
+  .cube-top {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    width: 100%;
+    height: var(--depth);
+    transform-origin: bottom center;
+    transform: rotateX(90deg);
+    border-radius: 10px 10px 0 0;
+    background: linear-gradient(to top, rgb(var(--c-glow)), rgb(var(--c-glow) / 0.6));
+  }
+  .cube3d-stage::after {
+    content: "";
+    position: absolute;
+    left: 6%;
+    right: -18%;
+    bottom: -14%;
+    height: 22%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(0 0 0 / 0.45), transparent);
+    transform: translateZ(-1px);
+    pointer-events: none;
+  }
 }
 
-.stairs-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: 0 0 40px rgba(37, 99, 235, 0.08);
+/* ---------- Lenis ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
-.stairs-chromatic-layer {
-  mix-blend-mode: multiply;
-}
-.stairs-chromatic-layer:nth-child(3n + 1) {
-  background: rgba(37, 99, 235, 0.14); /* blue */
-  transform: translateX(-4px);
-}
-.stairs-chromatic-layer:nth-child(3n + 2) {
-  background: rgba(244, 63, 94, 0.12); /* coral */
-  transform: translateX(4px);
-}
-.stairs-chromatic-layer:nth-child(3n + 3) {
-  background: rgba(245, 158, 11, 0.1); /* amber */
-  transform: translateY(3px);
-}
-
+/* ---------- Marquee ---------- */
 @keyframes marquee-scroll {
   from {
     transform: translateX(0);
@@ -65,11 +275,10 @@
     transform: translateX(-50%);
   }
 }
-
 .marquee-track {
-  animation: marquee-scroll 28s linear infinite;
+  animation: marquee-scroll 34s linear infinite;
+  will-change: transform;
 }
-
 .marquee-track:hover {
   animation-play-state: paused;
 }
@@ -82,72 +291,39 @@
   scrollbar-width: none;
 }
 
-.tech-tag {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 9px 16px 9px 11px;
-  font-family: var(--font-jetbrainsMono), monospace;
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  color: #0f172a;
-  background: white;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  clip-path: polygon(9px 0, 100% 0, 100% calc(100% - 9px), calc(100% - 9px) 100%, 0 100%, 0 9px);
-  overflow: hidden;
-  cursor: default;
-  isolation: isolate;
-  transition: color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-}
-
-.tech-tag::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--tag-color, #2563eb);
-  transform: translateX(-105%);
-  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
-  z-index: -1;
-}
-
-.tech-tag:hover {
-  color: white;
-  border-color: transparent;
-  transform: translateY(-2px);
-}
-
-.tech-tag:hover::before {
-  transform: translateX(0);
-}
-
-.tech-tag-index {
-  font-size: 10px;
-  font-weight: 700;
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-}
-
-.tech-tag:hover .tech-tag-index {
-  opacity: 0.75;
-}
-
+/* ---------- Blinking terminal cursor ---------- */
 @keyframes term-blink {
-  0%, 45% { opacity: 1; }
-  50%, 95% { opacity: 0; }
-  100% { opacity: 1; }
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
 .term-cursor {
   animation: term-blink 1.1s steps(1) infinite;
 }
 
-.term-row {
-  transition: background-color 0.15s ease, padding-left 0.15s ease;
-}
-
-.term-row:hover {
-  background-color: rgba(255, 255, 255, 0.06);
-  padding-left: 6px;
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .term-cursor,
+  .animate-float,
+  .animate-spin-slow,
+  .animate-spin-slower,
+  .animate-fade-up,
+  .animate-page-in,
+  .animate-scan,
+  .animate-drift,
+  .animate-bob {
+    animation: none !important;
+  }
+  .box3d,
+  .cube3d {
+    transition: none;
+  }
 }

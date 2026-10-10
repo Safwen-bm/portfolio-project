@@ -1,8 +1,8 @@
+// components/roadmap/RoadmapSection.jsx
 "use client";
 
 import { motion } from "framer-motion";
 import {
-  FiArrowUpRight,
   FiCheck,
   FiCode,
   FiGitBranch,
@@ -13,61 +13,21 @@ import {
   FiShield,
   FiZap,
 } from "react-icons/fi";
+import CodeMark, { CODE_MARK_CLIP } from "@/components/ornaments/CodeMark";
+import SectionBackdrop from "@/components/ornaments/SectionBackdrop";
 
 const steps = [
-  {
-    num: "01",
-    label: "DISCOVERY",
-    title: "Understand",
-    items: ["Goals", "Requirements", "User Needs"],
-    icon: FiPlay,
-  },
-  {
-    num: "02",
-    label: "ARCHITECTURE",
-    title: "Plan",
-    items: ["System", "Data", "API"],
-    icon: FiLayers,
-  },
-  {
-    num: "03",
-    label: "EXPERIENCE",
-    title: "Design",
-    items: ["UI / UX", "User Flow", "Responsive"],
-    icon: FiLayout,
-  },
-  {
-    num: "04",
-    label: "DEVELOPMENT",
-    title: "Build",
-    items: ["Frontend", "Backend", "Features"],
-    icon: FiCode,
-  },
-  {
-    num: "05",
-    label: "CAPABILITIES",
-    title: "Integrate",
-    items: ["Smart Features", "Services", "Real-time"],
-    icon: FiZap,
-  },
-  {
-    num: "06",
-    label: "QUALITY",
-    title: "Validate",
-    items: ["Testing", "Security", "Reliability"],
-    icon: FiShield,
-  },
-  {
-    num: "07",
-    label: "DELIVERY",
-    title: "Ship",
-    items: ["Versioning", "Automation", "Deployment"],
-    icon: FiGitBranch,
-  },
+  { num: "01", label: "DISCOVERY", title: "Understand", items: ["Goals", "Requirements", "User Needs"], icon: FiPlay },
+  { num: "02", label: "ARCHITECTURE", title: "Plan", items: ["System", "Data", "API"], icon: FiLayers },
+  { num: "03", label: "EXPERIENCE", title: "Design", items: ["UI / UX", "User Flow", "Responsive"], icon: FiLayout },
+  { num: "04", label: "DEVELOPMENT", title: "Build", items: ["Frontend", "Backend", "Features"], icon: FiCode },
+  { num: "05", label: "CAPABILITIES", title: "Integrate", items: ["Smart Features", "Services", "Real-time"], icon: FiZap },
+  { num: "06", label: "QUALITY", title: "Validate", items: ["Testing", "Security", "Reliability"], icon: FiShield },
+  { num: "07", label: "DELIVERY", title: "Ship", items: ["Versioning", "Automation", "Deployment"], icon: FiGitBranch },
 ];
 
-const TechTag = ({ children }) => (
-  <span className="rounded-md border border-line bg-white px-2 py-1 text-[9px] font-medium text-muted">
+const Tag = ({ children }) => (
+  <span className="rounded-full border border-white/20 bg-white/[0.04] px-2.5 py-1 font-mono text-[11px] text-white/75">
     {children}
   </span>
 );
@@ -80,56 +40,32 @@ const Step = ({ step, index }) => {
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
-      transition={{
-        duration: 0.45,
-        delay: index * 0.04,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className="group relative flex flex-1 min-w-0 flex-col items-center pt-2"
+      transition={{ duration: 0.45, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative flex w-full flex-col items-center pt-2"
     >
-      {/* Node */}
       <div className="relative z-10 mb-5">
-        <div
-          className={`flex h-12 w-12 items-center justify-center rounded-2xl border bg-white shadow-[0_6px_20px_rgba(15,23,42,0.05)] transition-all duration-300 group-hover:-translate-y-1 ${
-            step.accent
-              ? "border-accent/40 shadow-[0_8px_25px_rgba(37,99,235,0.12)]"
-              : "border-line"
-          }`}
-        >
-          <Icon
-            size={18}
-            strokeWidth={1.5}
-            className={step.accent ? "text-accent" : "text-ink"}
+        <div className="relative grid h-16 w-16 place-items-center text-white transition-colors duration-300 group-hover:text-ink">
+          <span
+            className="absolute inset-0 bg-white/15 transition-colors duration-300 group-hover:bg-saffron"
+            style={{ clipPath: CODE_MARK_CLIP }}
           />
+          <Icon size={20} strokeWidth={1.6} className="relative" />
         </div>
-
-        {/* Number badge */}
-        <span
-          className={`absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-[8px] font-bold ${
-            step.accent ? "bg-accent text-white" : "bg-ink text-white"
-          }`}
-        >
+        <span className="absolute -right-3 -top-1 rounded-full bg-saffron px-1.5 py-0.5 font-mono text-[10px] font-bold text-ink">
           {step.num}
         </span>
       </div>
 
-      {/* Content */}
       <div className="w-full px-1 text-center">
-        <p className="mb-1 text-[8px] font-bold tracking-[0.16em] text-muted">
+        <p className="mb-1 font-mono text-[10px] font-bold tracking-[0.16em] text-white/50">
           {step.label}
         </p>
-
-        <h3
-          className={`mb-3 text-[15px] font-bold tracking-tight ${
-            step.accent ? "text-accent" : "text-ink"
-          }`}
-        >
+        <h3 className="mb-3 font-display text-2xl font-semibold tracking-tight text-white">
           {step.title}
         </h3>
-
         <div className="flex flex-wrap justify-center gap-1.5">
           {step.items.map((item) => (
-            <TechTag key={item}>{item}</TechTag>
+            <Tag key={item}>{item}</Tag>
           ))}
         </div>
       </div>
@@ -143,44 +79,31 @@ const Production = () => (
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: 0.35 }}
-    className="relative z-10 flex flex-col items-center pt-2"
+    className="relative z-10 flex w-full flex-col items-center pt-2"
   >
-    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-ink bg-ink text-white shadow-[0_10px_30px_rgba(15,23,42,0.15)]">
-      <div className="relative">
-        <FiGlobe size={18} strokeWidth={1.5} />
-        <span className="absolute -right-3 -top-3 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500">
-          <FiCheck size={10} strokeWidth={3} />
-        </span>
-      </div>
+    <div className="relative mb-5 grid h-16 w-16 place-items-center text-ink">
+      <span className="absolute inset-0 bg-saffron" style={{ clipPath: CODE_MARK_CLIP }} />
+      <FiGlobe size={20} strokeWidth={1.6} className="relative" />
+      <span className="absolute -right-2 -top-1 grid h-5 w-5 place-items-center rounded-full border-2 border-ink bg-emerald-400 text-ink">
+        <FiCheck size={10} strokeWidth={4} />
+      </span>
     </div>
 
-    <p className="mb-1 text-[8px] font-bold tracking-[0.16em] text-muted">
+    <p className="mb-1 font-mono text-[10px] font-bold tracking-[0.16em] text-white/50">
       PRODUCTION
     </p>
-
-    <h3 className="mb-3 text-[15px] font-bold tracking-tight text-ink">Live</h3>
-
+    <h3 className="mb-3 font-display text-2xl font-semibold tracking-tight text-white">Live</h3>
     <div className="flex flex-wrap justify-center gap-1.5">
-      <TechTag>Deployed</TechTag>
-      <TechTag>Ready</TechTag>
+      <Tag>Deployed</Tag>
+      <Tag>Ready</Tag>
     </div>
   </motion.div>
 );
 
 const RoadmapSection = () => {
   return (
-    <section className="relative overflow-hidden border-t border-line bg-subtle/30 py-20 md:py-24">
-      {/* Background grid */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.022]"
-        style={{
-          backgroundImage: "radial-gradient(#0f172a 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
-        }}
-      />
-
-      {/* Soft accent glow */}
-      <div className="pointer-events-none absolute right-[-180px] top-[-180px] h-[420px] w-[420px] rounded-full bg-blue-500/[0.035] blur-3xl" />
+    <section className="relative isolate overflow-hidden bg-ink py-20 text-white md:py-24">
+      <SectionBackdrop />
 
       <div className="container relative z-10 mx-auto px-4">
         {/* Header */}
@@ -192,103 +115,47 @@ const RoadmapSection = () => {
           className="mb-12 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between"
         >
           <div>
-            <div className="mb-4 flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              <span className="text-[9px] font-bold tracking-[0.2em] text-muted">
-                DEVELOPMENT PROCESS
+            <div className="mb-4 flex items-center gap-3">
+              <span className="relative grid h-11 w-11 place-items-center">
+                <CodeMark className="absolute inset-0 h-full w-full text-saffron" />
+                <span className="relative font-mono text-[11px] font-bold text-white/80">03</span>
               </span>
+              <span className="kicker text-white/70">DEVELOPMENT PROCESS</span>
             </div>
 
-            <h2 className="h2 text-ink">
-              From Idea <span className="text-muted">to</span> Production
+            <h2 className="h2 text-white">
+              From Idea <span className="italic text-saffron">to</span> Production
             </h2>
           </div>
 
-          <p className="max-w-xs text-sm leading-6 text-muted md:text-right">
+          <p className="max-w-xs text-sm leading-6 text-white/70 md:text-right">
             From understanding the problem to delivering a reliable product
             ready for real users.
           </p>
         </motion.div>
 
-        {/* ================= DESKTOP ================= */}
-        <div className="hidden xl:block">
-          <div className="relative mx-auto max-w-6xl">
-            {/* Continuous pipeline line */}
-            <div className="pointer-events-none absolute left-[24px] right-[24px] top-[36px] h-px bg-line" />
-
-            <div className="relative flex items-start justify-between gap-2">
-              {steps.map((step, index) => (
-                <Step key={step.num} step={step} index={index} />
-              ))}
-
-              {/* Production node */}
-              <div className="w-[120px] shrink-0">
-                <Production />
-              </div>
-            </div>
-          </div>
+        <div className="mb-5 flex items-center justify-between xl:hidden">
+          <span className="font-mono text-[10px] font-semibold tracking-[0.12em] text-white/50 lg:hidden">
+            SWIPE TO EXPLORE
+          </span>
+          <span className="hidden font-mono text-[10px] font-semibold tracking-[0.12em] text-white/50 lg:block">
+            SCROLL TO EXPLORE
+          </span>
         </div>
 
-        {/* ================= TABLET ================= */}
-        <div className="hidden lg:block xl:hidden">
-          <div className="relative">
-            <div className="mb-5 flex items-center justify-between">
-              <span className="text-[9px] font-semibold tracking-[0.12em] text-muted">
-                SCROLL TO EXPLORE
-              </span>
-              <FiArrowUpRight size={14} className="rotate-45 text-muted" />
-            </div>
+        {/* Pipeline — rendered ONCE: row on xl, swipeable on smaller screens */}
+        <div className="no-scrollbar -mx-4 overflow-x-auto px-4 pb-5 xl:mx-0 xl:overflow-visible xl:px-0">
+          <div className="relative mx-auto flex w-max items-start gap-5 xl:w-full xl:max-w-6xl xl:justify-between xl:gap-2">
+            <div className="pointer-events-none absolute left-8 right-8 top-[40px] border-t-2 border-dashed border-saffron/30" />
 
-            <div
-              className="relative -mx-4 overflow-x-auto px-4 pb-5"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {/* Continuous line for tablet */}
-              <div className="pointer-events-none absolute left-[40px] right-[40px] top-[36px] h-px bg-line" />
-
-              <div className="relative flex w-max items-start gap-6">
-                {steps.map((step, index) => (
-                  <div key={step.num} className="w-[140px] shrink-0">
-                    <Step step={step} index={index} />
-                  </div>
-                ))}
-
-                <div className="w-[120px] shrink-0">
-                  <Production />
-                </div>
+            {steps.map((step, index) => (
+              <div key={step.num} className="w-[132px] shrink-0 xl:min-w-0 xl:flex-1">
+                <Step step={step} index={index} />
               </div>
-            </div>
-          </div>
-        </div>
+            ))}
 
-        {/* ================= MOBILE ================= */}
-        <div className="lg:hidden">
-          <div className="relative">
-            <div className="mb-5 flex items-center justify-between">
-              <span className="text-[9px] font-semibold tracking-[0.12em] text-muted">
-                SWIPE TO EXPLORE
-              </span>
-              <FiArrowUpRight size={14} className="rotate-45 text-muted" />
-            </div>
-
-            <div
-              className="relative -mx-4 overflow-x-auto px-4 pb-5"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {/* Continuous line for mobile */}
-              <div className="pointer-events-none absolute left-[40px] right-[40px] top-[36px] h-px bg-line" />
-
-              <div className="relative flex w-max items-start gap-5">
-                {steps.map((step, index) => (
-                  <div key={step.num} className="w-[130px] shrink-0">
-                    <Step step={step} index={index} />
-                  </div>
-                ))}
-
-                <div className="w-[110px] shrink-0">
-                  <Production />
-                </div>
-              </div>
+            <div className="w-[112px] shrink-0 xl:w-[120px]">
+              <Production />
             </div>
           </div>
         </div>
@@ -299,24 +166,18 @@ const RoadmapSection = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-5"
+          className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-5"
         >
-          <div className="flex items-center gap-3">
-            <span className="text-[9px] font-semibold tracking-[0.15em] text-muted">
-              IDEA
-            </span>
-            <span className="h-px w-5 bg-line" />
-            <span className="text-[9px] font-semibold tracking-[0.15em] text-muted">
-              BUILD
-            </span>
-            <span className="h-px w-5 bg-line" />
-            <span className="text-[9px] font-semibold tracking-[0.15em] text-muted">
-              SHIP
-            </span>
+          <div className="flex items-center gap-3 font-mono text-[11px] font-semibold tracking-[0.15em] text-white/60">
+            <span>IDEA</span>
+            <span className="h-px w-5 bg-saffron/60" />
+            <span>BUILD</span>
+            <span className="h-px w-5 bg-saffron/60" />
+            <span>SHIP</span>
           </div>
 
-          <div className="flex items-center gap-2 text-[9px] font-medium text-muted">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          <div className="flex items-center gap-2 font-mono text-[11px] font-medium text-white/60">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
             Built for production
           </div>
         </motion.div>
