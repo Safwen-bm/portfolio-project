@@ -7,5 +7,5 @@ export default function ServicesPage() {
 
 export const metadata = {
   title: "Services | Safwen Ben Mabrouk",
-  description: "Développement Full-Stack, Sécurité, WebRTC, Consulting.",
+  description: "Full-stack web development, API integration, AI-powered features, and secure software solutions.",
 };

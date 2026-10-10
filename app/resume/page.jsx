@@ -7,5 +7,5 @@ export default function ResumePage() {
 
 export const metadata = {
   title: "Resume | Safwen Ben Mabrouk",
-  description: "Full-Stack Software Engineer | Next.js, NestJS, TypeScript, React",
+  description: "Explore my experience, education, technical skills, and projects as a Full-Stack Software Engineer.",
 };

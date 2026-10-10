@@ -24,8 +24,6 @@ const enjoy = [
   { icon: FiCpu, label: "AI & Machine Learning" },
   { icon: FiTarget, label: "Problem Solving" },
   { icon: FiPenTool, label: "Design & Creativity" },
-  { icon: FiCompass, label: "Exploring Technology" },
-  { icon: FiBox, label: "Building Real Projects" },
 ];
 
 const AboutSection = () => {

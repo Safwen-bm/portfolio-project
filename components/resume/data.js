@@ -1,5 +1,4 @@
 // components/resume/data.js
-// All the content of the Resume section lives here (the components only render it).
 import {
   SiNextdotjs,
   SiReact,
@@ -7,21 +6,28 @@ import {
   SiNestjs,
   SiNodedotjs,
   SiTailwindcss,
+  SiThreedotjs,
   SiJavascript,
   SiPython,
+  SiC,
   SiPostgresql,
   SiMongodb,
   SiPrisma,
+  SiFirebase,
   SiSocketdotio,
   SiWebrtc,
   SiExpress,
   SiDotnet,
   SiDocker,
   SiGithubactions,
+  SiGit,
+  SiLinux,
+  SiVercel,
+  SiRender,
 } from "react-icons/si";
 import { FaJava, FaAws } from "react-icons/fa";
 import { TbBrandCSharp } from "react-icons/tb";
-import { FiCpu } from "react-icons/fi";
+import { FiCpu, FiSearch, FiMessageSquare } from "react-icons/fi";
 
 export const experiences = [
   {
@@ -55,51 +61,69 @@ export const education = [
   },
 ];
 
-// Skills pyramid, top -> bottom. Row n holds n boxes (1, 2, 3 ... 6).
-export const pyramidRows = [
-  [{ name: "Next.js", Icon: SiNextdotjs, color: "#FFFFFF" }],
-  [
-    { name: "React", Icon: SiReact, color: "#61DAFB" },
-    { name: "TypeScript", Icon: SiTypescript, color: "#3B82F6" },
-  ],
-  [
-    { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
-    { name: "Node.js", Icon: SiNodedotjs, color: "#68B15A" },
-    { name: "Tailwind", Icon: SiTailwindcss, color: "#06B6D4" },
-  ],
-  [
-    { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
-    { name: "Python", Icon: SiPython, color: "#FFD43B" },
-    { name: "Postgres", Icon: SiPostgresql, color: "#5B8DEF" },
-    { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
-  ],
-  [
-    { name: "Prisma", Icon: SiPrisma, color: "#A3B1C6" },
-    { name: "Express", Icon: SiExpress, color: "#FFFFFF" },
-    { name: "Socket.IO", Icon: SiSocketdotio, color: "#FFFFFF" },
-    { name: "WebRTC", Icon: SiWebrtc, color: "#F6B03B" },
-    { name: "LLM · RAG", Icon: FiCpu, color: "#C084FC" },
-  ],
-  [
-    { name: "ASP.NET", Icon: SiDotnet, color: "#8B7CFF" },
-    { name: "C#", Icon: TbBrandCSharp, color: "#B07CFF" },
-    { name: "Java", Icon: FaJava, color: "#F89820" },
-    { name: "Docker", Icon: SiDocker, color: "#2496ED" },
-    { name: "Actions", Icon: SiGithubactions, color: "#4F9CFF" },
-    { name: "AWS", Icon: FaAws, color: "#FF9900" },
-  ],
-];
-
-// everything else from the CV, shown as small chips under the pyramid
-export const moreSkills = [
-  "C",
-  "REST API",
-  "Firebase",
-  "NLP",
-  "Machine Learning",
-  "Linux",
-  "Vercel",
-  "Render",
+// Skills pyramid: ONE LINE = ONE FAMILY, widest line at the bottom.
+// "currentColor" = follows light / dark mode (logos that are black or white).
+export const skillRows = [
+  {
+    label: "Frontend",
+    items: [
+      { name: "Next.js", Icon: SiNextdotjs, color: "currentColor" },
+      { name: "React", Icon: SiReact, color: "#61DAFB" },
+      { name: "Tailwind", Icon: SiTailwindcss, color: "#06B6D4" },
+      { name: "Three.js", Icon: SiThreedotjs, color: "currentColor" },
+    ],
+  },
+  {
+    label: "Backend",
+    items: [
+      { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
+      { name: "Node.js", Icon: SiNodedotjs, color: "#68B15A" },
+      { name: "Express", Icon: SiExpress, color: "currentColor" },
+      { name: "ASP.NET", Icon: SiDotnet, color: "#8B7CFF" },
+    ],
+  },
+  {
+    label: "Databases",
+    items: [
+      { name: "Postgres", Icon: SiPostgresql, color: "#5B8DEF" },
+      { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
+      { name: "Prisma", Icon: SiPrisma, color: "currentColor" },
+      { name: "Firebase", Icon: SiFirebase, color: "#FFA000" },
+    ],
+  },
+  {
+    label: "Real-Time & AI",
+    items: [
+      { name: "Socket.IO", Icon: SiSocketdotio, color: "currentColor" },
+      { name: "WebRTC", Icon: SiWebrtc, color: "#F6B03B" },
+      { name: "LLMs", Icon: FiCpu, color: "#C084FC" },
+      { name: "RAG", Icon: FiSearch, color: "#C084FC" },
+      { name: "NLP", Icon: FiMessageSquare, color: "#C084FC" },
+    ],
+  },
+  {
+    label: "Languages",
+    items: [
+      { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+      { name: "TypeScript", Icon: SiTypescript, color: "#3B82F6" },
+      { name: "Python", Icon: SiPython, color: "#FFD43B" },
+      { name: "Java", Icon: FaJava, color: "#F89820" },
+      { name: "C", Icon: SiC, color: "#5C9BD6" },
+      { name: "C#", Icon: TbBrandCSharp, color: "#B07CFF" },
+    ],
+  },
+  {
+    label: "DevOps & Tools",
+    items: [
+      { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+      { name: "Actions", Icon: SiGithubactions, color: "#4F9CFF" },
+      { name: "AWS", Icon: FaAws, color: "#FF9900" },
+      { name: "Git", Icon: SiGit, color: "#F05032" },
+      { name: "Linux", Icon: SiLinux, color: "currentColor" },
+      { name: "Vercel", Icon: SiVercel, color: "currentColor" },
+      { name: "Render", Icon: SiRender, color: "currentColor" },
+    ],
+  },
 ];
 
 export const softSkills = [

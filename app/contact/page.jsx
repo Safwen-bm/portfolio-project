@@ -7,5 +7,5 @@ export default function ContactPage() {
 
 export const metadata = {
   title: "Contact | Safwen Ben Mabrouk",
-  description: "Full-Stack Software Engineer | Open to full-time roles and freelance collaboration",
+  description: "Contact me for full-time opportunities, freelance projects, or collaboration in full-stack development and AI.",
 };

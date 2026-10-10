@@ -7,5 +7,5 @@ export default function WorkPage() {
 
 export const metadata = {
   title: "Work | Safwen Ben Mabrouk",
-  description: "Featured projects: Medical platform, banking system, LMS, real-time chat.",
+  description: "Explore my full-stack projects, featuring web applications, AI-powered features, and practical software solutions.",
 };

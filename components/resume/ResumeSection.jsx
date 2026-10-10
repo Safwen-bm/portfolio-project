@@ -1,14 +1,22 @@
 // components/resume/ResumeSection.jsx
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import KnowledgeNetworkBg from "@/components/resume/KnowledgeNetworkBg";
 import SkillsPyramid from "@/components/resume/SkillsPyramid";
 import { experiences, education, softSkills, spokenLanguages } from "@/components/resume/data";
 import { FiBriefcase, FiAward, FiCode, FiUser, FiGlobe } from "react-icons/fi";
 import SectionHeading from "@/components/SectionHeading";
 import ViewCvButton from "@/components/cv/ViewCvButton";
+
+// Three.js scene + floating tags: loaded only when the section is close to the screen,
+// and it never breaks the page if it fails
+const PyramidScene = dynamic(
+  () => import("@/components/resume/PyramidScene").catch(() => () => null),
+  { ssr: false }
+);
 
 const tabs = [
   { value: "skills", icon: FiCode, label: "Skills" },
@@ -19,9 +27,29 @@ const tabs = [
 ];
 
 const ResumeSection = () => {
+  const sectionRef = useRef(null);
+  const [near, setNear] = useState(false);
+
+  useEffect(() => {
+    if (navigator.connection?.saveData) return;
+    const node = sectionRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative isolate overflow-hidden bg-primary py-24 md:py-32">
-      <KnowledgeNetworkBg />
+    <section ref={sectionRef} className="relative isolate overflow-clip bg-primary py-24 md:py-32">
+      {near && <PyramidScene />}
 
       <div className="container relative z-10 mx-auto px-4 md:px-6">
         <SectionHeading

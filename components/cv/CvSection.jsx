@@ -9,7 +9,7 @@ import SectionBackdrop from "@/components/ornaments/SectionBackdrop";
 import { Button } from "@/components/ui/button";
 
 const CVS = {
-  en: { label: "English CV", file: "/cv/Safwen-Ben-Mabrouk-CV.pdf" },
+  en: { label: "English CV", file: "/cv/Safwen-Ben-Mabrouk-CV-EN.pdf" },
   fr: { label: "CV Français", file: "/cv/Safwen-Ben-Mabrouk-CV-FR.pdf" },
   it: { label: "CV Italiano", file: "/cv/Safwen-Ben-Mabrouk-CV-IT.pdf" },
 };
