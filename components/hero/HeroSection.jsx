@@ -26,13 +26,10 @@ export default function HeroSection() {
             </div>
 
             <h1 className="font-display text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-ink sm:text-5xl md:text-[54px] xl:text-[66px]">
-              I like turning
+              Curious by nature.
               <br />
-              complicated ideas
-              <br />
-              into{" "}
               <span className="relative inline-block bg-gradient-to-r from-accent from-40% to-saffron bg-clip-text pr-1 italic text-transparent">
-                simple software.
+                An Engineer
                 <svg
                   className="absolute -bottom-2 left-0 h-3 w-full text-saffron"
                   viewBox="0 0 200 12"
@@ -48,15 +45,15 @@ export default function HeroSection() {
                   />
                 </svg>
               </span>
+              <br />
+              by choice.
             </h1>
 
             <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-muted md:text-xl lg:mx-0">
-              I'm Safwen, a developer who turns ideas into real products using{" "}
-              <span className="font-semibold text-ink">Next.js</span>,{" "}
-              <span className="font-semibold text-ink">React</span>,{" "}
-              <span className="font-semibold text-ink">TypeScript</span>, and{" "}
-              <span className="font-semibold text-ink">NestJS</span>, with AI
-              woven in through NLP, RAG, and LLMs when it earns its place.
+              I'm Safwen, a{" "}
+              <span className="font-semibold text-ink">Full-Stack Software Engineer</span>. I build
+              modern web products with care for the details users notice and the architecture
+              they don't.
             </p>
 
             <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">

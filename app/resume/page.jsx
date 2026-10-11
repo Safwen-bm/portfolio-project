@@ -2,7 +2,7 @@
 import ResumeSection from "@/components/resume/ResumeSection";
 
 export default function ResumePage() {
-  return <ResumeSection />;
+  return <ResumeSection standalone />;
 }
 
 export const metadata = {

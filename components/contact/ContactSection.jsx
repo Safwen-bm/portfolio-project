@@ -20,7 +20,7 @@ const contactInfo = [
 // `website` is a hidden honeypot field: real visitors never see it, spam bots fill it in
 const EMPTY_FORM = { firstName: "", lastName: "", email: "", message: "", website: "" };
 
-const ContactSection = () => {
+const ContactSection = ({ standalone = false }) => {
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -63,7 +63,9 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="relative isolate overflow-hidden bg-subtle py-20 md:py-28">
+    <section
+      className={`relative isolate overflow-hidden bg-subtle py-20 md:py-28 ${standalone ? "pt-36 md:pt-40" : ""}`}
+    >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="bg-dots fade-radial absolute inset-0" />
       </div>
@@ -72,7 +74,7 @@ const ContactSection = () => {
         <SectionHeading
           index="08"
           title="Get In Touch"
-          subtitle="Open to full-time roles and freelance projects. Let's build something."
+          subtitle="Have an opportunity or a project in mind? I'd love to hear about it."
         />
 
         <motion.div
@@ -85,7 +87,7 @@ const ContactSection = () => {
           {/* FORM */}
           <div className="order-1 p-6 md:p-10 lg:order-2 lg:col-span-3">
             <h3 className="font-display text-2xl font-semibold text-ink">Send a Message</h3>
-            <p className="mb-6 mt-1 text-sm text-muted">I'll get back to you within a day or two.</p>
+            <p className="mb-6 mt-1 text-sm text-muted">Tell me a little about what you have in mind, and I'll get back to you as soon as I can.</p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <input

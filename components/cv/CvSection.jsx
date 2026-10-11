@@ -56,32 +56,37 @@ const CvSection = () => {
           className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl bg-surface/90 p-3 shadow-lift ring-1 ring-line backdrop-blur-sm md:p-4"
         >
           <div className="relative">
-            {/* toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 px-1 pb-3 pt-1">
-              <div className="flex min-w-0 items-center gap-2">
+            {/* toolbar: [file name][language switch][download / open]. On phones the language switch
+                moves to its own full-width row so nothing is cut off. */}
+            <div className="flex flex-wrap items-center gap-3 px-1 pb-3 pt-1">
+              <div className="flex min-w-0 flex-1 items-center gap-2">
                 <FiFileText className="shrink-0 text-saffron" />
                 <span className="truncate font-mono text-xs text-muted">{fileName}</span>
               </div>
 
-              <div className="flex items-center gap-2">
-                <div className="flex rounded-full bg-ink/10 p-1" role="group" aria-label="CV language">
-                  {Object.entries(CVS).map(([key, item]) => (
-                    <button
-                      key={key}
-                      type="button"
-                      aria-pressed={lang === key}
-                      onClick={() => switchLang(key)}
-                      className={`rounded-full px-3 py-1.5 font-mono text-xs font-bold transition-colors sm:px-4 ${
-                        lang === key
-                          ? "bg-saffron text-deep"
-                          : "bg-transparent text-ink hover:bg-ink/10"
-                      }`}
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
+              <div
+                className="order-last flex w-full rounded-full bg-ink/10 p-1 sm:order-none sm:w-auto"
+                role="group"
+                aria-label="CV language"
+              >
+                {Object.entries(CVS).map(([key, item]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    aria-pressed={lang === key}
+                    onClick={() => switchLang(key)}
+                    className={`flex-1 whitespace-nowrap rounded-full px-3 py-1.5 font-mono text-xs font-bold transition-colors sm:flex-none sm:px-4 ${
+                      lang === key
+                        ? "bg-saffron text-deep"
+                        : "bg-transparent text-ink hover:bg-ink/10"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
 
+              <div className="flex shrink-0 items-center gap-2">
                 <a
                   href={cv.file}
                   download

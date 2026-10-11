@@ -1,4 +1,5 @@
 // components/resume/data.js
+// All the content of the Resume section lives here (the components only render it).
 import {
   SiNextdotjs,
   SiReact,
@@ -14,8 +15,8 @@ import {
   SiMongodb,
   SiPrisma,
   SiFirebase,
-  SiSocketdotio,
-  SiWebrtc,
+  SiFastapi,
+  SiMysql,
   SiExpress,
   SiDotnet,
   SiDocker,
@@ -62,8 +63,17 @@ export const education = [
 ];
 
 // Skills pyramid: ONE LINE = ONE FAMILY, widest line at the bottom.
+// Anything shown here must NOT also appear as a floating tag in PyramidScene.jsx.
 // "currentColor" = follows light / dark mode (logos that are black or white).
 export const skillRows = [
+  {
+    label: "AI",
+    items: [
+      { name: "LLMs", Icon: FiCpu, color: "#C084FC" },
+      { name: "RAG", Icon: FiSearch, color: "#C084FC" },
+      { name: "NLP", Icon: FiMessageSquare, color: "#C084FC" },
+    ],
+  },
   {
     label: "Frontend",
     items: [
@@ -79,6 +89,7 @@ export const skillRows = [
       { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
       { name: "Node.js", Icon: SiNodedotjs, color: "#68B15A" },
       { name: "Express", Icon: SiExpress, color: "currentColor" },
+      { name: "FastAPI", Icon: SiFastapi, color: "#05A495" },
       { name: "ASP.NET", Icon: SiDotnet, color: "#8B7CFF" },
     ],
   },
@@ -87,22 +98,13 @@ export const skillRows = [
     items: [
       { name: "Postgres", Icon: SiPostgresql, color: "#5B8DEF" },
       { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
+      { name: "MySQL", Icon: SiMysql, color: "#4F9BD9" },
       { name: "Prisma", Icon: SiPrisma, color: "currentColor" },
       { name: "Firebase", Icon: SiFirebase, color: "#FFA000" },
     ],
   },
   {
-    label: "Real-Time & AI",
-    items: [
-      { name: "Socket.IO", Icon: SiSocketdotio, color: "currentColor" },
-      { name: "WebRTC", Icon: SiWebrtc, color: "#F6B03B" },
-      { name: "LLMs", Icon: FiCpu, color: "#C084FC" },
-      { name: "RAG", Icon: FiSearch, color: "#C084FC" },
-      { name: "NLP", Icon: FiMessageSquare, color: "#C084FC" },
-    ],
-  },
-  {
-    label: "Languages",
+    label: "Programming Languages",
     items: [
       { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
       { name: "TypeScript", Icon: SiTypescript, color: "#3B82F6" },

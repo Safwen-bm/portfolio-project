@@ -4,15 +4,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Caveat } from "next/font/google";
-import {
-  FiLayers,
-  FiCode,
-  FiCpu,
-  FiTarget,
-  FiPenTool,
-  FiCompass,
-  FiBox,
-} from "react-icons/fi";
+import { FiLayers, FiCode, FiCpu, FiTarget, FiPenTool } from "react-icons/fi";
 import CodeMark from "@/components/ornaments/CodeMark";
 
 // handwritten font, only for the quote
@@ -94,10 +86,10 @@ const AboutSection = () => {
               className="mt-8 max-w-2xl space-y-5 text-base leading-relaxed text-muted md:text-lg"
             >
               <p className="text-ink/90">
-                I enjoy turning complex ideas into software that solves real problems. Whether it's building a full-stack application, working with AI, or figuring out how different parts of a system fit together, I'm interested in understanding the problem and building the right solution.
+                I enjoy turning complex ideas into software that solves real problems. Whether it's building a full-stack application, working with AI, or figuring out how different parts of a system fit together, I enjoy understanding the problem and building the right solution.
               </p>
               <p>
-                I work across frontend, backend, databases, and AI, which helps me see a project as a complete system rather than just a collection of features. I care about writing maintainable code, making thoughtful technical decisions, and building things that are genuinely useful.
+                I work across frontend, backend, databases, and AI, which helps me approach projects as complete systems rather than just a collection of features. I care about writing maintainable code, making thoughtful technical decisions, and building products that are genuinely useful.
               </p>
               <p>
                 I'm always exploring new technologies, experimenting with ideas, and looking for better ways to build.
@@ -125,7 +117,7 @@ const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="lg:col-span-5 lg:-translate-x-10 xl:-translate-x-20"
           >
-            <div className="rounded-3xl border border-line bg-surface/75 p-5 shadow-soft md:p-6 lg:backdrop-blur-sm">
+            <div className="rounded-3xl border border-line/40 bg-surface/20 p-5 md:p-6">
               <div className="mb-5 flex items-center justify-between">
                 <h3 className="font-display text-2xl font-semibold text-ink">What I Enjoy</h3>
                 <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-light ring-1 ring-accent/20">
@@ -141,7 +133,7 @@ const AboutSection = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.25 + i * 0.06 }}
-                    className="group flex items-center gap-4 rounded-2xl border border-line bg-primary/70 px-4 py-3.5 transition-all duration-300 hover:translate-x-1 hover:border-accent/40 hover:bg-surface"
+                    className="group flex items-center gap-4 rounded-2xl border border-line/30 bg-surface/20 px-4 py-3.5 transition-all duration-300 hover:translate-x-1 hover:border-accent/40 hover:bg-surface/30"
                   >
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-light text-accent ring-1 ring-accent/20 transition-colors duration-300 group-hover:bg-accent group-hover:text-onaccent">
                       <Icon size={18} />

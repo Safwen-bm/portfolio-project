@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import { projects } from "./projectsData";
 
+// scroll back to the page once the first or last project is reached.
 const useHorizontalScroller = (ref, setActiveIndex, { wheel = false } = {}) => {
   useEffect(() => {
     const el = ref.current;
@@ -94,7 +95,7 @@ const Dots = ({ activeIndex, className = "" }) => (
   </div>
 );
 
-const WorkSection = () => {
+const WorkSection = ({ standalone = false }) => {
   const sectionRef = useRef(null);
   const desktopRef = useRef(null);
   const touchRef = useRef(null);
@@ -124,11 +125,11 @@ const WorkSection = () => {
           <div className="absolute left-1/2 top-1/2 h-[520px] w-[900px] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(closest-side,rgb(var(--c-accent)/0.1),transparent)]" />
         </div>
 
-        <div className="container mx-auto px-4 pt-16 md:pt-20">
+        <div className={`container mx-auto px-4 ${standalone ? "pt-36 md:pt-40" : "pt-16 md:pt-20"}`}>
           <SectionHeading
             index="04"
-            title="Featured Projects"
-            subtitle="Selected works — full stack & real-time."
+            title="Things I've Built"
+            subtitle="Selected projects in full-stack development, AI, and software engineering."
           />
         </div>
 

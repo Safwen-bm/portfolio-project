@@ -31,7 +31,13 @@ const fraunces = Fraunces({
 export const metadata = {
   title: "Safwen Ben Mabrouk — Full-Stack Engineer",
   description: "Full-Stack Software Engineer from Tunisia, building modern web applications with Next.js, React, NestJS, and TypeScript. Explore my projects, skills, and experience.",
-  icons: { icon: "/favicon.png" },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
 };
 
 export const viewport = {

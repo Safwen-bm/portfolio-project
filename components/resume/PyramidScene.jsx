@@ -1,4 +1,9 @@
 // components/resume/PyramidScene.jsx
+// Background of the WHOLE Resume section (replaces the old KnowledgeNetworkBg):
+//  - a Three.js scene: glowing wireframe pyramid, inner pyramid, orbit rings, particles.
+//    It stays on screen (sticky) while you scroll through the section.
+//  - floating code words / tags that drift and shift a little with the mouse.
+// Colors follow the theme and the light / dark mode. The parent must be `relative isolate overflow-clip`.
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -24,27 +29,24 @@ import {
 // depth = how far the tag slides with the mouse (px). `desktop` tags are hidden on small screens.
 const tags = [
   { text: "</>", left: "5%", top: "5%", size: "text-5xl md:text-7xl", tone: "text-accent/[0.2]", dur: 7, delay: 0, depth: 26 },
-  { text: "TS", left: "80%", top: "4%", size: "text-4xl md:text-6xl", tone: "text-accent/[0.2]", dur: 8, delay: 1, depth: 18 },
   { text: "{ API }", left: "86%", top: "20%", size: "text-2xl md:text-4xl", tone: "text-glow/[0.3]", dur: 9, delay: 0.5, depth: 30 },
   { text: "git push", left: "34%", top: "3%", size: "text-lg md:text-2xl", tone: "text-glow/[0.3]", dur: 7.5, delay: 2, depth: 14 },
   { text: "machine learning", left: "52%", top: "9%", size: "text-sm md:text-xl", tone: "text-saffron/[0.3]", dur: 9, delay: 0.8, depth: 20, desktop: true },
   { text: "REST API", left: "8%", top: "17%", size: "text-xl md:text-3xl", tone: "text-accent/[0.18]", dur: 8.5, delay: 1.2, depth: 24 },
-  { text: "RAG", left: "91%", top: "36%", size: "text-2xl md:text-4xl", tone: "text-saffron/[0.28]", dur: 8.5, delay: 0.4, depth: 34 },
   { text: "npm run build", left: "3%", top: "30%", size: "text-sm md:text-lg", tone: "text-glow/[0.3]", dur: 9.5, delay: 1.7, depth: 16 },
-  { text: "AI", left: "14%", top: "42%", size: "text-5xl md:text-6xl", tone: "text-saffron/[0.26]", dur: 8, delay: 1.5, depth: 28 },
   { text: "useEffect()", left: "74%", top: "46%", size: "text-base md:text-2xl", tone: "text-accent/[0.2]", dur: 10, delay: 0.3, depth: 18, desktop: true },
   { text: "↔", left: "56%", top: "40%", size: "text-4xl md:text-5xl", tone: "text-saffron/[0.22]", dur: 8, delay: 0.9, depth: 22, desktop: true },
   { text: "docker compose up", left: "20%", top: "55%", size: "text-sm md:text-lg", tone: "text-glow/[0.28]", dur: 10, delay: 2.2, depth: 14, desktop: true },
   { text: "JWT", left: "88%", top: "58%", size: "text-2xl md:text-4xl", tone: "text-accent/[0.2]", dur: 8, delay: 1.1, depth: 26 },
+  { text: "embeddings", left: "76%", top: "6%", size: "text-sm md:text-xl", tone: "text-accent/[0.2]", dur: 9, delay: 0.4, depth: 22, desktop: true },
+  { text: "prompt()", left: "13%", top: "44%", size: "text-lg md:text-3xl", tone: "text-saffron/[0.26]", dur: 8, delay: 1.5, depth: 26 },
   { text: "SQL", left: "6%", top: "64%", size: "text-3xl md:text-5xl", tone: "text-accent/[0.18]", dur: 10, delay: 0.8, depth: 20 },
   { text: "SELECT *", left: "62%", top: "66%", size: "text-sm md:text-xl", tone: "text-glow/[0.28]", dur: 9, delay: 1.9, depth: 16, desktop: true },
-  { text: "LLM", left: "40%", top: "70%", size: "text-3xl md:text-5xl", tone: "text-saffron/[0.24]", dur: 9.5, delay: 0.6, depth: 30, desktop: true },
   { text: "const {}", left: "12%", top: "78%", size: "text-2xl md:text-3xl", tone: "text-accent/[0.18]", dur: 9, delay: 1.2, depth: 18 },
   { text: "WebRTC", left: "78%", top: "80%", size: "text-xl md:text-3xl", tone: "text-glow/[0.3]", dur: 8.5, delay: 0.7, depth: 24 },
   { text: "☁", left: "93%", top: "12%", size: "text-3xl md:text-5xl", tone: "text-glow/[0.28]", dur: 8.5, delay: 0.7, depth: 20 },
   { text: "async ()", left: "30%", top: "88%", size: "text-lg md:text-2xl", tone: "text-accent/[0.2]", dur: 10, delay: 1.4, depth: 14 },
   { text: "CI/CD", left: "58%", top: "90%", size: "text-2xl md:text-4xl", tone: "text-saffron/[0.24]", dur: 8, delay: 0.2, depth: 28 },
-  { text: "NLP", left: "89%", top: "92%", size: "text-2xl md:text-4xl", tone: "text-accent/[0.2]", dur: 9, delay: 1.6, depth: 22 },
   { text: "RBAC", left: "3%", top: "92%", size: "text-xl md:text-3xl", tone: "text-glow/[0.28]", dur: 8.5, delay: 2.1, depth: 18, desktop: true },
   { text: "pgvector", left: "46%", top: "25%", size: "text-sm md:text-lg", tone: "text-accent/[0.18]", dur: 9, delay: 1.3, depth: 12, desktop: true },
   { text: "Socket.IO", left: "22%", top: "30%", size: "text-sm md:text-xl", tone: "text-saffron/[0.24]", dur: 10, delay: 0.5, depth: 20, desktop: true },

@@ -26,7 +26,7 @@ const tabs = [
   { value: "lang", icon: FiGlobe, label: "Languages" },
 ];
 
-const ResumeSection = () => {
+const ResumeSection = ({ standalone = false }) => {
   const sectionRef = useRef(null);
   const [near, setNear] = useState(false);
 
@@ -48,14 +48,17 @@ const ResumeSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative isolate overflow-clip bg-primary py-24 md:py-32">
+    <section
+      ref={sectionRef}
+      className={`relative isolate overflow-clip bg-primary py-24 md:py-32 ${standalone ? "pt-36 md:pt-40" : ""}`}
+    >
       {near && <PyramidScene />}
 
       <div className="container relative z-10 mx-auto px-4 md:px-6">
         <SectionHeading
           index="05"
           title="Resume"
-          subtitle="Full-Stack Engineer · Real-Time Systems · Secure Architecture"
+          subtitle="Engineering Mindset · Practical Solutions · Continuous Growth"
           className="!mb-8"
         />
 
@@ -140,8 +143,8 @@ const ResumeSection = () => {
                 <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-saffron text-deep">
                   <FiAward size={18} />
                 </div>
-                <div>
-                  <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between md:gap-4">
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-col gap-1 md:flex-row md:items-start md:justify-between md:gap-4">
                     <h3 className="font-display text-lg font-semibold text-ink md:text-xl">
                       {edu.degree}
                     </h3>

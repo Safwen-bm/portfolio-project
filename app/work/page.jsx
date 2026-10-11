@@ -2,7 +2,7 @@
 import WorkSection from "@/components/work/WorkSection";
 
 export default function WorkPage() {
-  return <WorkSection />;
+  return <WorkSection standalone />;
 }
 
 export const metadata = {

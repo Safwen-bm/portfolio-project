@@ -20,21 +20,21 @@ const services = [
     num: "02",
     title: "Architecture & Security",
     description:
-      "JWT, RBAC, encryption, SQL optimization, CI/CD, Docker. Solid foundations that scale safely.",
+      "Authentication, role-based access, data protection, SQL optimization, Docker, and CI/CD. Reliable foundations built to support your application as it grows.",
     icon: FiShield,
   },
   {
     num: "03",
-    title: "Real-Time & WebRTC",
+    title: "AI Integration",
     description:
-      "Live chat, HD video calls, push notifications, instant sync smooth experiences with low latency.",
+      "AI-powered features using language models, semantic search, and retrieval-augmented generation to make applications more useful and intelligent.",
     icon: FiZap,
   },
   {
     num: "04",
-    title: "Consulting & Innovation",
+    title: "Application Improvement",
     description:
-      "Technical audits, performance optimization, and AI integration to take your project further.",
+      "Bug fixes, performance optimization, testing, and code refactoring to make existing applications faster, more reliable, and easier to maintain.",
     icon: FiGlobe,
   },
 ];
@@ -90,9 +90,11 @@ const ServiceBlock = ({ service, index }) => {
   );
 };
 
-const ServicesSection = () => {
+const ServicesSection = ({ standalone = false }) => {
   return (
-    <section className="relative isolate overflow-hidden bg-subtle py-20 md:py-28">
+    <section
+      className={`relative isolate overflow-hidden bg-subtle py-20 md:py-28 ${standalone ? "pt-36 md:pt-40" : ""}`}
+    >
       {/* theme-tinted dots + glow, fading out toward the edges */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="bg-dots fade-radial absolute inset-0" />
