@@ -5,7 +5,7 @@ export const projects = [
     num: "01",
     title: "DocuMind — AI Document Management Platform",
     description:
-      "Full-stack SaaS platform for teams to organize, search, and collaborate on documents. Features a RAG pipeline for AI-powered chat grounded in your actual files, hybrid vector + full-text search, real-time collaborative editing, granular RBAC across workspaces, and Stripe subscription billing.",
+      "Full-stack SaaS platform for teams to organize, search, and collaborate on documents. Features a RAG pipeline for AI-powered chat grounded in your actual files, hybrid vector + full-text search, real-time collaborative editing and granular RBAC across workspaces.",
     stack: [
       "Next.js",
       "NestJS",
