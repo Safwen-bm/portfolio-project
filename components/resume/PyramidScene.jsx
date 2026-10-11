@@ -92,9 +92,17 @@ export default function PyramidScene() {
     if (!isMobile) window.addEventListener("pointermove", onMove, { passive: true });
 
     // ----- 3D scene (skipped silently when WebGL is not available: the tags still show) -----
+    // Sharpness: render at the screen's real resolution (phones are 2x - 3x), capped at 2x.
+    // Very weak devices (2 cores or less) start at 1.5x, and any device that turns out to be slow
+    // (measured on the first frames) drops to 1.25x automatically.
+    const lowEnd = (navigator.hardwareConcurrency || 8) <= 2;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, lowEnd ? 1.5 : 2);
+    // thin lines look fainter on dense screens, so they get a little more opacity there
+    const boost = pixelRatio >= 2 ? 1.3 : 1;
+
     let renderer;
     try {
-      renderer = new WebGLRenderer({ alpha: true, antialias: !isMobile });
+      renderer = new WebGLRenderer({ alpha: true, antialias: pixelRatio < 2 });
     } catch {
       return () => {
         window.removeEventListener("pointermove", onMove);
@@ -104,7 +112,7 @@ export default function PyramidScene() {
 
     const scene = new Scene();
     const camera = new PerspectiveCamera(40, 1, 0.1, 100);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
+    renderer.setPixelRatio(pixelRatio);
     host.appendChild(renderer.domElement);
 
     // keeps the whole pyramid (and on wide screens the rings) inside the screen
@@ -131,6 +139,7 @@ export default function PyramidScene() {
     let accent = readColor("--c-accent", "#2447d6");
     let hot = readColor("--c-saffron", "#f4b63f");
     const level = () => (dark ? 1 : 1.55); // stronger lines on a light page
+    const op = (base) => Math.min(1, base * level() * boost);
 
     const group = new Group();
     scene.add(group);
@@ -140,7 +149,7 @@ export default function PyramidScene() {
       color: glow,
       wireframe: true,
       transparent: true,
-      opacity: 0.3 * level(),
+      opacity: op(0.3),
       depthWrite: false,
     });
     const outer = new Mesh(outerGeo, outerMat);
@@ -152,7 +161,7 @@ export default function PyramidScene() {
       color: hot,
       wireframe: true,
       transparent: true,
-      opacity: 0.5 * level(),
+      opacity: op(0.5),
       depthWrite: false,
     });
     const inner = new Mesh(innerGeo, innerMat);
@@ -160,14 +169,14 @@ export default function PyramidScene() {
     group.add(inner);
 
     const ringGeo = new TorusGeometry(3.1, 0.014, 6, 120);
-    const ringMat = new MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.55 * level() });
+    const ringMat = new MeshBasicMaterial({ color: accent, transparent: true, opacity: op(0.55) });
     const ring = new Mesh(ringGeo, ringMat);
     ring.rotation.x = Math.PI / 2.15;
     ring.position.y = -2.05;
     group.add(ring);
 
     const ring2Geo = new TorusGeometry(3.7, 0.01, 6, 120);
-    const ring2Mat = new MeshBasicMaterial({ color: hot, transparent: true, opacity: 0.35 * level() });
+    const ring2Mat = new MeshBasicMaterial({ color: hot, transparent: true, opacity: op(0.35) });
     const ring2 = new Mesh(ring2Geo, ring2Mat);
     ring2.rotation.x = Math.PI / 2.15;
     ring2.rotation.y = 0.3;
@@ -228,7 +237,7 @@ export default function PyramidScene() {
 
     const pMat = new PointsMaterial({
       map: dotTexture,
-      size: 0.1,
+      size: 0.1 * (pixelRatio >= 2 ? 1.15 : 1),
       vertexColors: true,
       transparent: true,
       opacity: dark ? 0.8 : 0.95,
@@ -256,10 +265,27 @@ export default function PyramidScene() {
     let rafId = 0;
     let running = false;
     let inView = true;
+    let frameCount = 0;
+    let frameStart = 0;
+    let adapted = false;
     const loop = () => {
       if (!running) return;
       rafId = requestAnimationFrame(loop);
       renderFrame();
+
+      // quality guard: if the first 90 frames are slow (< ~30 fps), lower the resolution once
+      if (!adapted) {
+        if (frameCount === 0) frameStart = performance.now();
+        frameCount++;
+        if (frameCount === 90) {
+          adapted = true;
+          const average = (performance.now() - frameStart) / 90;
+          if (average > 32 && pixelRatio > 1.25) {
+            renderer.setPixelRatio(1.25);
+            fitCamera();
+          }
+        }
+      }
     };
     const start = () => {
       if (running || reduceMotion) return;
@@ -292,13 +318,13 @@ export default function PyramidScene() {
       accent = readColor("--c-accent", "#2447d6");
       hot = readColor("--c-saffron", "#f4b63f");
       outerMat.color.copy(glow);
-      outerMat.opacity = 0.3 * level();
+      outerMat.opacity = op(0.3);
       innerMat.color.copy(hot);
-      innerMat.opacity = 0.5 * level();
+      innerMat.opacity = op(0.5);
       ringMat.color.copy(accent);
-      ringMat.opacity = 0.55 * level();
+      ringMat.opacity = op(0.55);
       ring2Mat.color.copy(hot);
-      ring2Mat.opacity = 0.35 * level();
+      ring2Mat.opacity = op(0.35);
       pMat.opacity = dark ? 0.8 : 0.95;
       paint();
       if (reduceMotion) renderFrame();

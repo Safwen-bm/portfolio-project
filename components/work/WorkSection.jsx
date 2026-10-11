@@ -156,7 +156,7 @@ const WorkSection = ({ standalone = false }) => {
         <div className="lg:hidden">
           <div
             ref={touchRef}
-            className="no-scrollbar flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain scroll-pl-5 px-5 pb-6 pt-2"
+            className="no-scrollbar flex snap-x snap-mandatory items-start gap-4 overflow-x-auto overscroll-x-contain scroll-pl-5 px-5 pb-6 pt-2"
           >
             {projects.map((project) => (
               <MobileCard key={project.num} project={project} />
@@ -262,31 +262,47 @@ const ProjectImage = ({ project }) => (
   </motion.div>
 );
 
+// Phone / tablet card. Order: number + GitHub/Live buttons + title, then the screenshot,
+// then the description, then the tags. Every card has its OWN height (the row uses items-start),
+// so there is never an empty gap inside a card.
 const MobileCard = ({ project }) => (
-  <article
-    className="flex w-[86%] shrink-0 snap-start flex-col gap-4 rounded-3xl border border-line bg-subtle p-5 shadow-soft sm:w-[60%]"
-  >
-    <div className="flex items-center justify-between">
-      <span className="font-display text-2xl font-semibold text-accent">{project.num}</span>
-      <div className="flex gap-2">
-        {project.github && (
-          <Button asChild size="sm" className="h-10 px-3" aria-label="GitHub">
-            <Link href={project.github} target="_blank" rel="noopener noreferrer">
-              <BsGithub className="text-sm" />
-            </Link>
-          </Button>
-        )}
-        {project.live && (
-          <Button asChild size="sm" variant="outline" className="h-10 px-3" aria-label="Live">
-            <Link href={project.live} target="_blank" rel="noopener noreferrer">
-              <BsBoxArrowUpRight className="text-sm" />
-            </Link>
-          </Button>
-        )}
+  <article className="flex w-[86%] shrink-0 snap-start flex-col gap-4 rounded-3xl border border-line bg-subtle p-5 shadow-soft sm:w-[60%]">
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <span className="font-display text-2xl font-semibold text-accent">{project.num}</span>
+        <div className="flex gap-2">
+          {project.github && (
+            <Button asChild size="sm" className="h-10 px-3" aria-label="GitHub">
+              <Link href={project.github} target="_blank" rel="noopener noreferrer">
+                <BsGithub className="text-sm" />
+              </Link>
+            </Button>
+          )}
+          {project.live && (
+            <Button asChild size="sm" variant="outline" className="h-10 px-3" aria-label="Live">
+              <Link href={project.live} target="_blank" rel="noopener noreferrer">
+                <BsBoxArrowUpRight className="text-sm" />
+              </Link>
+            </Button>
+          )}
+        </div>
       </div>
+
+      <h4 className="font-display text-xl font-semibold text-ink">{project.title}</h4>
     </div>
 
-    <h4 className="font-display text-xl font-semibold text-ink">{project.title}</h4>
+    <Frame>
+      <div className="relative h-44 bg-primary sm:h-56">
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          sizes="(max-width: 640px) 86vw, 60vw"
+          className="object-contain"
+        />
+      </div>
+    </Frame>
+
     <p className="text-sm leading-relaxed text-muted">{project.description}</p>
 
     <div className="flex flex-wrap gap-2">
@@ -298,20 +314,6 @@ const MobileCard = ({ project }) => (
           {tech}
         </span>
       ))}
-    </div>
-
-    <div className="mt-auto">
-      <Frame>
-        <div className="relative h-44 bg-primary">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            sizes="(max-width: 640px) 86vw, 60vw"
-            className="object-contain"
-          />
-        </div>
-      </Frame>
     </div>
   </article>
 );

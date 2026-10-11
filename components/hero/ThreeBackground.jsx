@@ -40,10 +40,22 @@ export default function ThreeBackground() {
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    // Sharpness: render at the screen's real resolution (phones are 2x - 3x), capped at 2x.
+    // Very weak devices (2 cores or less) start at 1.5x, and any device that turns out to be slow
+    // (measured on the first frames) drops to 1.25x automatically.
+    const lowEnd = (navigator.hardwareConcurrency || 8) <= 2;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, lowEnd ? 1.5 : 2);
+    // thin lines look fainter on dense screens, so they get a little more opacity there
+    const boost = pixelRatio >= 2 ? 1.3 : 1;
+
     // 1. Scene, camera, renderer (if WebGL is unavailable the page simply keeps its gradient)
     let renderer;
     try {
-      renderer = new WebGLRenderer({ alpha: true, antialias: !isMobile, powerPreference: "high-performance" });
+      renderer = new WebGLRenderer({
+        alpha: true,
+        antialias: pixelRatio < 2, // at 2x the extra smoothing is not needed
+        powerPreference: "high-performance",
+      });
     } catch {
       return;
     }
@@ -57,7 +69,7 @@ export default function ThreeBackground() {
     );
     camera.position.set(0, 2, 18);
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
+    renderer.setPixelRatio(pixelRatio);
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
@@ -74,7 +86,7 @@ export default function ThreeBackground() {
       color: glow,
       wireframe: true,
       transparent: true,
-      opacity: dark ? 0.26 : 0.34,
+      opacity: Math.min(1, (dark ? 0.26 : 0.34) * boost),
       depthWrite: false,
     });
     const plane = new Mesh(planeGeometry, planeMaterial);
@@ -133,7 +145,7 @@ export default function ThreeBackground() {
       color: nodeColor(),
       wireframe: true,
       transparent: true,
-      opacity: dark ? 0.8 : 0.7,
+      opacity: Math.min(1, (dark ? 0.8 : 0.7) * boost),
     });
 
     for (let i = 0; i < 7; i++) {
@@ -191,10 +203,27 @@ export default function ThreeBackground() {
     let running = false;
     let inView = true;
 
+    let frameCount = 0;
+    let frameStart = 0;
+    let adapted = false;
     const loop = () => {
       if (!running) return;
       rafId = requestAnimationFrame(loop);
       renderFrame();
+
+      // quality guard: if the first 90 frames are slow (< ~30 fps), lower the resolution once
+      if (!adapted) {
+        if (frameCount === 0) frameStart = performance.now();
+        frameCount++;
+        if (frameCount === 90) {
+          adapted = true;
+          const average = (performance.now() - frameStart) / 90;
+          if (average > 32 && pixelRatio > 1.25) {
+            renderer.setPixelRatio(1.25);
+            renderer.setSize(container.clientWidth, container.clientHeight);
+          }
+        }
+      }
     };
     const start = () => {
       if (running || reduceMotion) return;
@@ -234,10 +263,10 @@ export default function ThreeBackground() {
       hot = readColor("--c-saffron", "#f4b63f");
       dark = isDarkMode();
       planeMaterial.color.copy(glow);
-      planeMaterial.opacity = dark ? 0.26 : 0.34;
+      planeMaterial.opacity = Math.min(1, (dark ? 0.26 : 0.34) * boost);
       particleMaterial.opacity = dark ? 0.85 : 0.9;
       nodeMaterial.color.copy(nodeColor());
-      nodeMaterial.opacity = dark ? 0.8 : 0.7;
+      nodeMaterial.opacity = Math.min(1, (dark ? 0.8 : 0.7) * boost);
       paintParticles();
       if (reduceMotion) renderFrame();
     };

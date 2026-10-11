@@ -67,20 +67,12 @@ export const education = [
 // "currentColor" = follows light / dark mode (logos that are black or white).
 export const skillRows = [
   {
-    label: "AI",
-    items: [
-      { name: "LLMs", Icon: FiCpu, color: "#C084FC" },
-      { name: "RAG", Icon: FiSearch, color: "#C084FC" },
-      { name: "NLP", Icon: FiMessageSquare, color: "#C084FC" },
-    ],
-  },
-  {
     label: "Frontend",
     items: [
       { name: "Next.js", Icon: SiNextdotjs, color: "currentColor" },
       { name: "React", Icon: SiReact, color: "#61DAFB" },
-      { name: "Tailwind", Icon: SiTailwindcss, color: "#06B6D4" },
       { name: "Three.js", Icon: SiThreedotjs, color: "currentColor" },
+      { name: "Tailwind", Icon: SiTailwindcss, color: "#06B6D4" },
     ],
   },
   {
@@ -89,8 +81,8 @@ export const skillRows = [
       { name: "NestJS", Icon: SiNestjs, color: "#E0234E" },
       { name: "Node.js", Icon: SiNodedotjs, color: "#68B15A" },
       { name: "Express", Icon: SiExpress, color: "currentColor" },
-      { name: "FastAPI", Icon: SiFastapi, color: "#05A495" },
       { name: "ASP.NET", Icon: SiDotnet, color: "#8B7CFF" },
+      { name: "FastAPI", Icon: SiFastapi, color: "#05A495" },
     ],
   },
   {
@@ -104,26 +96,34 @@ export const skillRows = [
     ],
   },
   {
+    label: "AI",
+    items: [
+      { name: "LLMs", Icon: FiCpu, color: "#C084FC" },
+      { name: "RAG", Icon: FiSearch, color: "#C084FC" },
+      { name: "NLP", Icon: FiMessageSquare, color: "#C084FC" },
+    ],
+  },
+  {
     label: "Programming Languages",
     items: [
       { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
       { name: "TypeScript", Icon: SiTypescript, color: "#3B82F6" },
       { name: "Python", Icon: SiPython, color: "#FFD43B" },
       { name: "Java", Icon: FaJava, color: "#F89820" },
-      { name: "C", Icon: SiC, color: "#5C9BD6" },
       { name: "C#", Icon: TbBrandCSharp, color: "#B07CFF" },
+      { name: "C", Icon: SiC, color: "#5C9BD6" },
     ],
   },
   {
     label: "DevOps & Tools",
     items: [
       { name: "Docker", Icon: SiDocker, color: "#2496ED" },
-      { name: "Actions", Icon: SiGithubactions, color: "#4F9CFF" },
-      { name: "AWS", Icon: FaAws, color: "#FF9900" },
       { name: "Git", Icon: SiGit, color: "#F05032" },
-      { name: "Linux", Icon: SiLinux, color: "currentColor" },
+      { name: "Actions", Icon: SiGithubactions, color: "#4F9CFF" },
       { name: "Vercel", Icon: SiVercel, color: "currentColor" },
       { name: "Render", Icon: SiRender, color: "currentColor" },
+      { name: "AWS", Icon: FaAws, color: "#FF9900" },
+      { name: "Linux", Icon: SiLinux, color: "currentColor" },
     ],
   },
 ];

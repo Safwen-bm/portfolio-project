@@ -1,20 +1,22 @@
 # Safwen Ben Mabrouk — Portfolio
 
-Personal portfolio built with Next.js, showcasing my work, resume, and services as a Full-Stack Software Engineer.
+Personal portfolio of a Full-Stack Software Engineer: projects, resume, services and CV.
 
-**Live:** [portfolio-project-psi-black.vercel.app](https://portfolio-project-psi-black.vercel.app)
+**Live:** [safwen-portfolio.vercel.app](https://safwen-portfolio.vercel.app)
 
 ## Features
 
-- Interactive hero with animated intro
-- Horizontally-scrollable featured projects section
-- Resume with skills, experience, and education tabs
-- Smooth scroll and page transitions (Lenis, GSAP, Framer Motion)
-- Fully responsive, light-themed design system
+- 7 color themes, each with a light and a dark mode
+- 3D hero background and 3D skills scene (Three.js)
+- Horizontal projects showcase, swipeable on phones
+- Resume with a skills pyramid, experience, education and languages
+- CV viewer in English, French and Italian
+- Contact form that sends email
+- Smooth scrolling and page transitions
 
 ## Stack
 
-Next.js, React, TypeScript, Tailwind CSS, Framer Motion, GSAP
+Next.js, React, Tailwind CSS, Three.js, Framer Motion, Lenis, Nodemailer
 
 ## License
 
