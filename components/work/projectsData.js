@@ -63,7 +63,7 @@ export const projects = [
     num: "05",
     title: "Tanit Bank - Full-Stack Banking Platform",
     description:
-      "Full-stack retail banking platform with ACID-safe money transfers, idempotency keys and an exact-decimal ledger that always balances. Features a public loan simulator, a loan approval workflow with debt-ratio checks, debit cards with spending limits, verified PDF statements, rotating-token auth with role-based access and an admin back office with a read-only audit log.",
+      "Full-stack retail banking platform with ACID-safe money transfers, idempotency keys and an exact-decimal ledger that always balances. Features a public loan simulator, a loan approval workflow with debt-ratio checks, debit cards with spending limits, verified PDF statements, rotating-token auth with role-based access and an admin back office.",
     stack: [
       "Next.js",
       "NestJS",
